@@ -1,0 +1,67 @@
+@import "scss/includes.scss";
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+pre,
+blockquote,
+figure,
+hr {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    font-size: 16px;
+    font-family: $font-montserrat !important;
+    line-height: 1.25;
+    scroll-behavior: smooth;
+    background-color: $color-white !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+img {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+
+::selection {
+    background: #d0dec4;
+}
+
+.font-weight-bold {
+    font-weight: 700 !important;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+.loading-center-page {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
