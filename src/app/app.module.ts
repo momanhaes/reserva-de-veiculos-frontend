@@ -14,6 +14,7 @@ import { ROUTES } from "./app.routes";
 
 import { registerLocaleData } from "@angular/common";
 import localePt from '@angular/common/locales/pt';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -24,6 +25,7 @@ registerLocaleData(localePt, 'pt');
     HomeComponent,
     FooterComponent,
     HeaderComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
