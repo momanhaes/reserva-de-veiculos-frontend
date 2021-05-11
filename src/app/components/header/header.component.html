@@ -1,1 +1,12 @@
-<p>header works!</p>
+<nav class="navbar">
+    <p [@appeard]="state"><strong>RESERVA DE VEÍCULOS</strong> | Olá, Matheus! </p>
+    <ul [@appeard]="state">
+        <li *ngFor="let item of headerRoutes" routerLinkActive="text-bold">
+            <a (click)="closeMenuMobile()" [routerLink]="item.route">
+                {{ item.name }}</a>
+        </li>
+    </ul>
+    <button class="navbar-toggler" [@appeard]="state">
+        <span></span>
+    </button>
+</nav>
