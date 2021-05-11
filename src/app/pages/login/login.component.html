@@ -1,7 +1,31 @@
-<h2 class="login-title mt-5 mb-5">LOGIN</h2>
-<div class="text-center">
-    <h2>Bem vindo!</h2>
-    <button type="button" class="btn btn-outline-dark mt-3" routerLink='/home'>
-        Entrar
-    </button>
+<div class="container">
+    <particles [params]="params" [style]="theme"></particles>
+    <div class="text-center spacement">
+        <h2 class="login-title" [@appeard]="state">
+            Reserva de Veículos <i class="fa fa-bus ml-3"></i>
+        </h2>
+
+        <form class="contactform mb-4" [@appeard]="state">
+            <div class="row">
+                <div class="col-12">
+                    <label class="contactform-label text-left"><i class="fa fa-user mr-2"></i>Usuário</label>
+                    <input type="text" placeholder="Digite seu nome de usuário" required class="contactform-input" />
+                </div>
+                <div class="col-12">
+                    <label class="contactform-label text-left"><i class="fa fa-key mr-2"></i>Senha</label>
+                    <input type="password" placeholder="Digite sua senha" required class="contactform-input" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">&nbsp;</div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <a class="text-light signin" routerLink='/home'><i class="fa fa-user-plus mr-2"></i>Cadastre-se</a>
+                <button (click)="login()" value="Acessar" class="contactform-submit font-weight-bold user">
+                    <i class="fa fa-sign-in mr-2"></i>Acessar</button>
+            </div>
+        </form>
+    </div>
 </div>

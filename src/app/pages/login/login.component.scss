@@ -1,18 +1,76 @@
 @import "../../../scss/includes.scss";
 
 .login-title {
-    color: $color-light-black;
+    color: $color-white;
     font-size: 2rem;
-    font-family: $font-montserrat;
     font-weight: 400;
     text-align: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
     max-width: 90%;
     margin: auto;
-    text-transform: uppercase;
 
     @include large-and-up {
         font-size: 2.2rem;
     }
+}
+
+.contactform {
+    background: linear-gradient(to bottom left, #344675, #263148, #344675) !important;
+    max-width: 500px;
+    margin: auto;
+    color: $color-white;
+    padding: 1rem 2rem 2rem;
+    border-radius: 8px;
+}
+
+.contactform-label {
+    display: block;
+    padding: 0.4rem 0;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.contactform-input {
+    display: block;
+    width: 100%;
+    border: 0;
+    font-size: 0.8rem;
+    padding: 0.8rem;
+
+    &:disabled {
+        background-color: $color-disabled;
+    }
+
+    &::placeholder {
+        @include large-and-up {
+            font-size: 1rem;
+        }
+    }
+}
+
+.contactform-submit {
+    border: 0;
+    cursor: pointer;
+    font-family: $font-montserrat;
+    font-size: 1rem;
+    color: $color-white;
+    background-color: $color-primary;
+    padding: 0.93rem 2rem;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+        background-color: lighten($color-primary, 5%);
+        color: $color-white;
+    }
+}
+
+.signin {
+    font-size: 1.2rem;
+    font-family: $font-montserrat;
+}
+
+// TODO: Desfazer gambiarra e centralizar direito
+.spacement {
+    margin-top: 13rem;
 }
