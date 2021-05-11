@@ -15,6 +15,8 @@ import { ROUTES } from "./app.routes";
 import { registerLocaleData } from "@angular/common";
 import localePt from '@angular/common/locales/pt';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ParticlesModule } from 'angular-particle';
 
 registerLocaleData(localePt, 'pt');
 
@@ -34,6 +36,8 @@ registerLocaleData(localePt, 'pt');
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    ParticlesModule,
+    NgbModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pt" }],
   bootstrap: [AppComponent]
