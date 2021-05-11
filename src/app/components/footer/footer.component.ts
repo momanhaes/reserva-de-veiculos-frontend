@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { APPEARD } from 'src/animations/appeard.animation';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  styleUrls: ['./footer.component.scss'],
+  animations: [APPEARD],
 })
 export class FooterComponent implements OnInit {
+  public state = "ready";
 
   constructor() { }
 
