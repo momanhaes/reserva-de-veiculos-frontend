@@ -5,11 +5,11 @@ import { THEME, PARAMS } from 'src/animations/particles.animation';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
   animations: [APPEARD],
 })
-export class LoginComponent implements OnInit {
+export class LoginPage implements OnInit {
   public state = "ready";
   public theme = THEME;
   public params = PARAMS;

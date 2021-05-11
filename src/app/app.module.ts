@@ -6,28 +6,28 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
+import { LoginPage } from './pages/login/login.page';
+import { HomePage } from './pages/home/home.page';
+import { NotFoundPage } from './pages/not-found/not-found.page';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ROUTES } from "./app.routes";
 
 import { registerLocaleData } from "@angular/common";
-import localePt from '@angular/common/locales/pt';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ParticlesModule } from 'angular-particle';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import localePt from '@angular/common/locales/pt';
 
 registerLocaleData(localePt, 'pt');
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    HomeComponent,
+    LoginPage,
+    HomePage,
+    NotFoundPage,
     FooterComponent,
     HeaderComponent,
-    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

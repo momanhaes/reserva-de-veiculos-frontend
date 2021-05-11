@@ -4,11 +4,11 @@ import { APPEARD } from "src/animations/appeard.animation";
 
 @Component({
   selector: 'app-not-found',
-  templateUrl: './not-found.component.html',
-  styleUrls: ['./not-found.component.scss'],
+  templateUrl: './not-found.page.html',
+  styleUrls: ['./not-found.page.scss'],
   animations: [APPEARD],
 })
-export class NotFoundComponent implements OnInit {
+export class NotFoundPage implements OnInit {
   public state = "ready";
   public path: string;
 
