@@ -30,8 +30,8 @@
                 Novo Veículo
             </button>
         </div>
-        <div class="col-12">
-            <form [@toggleSearch]="searchBarState">
+        <div *ngIf="showSearchBar" class="col-12" [@slide]="state">
+            <form>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control ml-3" placeholder="Pesquise por um veículo." />
                 </div>

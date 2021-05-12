@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { APPEARD } from 'src/animations/appeard.animation';
-import { COLLAPSIBLE } from 'src/animations/collapsible.animation';
+import { SLIDE } from 'src/animations/slide.animation';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { IVehicle } from './../../components/vehicle-card/vehicle.interface';
 import { catchError } from 'rxjs/operators';
@@ -10,14 +10,14 @@ import { catchError } from 'rxjs/operators';
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  animations: [APPEARD, COLLAPSIBLE],
+  animations: [APPEARD, SLIDE],
 })
 export class HomePage implements OnInit {
-  public searchBarState: string;
-  public state: string;
   public vehicles: IVehicle[];
+  public showSearchBar: boolean;
   public isLoading: boolean;
   public error: boolean;
+  public state: string;
 
   constructor(private router: Router, private vehicleService: VehicleService) {
   }
@@ -73,7 +73,6 @@ export class HomePage implements OnInit {
   }
 
   getStates() {
-    this.searchBarState = 'hidden';
     this.state = 'ready';
   }
 
@@ -82,6 +81,6 @@ export class HomePage implements OnInit {
   }
 
   toggleSearch() {
-    this.searchBarState = this.searchBarState === 'hidden' ? 'visible' : 'hidden';
+    this.showSearchBar = !this.showSearchBar;
   }
 }
