@@ -4,8 +4,8 @@
     <div class="d-flex justify-content-between align-items-center flex-wrap">
         <h2 class="title mt-5">
             <a (click)="toggleSearch()" title="Clique para pesquisar" class="search-link text-white pointer">
-                <i class="fa fa-search mr-3"></i></a>
-            Escolha um veículo para reservar
+                <i class="fa fa-search mr-3"></i>
+            </a> Escolha um veículo para reservar
         </h2>
     </div>
 </section>
@@ -18,6 +18,12 @@
                     <input type="text" class="form-control ml-3" placeholder="Pesquise por um veículo." />
                 </div>
             </form>
+        </div>
+        <div class="col-12 text-right mb-3">
+            <button (click)="registerVehicle()" value="Acessar" class="button font-weight-bold">
+                <i class="fa fa-plus mr-2"></i>
+                Novo Veículo
+            </button>
         </div>
     </div>
 

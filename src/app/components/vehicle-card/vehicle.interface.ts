@@ -3,7 +3,7 @@ export interface IVehicle {
     ID: string;
     description: string;
     status: string;
-    categoria: string;
+    category: string;
     dailyValue: number;
     image: string;
     year: string;

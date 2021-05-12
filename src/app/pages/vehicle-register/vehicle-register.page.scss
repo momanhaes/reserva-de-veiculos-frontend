@@ -1,21 +1,5 @@
 @import "../../../scss/includes.scss";
 
-.title {
-    color: $color-white;
-    font-size: 2rem;
-    font-family: $font-montserrat;
-    font-weight: 400;
-    text-align: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    max-width: 90%;
-    margin: auto;
-
-    @include large-and-up {
-        font-size: 2.2rem;
-    }
-}
-
 .button {
     border: 0;
     cursor: pointer;
@@ -25,6 +9,15 @@
     background-color: $color-primary;
     padding: 0.5rem 2rem;
     transition: background-color 0.2s, color 0.2s;
+
+    &.cancel {
+        background-color: #313a46;
+
+        &:hover {
+            background-color: lighten(#313a46, 5%);
+            color: $color-white;
+        }
+    }
 
     &:hover {
         background-color: lighten($color-primary, 5%);
@@ -36,10 +29,10 @@
     }
 }
 
-.spacement {
-    max-width: 1350px !important;
-}
-
-.pointer {
-    cursor: pointer;
+.bottom {
+    @include large-and-up {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
 }

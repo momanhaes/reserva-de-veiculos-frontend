@@ -10,6 +10,8 @@ import { LoginPage } from './pages/login/login.page';
 import { HomePage } from './pages/home/home.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
 import { RegisterPage } from './pages/register/register.page';
+import { VehicleRegisterPage } from './pages/vehicle-register/vehicle-register.page';
+import { VehicleService } from './pages/vehicle-register/vehicle.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { VehicleCardComponent } from './components/vehicle-card/vehicle-card.component';
@@ -18,8 +20,8 @@ import { ROUTES } from "./app.routes";
 import { registerLocaleData } from "@angular/common";
 import { ParticlesModule } from 'angular-particle';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import localePt from '@angular/common/locales/pt';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import localePt from '@angular/common/locales/pt';
 
 registerLocaleData(localePt, 'pt');
 
@@ -33,6 +35,7 @@ registerLocaleData(localePt, 'pt');
     HeaderComponent,
     VehicleCardComponent,
     RegisterPage,
+    VehicleRegisterPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,7 @@ registerLocaleData(localePt, 'pt');
     SweetAlert2Module.forRoot(),
     NgbModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: "pt" }],
+  providers: [{ provide: LOCALE_ID, useValue: "pt" }, VehicleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

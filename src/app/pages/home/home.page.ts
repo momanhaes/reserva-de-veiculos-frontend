@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { APPEARD } from 'src/animations/appeard.animation';
 import { COLLAPSIBLE } from 'src/animations/collapsible.animation';
 import { IVehicle } from "./../../components/vehicle-card/vehicle.interface";
@@ -14,7 +15,7 @@ export class HomePage implements OnInit {
   public searchBarState = "hidden";
   public vehicles: IVehicle[];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.vehicles = [
@@ -23,7 +24,7 @@ export class HomePage implements OnInit {
         ID: '123',
         description: 'Preto Brilhoso',
         status: 'Disponível',
-        categoria: 'Carro',
+        category: 'Carro',
         dailyValue: 2500,
         image: 'assets/img/gol.jpg',
         year: '2010',
@@ -37,7 +38,7 @@ export class HomePage implements OnInit {
         ID: '123',
         description: 'Preto Brilhoso',
         status: 'Disponível',
-        categoria: 'Carro',
+        category: 'Carro',
         dailyValue: 2500,
         image: 'assets/img/gol.jpg',
         year: '2010',
@@ -51,7 +52,7 @@ export class HomePage implements OnInit {
         ID: '123',
         description: 'Preto Brilhoso',
         status: 'Disponível',
-        categoria: 'Carro',
+        category: 'Carro',
         dailyValue: 2500,
         image: 'assets/img/gol.jpg',
         year: '2010',
@@ -65,7 +66,7 @@ export class HomePage implements OnInit {
         ID: '123',
         description: 'Preto Brilhoso',
         status: 'Disponível',
-        categoria: 'Carro',
+        category: 'Carro',
         dailyValue: 2500,
         image: 'assets/img/gol.jpg',
         year: '2010',
@@ -79,7 +80,7 @@ export class HomePage implements OnInit {
         ID: '123',
         description: 'Branco Perolado',
         status: 'Disponível',
-        categoria: 'Carro',
+        category: 'Carro',
         dailyValue: 2500,
         image: '',
         year: '2010',
@@ -93,7 +94,7 @@ export class HomePage implements OnInit {
         ID: '123',
         description: 'Branco Perolado',
         status: 'Disponível',
-        categoria: 'Carro',
+        category: 'Carro',
         dailyValue: 2500,
         image: '',
         year: '2010',
@@ -107,7 +108,7 @@ export class HomePage implements OnInit {
         ID: '123',
         description: 'Branco Perolado',
         status: 'Disponível',
-        categoria: 'Carro',
+        category: 'Carro',
         dailyValue: 2500,
         image: '',
         year: '2010',
@@ -121,7 +122,7 @@ export class HomePage implements OnInit {
         ID: '123',
         description: 'Branco Perolado',
         status: 'Disponível',
-        categoria: 'Carro',
+        category: 'Carro',
         dailyValue: 2500,
         image: '',
         year: '2010',
@@ -131,6 +132,10 @@ export class HomePage implements OnInit {
         rentedBy: 'Matheus',
       },
     ]
+  }
+
+  registerVehicle() {
+    this.router.navigate(["/vehicle-register"]);
   }
 
   toggleSearch() {
