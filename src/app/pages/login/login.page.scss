@@ -56,12 +56,16 @@
     font-size: 1rem;
     color: $color-white;
     background-color: $color-primary;
-    padding: 0.93rem 2rem;
+    padding: 0.5rem 2rem;
     transition: background-color 0.2s, color 0.2s;
 
     &:hover {
         background-color: lighten($color-primary, 5%);
         color: $color-white;
+    }
+
+    @include large-and-up {
+        padding: 0.7rem 2rem;
     }
 }
 
@@ -81,5 +85,13 @@
 
     @include large-and-up {
         margin-top: 13rem;
+    }
+}
+
+.center-between {
+    justify-content: center !important;
+
+    @include large-and-up {
+        justify-content: space-between !important;
     }
 }
