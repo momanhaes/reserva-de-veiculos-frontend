@@ -15,7 +15,7 @@
     }
 }
 
-.contactform {
+.login-form {
     background: linear-gradient(to bottom left, #344675, #263148, #344675) !important;
     max-width: 500px;
     margin: auto;
@@ -24,14 +24,14 @@
     border-radius: 8px;
 }
 
-.contactform-label {
+.login-form-label {
     display: block;
     padding: 0.4rem 0;
     font-size: 1.2rem;
     margin-top: 1rem;
 }
 
-.contactform-input {
+.login-form-input {
     display: block;
     width: 100%;
     border: 0;
@@ -49,7 +49,7 @@
     }
 }
 
-.contactform-submit {
+.login-form-submit {
     border: 0;
     cursor: pointer;
     font-family: $font-montserrat;
