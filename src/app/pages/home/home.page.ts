@@ -13,20 +13,47 @@ import { catchError } from 'rxjs/operators';
   animations: [APPEARD, COLLAPSIBLE],
 })
 export class HomePage implements OnInit {
-  public state = 'ready';
-  public searchBarState = 'hidden';
+  public searchBarState: string;
+  public state: string;
+  public vehicles: IVehicle[];
   public isLoading: boolean;
   public error: boolean;
-  public vehicles: IVehicle[];
 
-  constructor(private router: Router, private vehicleService: VehicleService) { }
+  constructor(private router: Router, private vehicleService: VehicleService) {
+  }
+
+  get validationHeader(): boolean {
+    return !this.isLoading;
+  }
+
+  get validationEmpty(): boolean {
+    return !this.vehicles?.length && !this.isLoading && !this.error;
+  }
+
+  get validationError(): boolean {
+    return !this.vehicles?.length && !this.isLoading && this.error;
+  }
+
+  get validationNewVehicleButton(): boolean {
+    return !this.isLoading && !this.error;
+  }
+
+  get validationVehicleCard(): boolean {
+    return this.vehicles?.length && !this.isLoading && !this.error;
+  }
+
+  get validationClassBottom(): boolean {
+    return this.error || !this.vehicles?.length || this.isLoading;
+  }
 
   ngOnInit(): void {
     this.getVehicles();
+    this.getStates();
   }
 
   getVehicles() {
     this.isLoading = true;
+
     setTimeout(() => {
       return this.vehicleService
         .vehicles()
@@ -45,12 +72,16 @@ export class HomePage implements OnInit {
     }, 1000);
   }
 
+  getStates() {
+    this.searchBarState = 'hidden';
+    this.state = 'ready';
+  }
+
   registerVehicle() {
     this.router.navigate(['/vehicle-register']);
   }
 
   toggleSearch() {
-    this.searchBarState =
-      this.searchBarState === 'hidden' ? 'visible' : 'hidden';
+    this.searchBarState = this.searchBarState === 'hidden' ? 'visible' : 'hidden';
   }
 }

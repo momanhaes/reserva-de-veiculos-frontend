@@ -1,5 +1,5 @@
 <app-header></app-header>
-<section *ngIf="vehicles?.length && !isLoading" class="content-header" [@appeard]="state">
+<section *ngIf="validationHeader" class="content-header" [@appeard]="state">
     <div class="d-flex justify-content-between align-items-center flex-wrap">
         <h2 class="title mt-5">
             <a (click)="toggleSearch()" title="Clique para pesquisar" class="search-link text-white pointer">
@@ -9,11 +9,11 @@
     </div>
 </section>
 
-<p *ngIf="!vehicles?.length && !isLoading && !error" class="mt-5 text-white text-center" [@appeard]="state">
+<p *ngIf="validationEmpty" class="mt-5 text-white text-center" [@appeard]="state">
     Não foram encontrados veículos cadastrados <i class="fa fa-frown-o"></i>
 </p>
 
-<p *ngIf="!vehicles?.length && !isLoading && error" class="mt-5 text-white text-center" [@appeard]="state">
+<p *ngIf="validationError" class="mt-5 text-white text-center" [@appeard]="state">
     Ocorreu um erro ao trazer os veículos <i class="fa fa-frown-o"></i>
 </p>
 
@@ -22,9 +22,9 @@
     <p class="text-light mt-3">Buscando veículos...</p>
 </div>
 
-<div *ngIf="vehicles?.length && !isLoading && !error" class="container spacement mt-5">
+<div class="container spacement mt-5">
     <div class="row">
-        <div class="col-12 text-right mb-3">
+        <div *ngIf="validationNewVehicleButton" class="col-12 text-right mb-3" [@appeard]="state">
             <button (click)="registerVehicle()" value="Acessar" class="button font-weight-bold">
                 <i class="fa fa-plus mr-2"></i>
                 Novo Veículo
@@ -39,10 +39,10 @@
         </div>
     </div>
 
-    <div class="row mb-3">
+    <div *ngIf="validationVehicleCard" class="row mb-3">
         <div *ngFor="let vehicle of vehicles" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3">
             <app-vehicle-card [vehicle]="vehicle"></app-vehicle-card>
         </div>
     </div>
 </div>
-<app-footer [class.bottom]="error || !vehicles?.length || isLoading"></app-footer>
+<app-footer [class.bottom]="validationClassBottom"></app-footer>

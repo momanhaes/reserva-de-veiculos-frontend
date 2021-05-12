@@ -15,13 +15,11 @@ export class VehicleService {
     }
 
     public vehicleById(id: string): Observable<IVehicle> {
-        return this.httpClient.get<IVehicle>(`${VEHICLES_API}/vehicle/${id}`);
+        return this.httpClient.get<IVehicle>(`${VEHICLES_API}/vehicles/${id}`);
     }
 
     public vehicleByKeyword(keyword: string): Observable<IVehicle[]> {
-        return this.httpClient.get<IVehicle[]>(
-            `${VEHICLES_API}/vehicle?keyword=${keyword}`
-        );
+        return this.httpClient.get<IVehicle[]>(`${VEHICLES_API}/vehicles?keyword=${keyword}`);
     }
 
     public setVehicle(vehicle: IVehicle[]) {
