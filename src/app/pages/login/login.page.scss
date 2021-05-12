@@ -2,7 +2,7 @@
 
 .login-title {
     color: $color-white;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 400;
     text-align: center;
     padding-top: 1rem;
@@ -70,7 +70,16 @@
     font-family: $font-montserrat;
 }
 
-// TODO: Desfazer gambiarra e centralizar direito
+.bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 .spacement {
-    margin-top: 13rem;
+    margin-top: 4rem;
+
+    @include large-and-up {
+        margin-top: 13rem;
+    }
 }
