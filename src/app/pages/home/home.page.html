@@ -1,11 +1,13 @@
 <app-header></app-header>
 
 <section class="content-header" [@appeard]="state">
-    <h2 class="title mt-5">Escolha um veículo para agendamento
-        <a (click)="toggleSearch()" class="search-link ml-5 text-white pointer">
-            <i class="fa fa-search"></i>
-        </a>
-    </h2>
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+        <h2 class="title mt-5">
+            <a (click)="toggleSearch()" title="Clique para pesquisar" class="search-link text-white pointer">
+                <i class="fa fa-search mr-3"></i></a>
+            Escolha um veículo para agendamento
+        </h2>
+    </div>
 </section>
 
 <div class="container spacement mt-5">
