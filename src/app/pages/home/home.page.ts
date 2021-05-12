@@ -33,6 +33,7 @@ export class HomePage implements OnInit {
         .pipe(
           catchError((err) => {
             this.error = true;
+            this.isLoading = false;
             return (this.error = err);
           })
         )
