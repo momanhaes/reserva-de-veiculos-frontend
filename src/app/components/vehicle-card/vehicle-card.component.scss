@@ -9,7 +9,7 @@
     word-wrap: break-word;
     background: #313a46;
     background-clip: border-box;
-    border-radius: 0.80rem;
+    border-radius: 0.8rem;
 
     transition: transform 0.2s;
     transform: scale(1);
@@ -53,8 +53,8 @@
     flex-shrink: 0;
     width: 100%;
     height: 30%;
-    border-top-left-radius: calc(0.80rem - 1px);
-    border-top-right-radius: calc(0.80rem - 1px);
+    border-top-left-radius: calc(0.8rem - 1px);
+    border-top-right-radius: calc(0.8rem - 1px);
 
     @include large-and-up {
         height: 30%;
@@ -70,4 +70,5 @@
     cursor: pointer;
     color: $color-primary;
     text-align: center !important;
+    font-size: 1rem;
 }
