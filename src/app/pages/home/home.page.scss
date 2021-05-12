@@ -1,0 +1,25 @@
+@import "../../../scss/includes.scss";
+
+.title {
+    color: $color-white;
+    font-size: 2rem;
+    font-family: $font-montserrat;
+    font-weight: 400;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    max-width: 90%;
+    margin: auto;
+
+    @include large-and-up {
+        font-size: 2.2rem;
+    }
+}
+
+.spacement {
+    max-width: 1350px !important;
+}
+
+.pointer {
+    cursor: pointer;
+}

@@ -1,1 +1,29 @@
 <app-header></app-header>
+
+<section class="content-header" [@appeard]="state">
+    <h2 class="title mt-5">Escolha um veículo para agendamento
+        <a (click)="toggleSearch()" class="search-link ml-5 text-white pointer">
+            <i class="fa fa-search"></i>
+        </a>
+    </h2>
+</section>
+
+<div class="container spacement mt-5">
+    <div class="row">
+        <div class="col-12">
+            <form [@toggleSearch]="searchBarState">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control ml-3" placeholder="Pesquise por um veículo." />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div *ngFor="let vehicle of vehicles" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3">
+            <app-vehicle-card [vehicle]="vehicle"></app-vehicle-card>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

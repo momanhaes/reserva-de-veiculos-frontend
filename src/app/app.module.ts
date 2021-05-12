@@ -17,6 +17,7 @@ import { registerLocaleData } from "@angular/common";
 import { ParticlesModule } from 'angular-particle';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import localePt from '@angular/common/locales/pt';
+import { VehicleCardComponent } from './components/vehicle-card/vehicle-card.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -28,6 +29,7 @@ registerLocaleData(localePt, 'pt');
     NotFoundPage,
     FooterComponent,
     HeaderComponent,
+    VehicleCardComponent,
   ],
   imports: [
     BrowserModule,
