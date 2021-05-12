@@ -19,6 +19,7 @@ import { registerLocaleData } from "@angular/common";
 import { ParticlesModule } from 'angular-particle';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import localePt from '@angular/common/locales/pt';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 registerLocaleData(localePt, 'pt');
 
@@ -41,6 +42,7 @@ registerLocaleData(localePt, 'pt');
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ParticlesModule,
+    SweetAlert2Module.forRoot(),
     NgbModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: "pt" }],
