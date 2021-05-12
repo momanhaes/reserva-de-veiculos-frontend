@@ -9,15 +9,16 @@ import { AppComponent } from './app.component';
 import { LoginPage } from './pages/login/login.page';
 import { HomePage } from './pages/home/home.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
+import { RegisterPage } from './pages/register/register.page';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { VehicleCardComponent } from './components/vehicle-card/vehicle-card.component';
 import { ROUTES } from "./app.routes";
 
 import { registerLocaleData } from "@angular/common";
 import { ParticlesModule } from 'angular-particle';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import localePt from '@angular/common/locales/pt';
-import { VehicleCardComponent } from './components/vehicle-card/vehicle-card.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -30,6 +31,7 @@ registerLocaleData(localePt, 'pt');
     FooterComponent,
     HeaderComponent,
     VehicleCardComponent,
+    RegisterPage,
   ],
   imports: [
     BrowserModule,
