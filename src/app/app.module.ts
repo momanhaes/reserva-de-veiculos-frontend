@@ -11,7 +11,7 @@ import { HomePage } from './pages/home/home.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
 import { RegisterPage } from './pages/register/register.page';
 import { VehicleRegisterPage } from './pages/vehicle-register/vehicle-register.page';
-import { VehicleService } from './pages/vehicle-register/vehicle.service';
+import { VehicleService } from './services/vehicle.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { VehicleCardComponent } from './components/vehicle-card/vehicle-card.component';
@@ -22,6 +22,7 @@ import { ParticlesModule } from 'angular-particle';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import localePt from '@angular/common/locales/pt';
+import { LoadingComponent } from './components/loading/loading.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -35,7 +36,8 @@ registerLocaleData(localePt, 'pt');
     HeaderComponent,
     VehicleCardComponent,
     RegisterPage,
-    VehicleRegisterPage
+    VehicleRegisterPage,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
