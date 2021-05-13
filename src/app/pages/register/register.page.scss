@@ -81,9 +81,7 @@
 }
 
 .spacement {
-    margin-top: 4rem;
-
     @include large-and-up {
-        margin-top: 10rem;
+        margin-top: 5rem;
     }
 }
