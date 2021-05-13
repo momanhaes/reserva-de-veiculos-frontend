@@ -1,11 +1,27 @@
-# Frontend - Reserva de Veículos
+# Reserva de Veículos - Frontend
 
-Para baixar todas as dependências:
+Clone o repositório usando o comando abaixo:
 
-#### `npm i`
+```sh
+git clone https://github.com/momanhaes/reserva-de-veiculos-frontend
+```
 
-Para executar o projeto:
+O projeto foi desenvolvido com o framework Angular.
 
-#### `npm start`
+## Inicialização da SPA
+
+Instale as dependências do projeto rodando o comando abaixo:
+
+```sh
+npm install
+```
+
+Suba o projeto rodando o comando abaixo:
+
+```sh
+npm start
+```
 
 Abra [http://localhost:4200](http://localhost:4200) em seu navegador.
+
+## Documentação das Features
