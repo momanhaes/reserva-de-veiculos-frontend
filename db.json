@@ -2,7 +2,7 @@
   "vehicles": [
     {
       "name": "Volkswagen Gol",
-      "ID": "123",
+      "externalCode": "123",
       "description": "Preto Brilhoso",
       "status": "Disponível",
       "category": "Carro",
@@ -11,12 +11,11 @@
       "year": "2010",
       "conservation": "Novo",
       "fuel": "Cheio",
-      "rented": false,
       "rentedBy": "Matheus"
     },
     {
       "name": "Volkswagen Gol",
-      "ID": "123",
+      "externalCode": "123",
       "description": "Preto Brilhoso",
       "status": "Disponível",
       "category": "Carro",
@@ -25,12 +24,11 @@
       "year": "2010",
       "conservation": "Novo",
       "fuel": "Cheio",
-      "rented": false,
       "rentedBy": "Matheus"
     },
     {
       "name": "Volkswagen Gol",
-      "ID": "123",
+      "externalCode": "123",
       "description": "Preto Brilhoso",
       "status": "Disponível",
       "category": "Carro",
@@ -39,12 +37,11 @@
       "year": "2010",
       "conservation": "Novo",
       "fuel": "Cheio",
-      "rented": false,
       "rentedBy": "Matheus"
     },
     {
       "name": "Volkswagen Gol",
-      "ID": "123",
+      "externalCode": "123",
       "description": "Preto Brilhoso",
       "status": "Disponível",
       "category": "Carro",
@@ -53,12 +50,11 @@
       "year": "2010",
       "conservation": "Novo",
       "fuel": "Cheio",
-      "rented": false,
       "rentedBy": "Matheus"
     },
     {
       "name": "Renault Logan",
-      "ID": "123",
+      "externalCode": "123",
       "description": "Branco Perolado",
       "status": "Disponível",
       "category": "Carro",
@@ -67,12 +63,11 @@
       "year": "2010",
       "conservation": "Seminovo",
       "fuel": "Cheio",
-      "rented": false,
       "rentedBy": "Matheus"
     },
     {
       "name": "Renault Logan",
-      "ID": "123",
+      "externalCode": "123",
       "description": "Branco Perolado",
       "status": "Disponível",
       "category": "Carro",
@@ -81,12 +76,11 @@
       "year": "2010",
       "conservation": "Seminovo",
       "fuel": "Cheio",
-      "rented": false,
       "rentedBy": "Matheus"
     },
     {
       "name": "Renault Logan",
-      "ID": "123",
+      "externalCode": "123",
       "description": "Branco Perolado",
       "status": "Disponível",
       "category": "Carro",
@@ -95,12 +89,11 @@
       "year": "2010",
       "conservation": "Seminovo",
       "fuel": "Cheio",
-      "rented": false,
       "rentedBy": "Matheus"
     },
     {
       "name": "Renault Logan",
-      "ID": "123",
+      "externalCode": "123",
       "description": "Branco Perolado",
       "status": "Disponível",
       "category": "Carro",
@@ -109,7 +102,6 @@
       "year": "2010",
       "conservation": "Seminovo",
       "fuel": "Cheio",
-      "rented": false,
       "rentedBy": "Matheus"
     }
   ]

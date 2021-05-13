@@ -1,6 +1,6 @@
 export interface IVehicle {
     name: string;
-    ID: string;
+    externalCode: string;
     description: string;
     status: string;
     category: string;
@@ -9,6 +9,5 @@ export interface IVehicle {
     year: string;
     conservation: string;
     fuel: string;
-    rented?: boolean;
     rentedBy: string;
 }
