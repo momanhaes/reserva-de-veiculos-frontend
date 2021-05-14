@@ -26,8 +26,8 @@
       </p>
       <p *ngIf="vehicle.status">
         <i class="fa fa-diamond text-secondary mr-2"></i>
-        <strong>Status: </strong>
-        {{ vehicle.status }}
+        <strong [class.text-danger]=""> Status: </strong>
+        <span [class]="statusColor">{{ vehicle.status }}</span>
       </p>
       <p *ngIf="vehicle.category">
         <i class="fa fa-diamond text-secondary mr-2"></i>
