@@ -25,7 +25,7 @@ export class VehicleService {
   public createVehicle(vehicle: IVehicle): Observable<IVehicle> {
     return this.httpClient
       .post<IVehicle>(`${VEHICLES_API}/vehicles`, vehicle)
-      .pipe(map((vehicle) => vehicle));
+      .pipe(map((vehicle: IVehicle) => vehicle));
   }
 
   public updateVehicle(
@@ -34,7 +34,7 @@ export class VehicleService {
   ): Observable<IVehicle> {
     return this.httpClient
       .patch<IVehicle>(`${VEHICLES_API}/vehicles/${externalCode}`, vehicle)
-      .pipe(map((vehicle) => vehicle));
+      .pipe(map((vehicle: IVehicle) => vehicle));
   }
 
   public vehicleById(id: string): Observable<IVehicle> {

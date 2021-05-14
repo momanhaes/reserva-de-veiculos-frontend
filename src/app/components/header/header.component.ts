@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.user = this.userService.getUsername();
   }
 }

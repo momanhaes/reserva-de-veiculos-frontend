@@ -11,7 +11,7 @@ export class LoggedInGuard implements CanActivate {
     private notificationService: NotificationService
   ) {}
 
-  canActivate() {
+  canActivate(): boolean {
     if (this.userService.isLoggedIn()) {
       return true;
     } else {

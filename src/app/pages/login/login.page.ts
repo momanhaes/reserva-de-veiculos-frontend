@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
     private notificationService: NotificationService
   ) {}
 
-  public showError(error): void {
+  public showError(error: any): void {
     Swal.fire({
       title: `Ops!`,
       text: error ? error : 'Ocorreu um erro na autenticação.',

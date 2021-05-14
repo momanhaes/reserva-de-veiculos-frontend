@@ -16,7 +16,7 @@ export class SnackbarComponent implements OnInit {
 
   constructor(private notificationService: NotificationService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.notificationService.notifier
       .pipe(
         tap((message) => {
