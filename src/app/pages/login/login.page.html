@@ -1,34 +1,54 @@
 <div class="container">
-    <particles [params]="params" [style]="theme"></particles>
+  <particles [params]="params" [style]="theme"></particles>
 
-    <div class="text-center spacement">
-        <h2 class="login-title" [@appeard]="state">
-            <i class="fa fa-bus mr-2"></i> Reserva de Veículos
-        </h2>
-
-        <form class="login-form mb-4" [@appeard]="state">
-            <div class="row">
-                <div class="col-12">
-                    <label class="login-form-label text-left"><i class="fa fa-user mr-2"></i>Usuário</label>
-                    <input type="text" placeholder="Digite seu nome de usuário" required class="login-form-input" />
-                </div>
-                <div class="col-12">
-                    <label class="login-form-label text-left"><i class="fa fa-key mr-2"></i>Senha</label>
-                    <input type="password" placeholder="Digite sua senha" required class="login-form-input" />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">&nbsp;</div>
-            </div>
-
-            <div class="d-flex justify-content-between align-items-center flex-wrap center-between">
-                <a class="text-light signin" routerLink='/register'><i class="fa fa-user-plus mr-2"></i>Cadastre-se</a>
-                <button (click)="login()" value="Acessar" class="login-form-submit font-weight-bold">
-                    <i class="fa fa-sign-in mr-2"></i>Acessar</button>
-            </div>
-        </form>
+  <form [formGroup]="form" class="login-form mb-4 spacement" [@appeard]="state">
+    <div class="row">
+      <div class="col-12">
+        <label class="login-form-label text-left"
+          ><i class="fa fa-envelope mr-2"></i>E-mail</label
+        >
+        <input
+          type="text"
+          placeholder="Digite seu e-mail"
+          formControlName="email"
+          class="login-form-input"
+        />
+      </div>
+      <div class="col-12">
+        <label class="login-form-label text-left"
+          ><i class="fa fa-key mr-2"></i>Senha</label
+        >
+        <input
+          type="password"
+          placeholder="Digite sua senha"
+          formControlName="password"
+          class="login-form-input"
+        />
+      </div>
     </div>
+
+    <div
+      class="
+        d-flex
+        justify-content-between
+        align-items-center
+        flex-wrap
+        center-between
+        mt-4
+      "
+    >
+      <a class="text-light signin" routerLink="/register"
+        ><i class="fa fa-user-plus mr-2"></i>Cadastre-se</a
+      >
+      <button
+        (click)="login()"
+        [disabled]="form.invalid"
+        value="Acessar"
+        class="login-form-submit font-weight-bold">
+        <i class="fa fa-sign-in mr-2"></i>Acessar
+      </button>
+    </div>
+  </form>
 </div>
 
 <app-footer class="bottom"></app-footer>
