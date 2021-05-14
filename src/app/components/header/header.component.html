@@ -1,12 +1,18 @@
-<nav class="navbar">
-  <p [@appeard]="state"><strong>RESERVA DE VEÍCULOS</strong> | Olá, Matheus!</p>
-  <ul [@appeard]="state">
-    <li *ngFor="let item of headerRoutes" routerLinkActive="text-bold">
-      <a (click)="closeMenuMobile()" [routerLink]="item.route">
-        {{ item.name }}</a>
-    </li>
-  </ul>
-  <button class="navbar-toggler" [@appeard]="state">
-    <span></span>
-  </button>
-</nav>
+<div class="nav" [@appeard]="state">
+  <input type="checkbox" id="nav-check" />
+  <div class="nav-header">
+    <div class="nav-title mr-4">RESERVA DE VEÍCULOS</div>
+  </div>
+  <div class="nav-btn">
+    <label for="nav-check">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+  </div>
+  <div class="nav-links">
+    <a routerLinkActive="text-bold" routerLink="/home">Início</a>
+    <a routerLinkActive="text-bold" routerLink="/vehicle-register">Cadastrar Veículo</a>
+    <a (click)="logout()">Sair</a>
+  </div>
+</div>

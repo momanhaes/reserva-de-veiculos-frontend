@@ -88,8 +88,4 @@
 .spacement {
     justify-content: center;
     margin-top: 3rem;
-
-    @include large-and-up {
-        margin-top: 6.5rem;
-    }
 }

@@ -4,7 +4,7 @@ import { NotificationService } from '../services/notification.service';
 import { UserService } from '../services/user.service';
 
 @Injectable()
-export class LoggedInGuard implements CanActivate {
+export class PermitionGuard implements CanActivate {
   constructor(
     private userService: UserService,
     private router: Router,
@@ -12,12 +12,6 @@ export class LoggedInGuard implements CanActivate {
   ) {}
 
   canActivate() {
-    if (this.userService.isLoggedIn()) {
-      return true;
-    } else {
-      this.notificationService.notify('Você está deslogado');
-      this.router.navigate(['/login']);
-      return false;
-    }
+    return true;
   }
 }

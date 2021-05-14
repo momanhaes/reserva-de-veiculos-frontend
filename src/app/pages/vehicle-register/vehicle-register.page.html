@@ -2,37 +2,30 @@
 <div class="container mt-5" [@appeard]="state">
   <div class="card mb-5">
     <div class="card-header">
-      <h5 *ngIf="!isEdit" class="mt-2">
+      <h5 class="mt-2">
         <i class="fa fa-car mr-2"></i> Novo Veículo
-      </h5>
-      <h5 *ngIf="isEdit" class="mt-2">
-        <i class="fa fa-pencil mr-2"></i> Editando o Veículo'
       </h5>
     </div>
 
     <div class="card-body">
-      <form>
+      <form [formGroup]="form">
         <div class="form-row">
           <div class="form-group col-12">
             <label class="font-weight-bold">Nome</label>
-            <input
-              type="text"
-              placeholder="Digite o nome do veículo"
-              class="form-control" />
+            <input formControlName="name" type="text" placeholder="Digite o nome do veículo" class="form-control" />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-12 col-md-8">
             <label class="font-weight-bold">Descrição</label>
-            <input
-              type="text"
-              placeholder="Digite a descrição do veículo"
+            <input formControlName="description" type="text" placeholder="Digite a descrição do veículo"
               class="form-control" />
           </div>
+
           <div class="form-group col-12 col-md-4">
             <label class="font-weight-bold">Nível de combustível</label>
-            <select class="custom-select">
+            <select class="custom-select" formControlName="fuel">
               <option disabled selected value="">Escolha uma opção</option>
               <option *ngFor="let option of vehicleFuel" [value]="option.value">
                 {{ option.name }}
@@ -42,40 +35,23 @@
         </div>
 
         <div class="form-row">
-          <div class="form-group col-12 col-md-4">
+          <div class="form-group col-12 col-md-8">
             <label class="font-weight-bold">Imagem</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Digite a URL da imagem" />
+            <input formControlName="imageUrl" type="text" class="form-control" placeholder="Digite a URL da imagem" />
           </div>
 
           <div class="form-group col-12 col-md-4">
             <label class="font-weight-bold">Valor da diária</label>
-            <input type="number" class="form-control" placeholder="R$ 00,00" />
-          </div>
-
-          <div class="form-group col-12 col-md-4">
-            <label class="font-weight-bold">Estado de conservação</label>
-            <select class="custom-select">
-              <option disabled selected value="">Escolha uma opção</option>
-              <option
-                *ngFor="let option of vehicleStates"
-                [value]="option.value">
-                {{ option.name }}
-              </option>
-            </select>
+            <input formControlName="dailyValue" type="number" class="form-control" placeholder="R$ 00,00" />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-12 col-md-4">
             <label class="font-weight-bold">Categoria</label>
-            <select class="custom-select">
+            <select class="custom-select" formControlName="category">
               <option disabled selected value="">Escolha uma categoria</option>
-              <option
-                *ngFor="let option of vehicleOptions"
-                [value]="option.value">
+              <option *ngFor="let option of vehicleOptions" [value]="option.value">
                 {{ option.name }}
               </option>
             </select>
@@ -83,24 +59,22 @@
 
           <div class="form-group col-12 col-md-4">
             <label class="font-weight-bold">Ano de fabricação</label>
-            <input
-              type="number"
-              class="form-control"
-              placeholder="Digite o ano de fabricação do veículo"
-            />
+            <input formControlName="year" type="number" class="form-control"
+              placeholder="Digite o ano de fabricação do veículo" />
           </div>
 
           <div class="form-group col-12 col-md-4">
-            <label class="font-weight-bold mb-3">Status</label>
-            <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="toggle" />
-              <label class="custom-control-label" for="toggle">
-                  Veículo disponível</label>
-            </div>
+            <label class="font-weight-bold">Estado de conservação</label>
+            <select class="custom-select" formControlName="conservation">
+              <option disabled selected value="">Escolha uma opção</option>
+              <option *ngFor="let option of vehicleStates" [value]="option.value">
+                {{ option.name }}
+              </option>
+            </select>
           </div>
         </div>
 
-        <button (click)="action()" class="button font-weight-bold mt-3 mr-3">
+        <button [disabled]="form.invalid" (click)="addVehicle()" class="button font-weight-bold mt-3 mr-3">
           <i class="fa fa-floppy-o mr-2"></i>
           Salvar
         </button>
@@ -112,4 +86,4 @@
     </div>
   </div>
 </div>
-<app-footer class="bottom"></app-footer>
+<app-footer></app-footer>

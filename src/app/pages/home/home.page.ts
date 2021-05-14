@@ -4,7 +4,14 @@ import { APPEARD } from 'src/animations/appeard.animation';
 import { SLIDE } from 'src/animations/slide.animation';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { IVehicle } from './../../components/vehicle-card/vehicle.interface';
-import { catchError } from 'rxjs/operators';
+import { FormControl, FormGroup } from '@angular/forms';
+import {
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+} from 'rxjs/operators';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +25,13 @@ export class HomePage implements OnInit {
   public isLoading: boolean;
   public error: boolean;
   public state: string;
+  public searchForm: FormGroup;
 
-  constructor(private router: Router, private vehicleService: VehicleService) {}
+  constructor(
+    private router: Router,
+    private vehicleService: VehicleService,
+    private userService: UserService
+  ) {}
 
   get validationHeader(): boolean {
     return !this.isLoading;
@@ -33,10 +45,6 @@ export class HomePage implements OnInit {
     return !this.vehicles?.length && !this.isLoading && this.error;
   }
 
-  get validationNewVehicleButton(): boolean {
-    return !this.isLoading && !this.error;
-  }
-
   get validationVehicleCard(): boolean {
     return this.vehicles?.length && !this.isLoading && !this.error;
   }
@@ -46,6 +54,17 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
+    this.searchForm = new FormGroup({ searchControl: new FormControl('') });
+    this.searchForm.valueChanges
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        switchMap((searchTerm) =>
+          this.vehicleService.vehicleByKeyword(searchTerm.searchControl)
+        )
+      )
+      .subscribe((vehicles) => (this.vehicles = vehicles));
+
     this.getVehicles();
     this.getStates();
   }
@@ -64,19 +83,15 @@ export class HomePage implements OnInit {
           })
         )
         .subscribe((vehicles: IVehicle[]) => {
+          this.vehicleService.setVehicles(vehicles);
           this.vehicles = vehicles;
-          this.vehicleService.setVehicle(vehicles);
           this.isLoading = false;
         });
-    }, 1000);
+    }, 500);
   }
 
   getStates() {
     this.state = 'ready';
-  }
-
-  registerVehicle() {
-    this.router.navigate(['/vehicle-register']);
   }
 
   toggleSearch() {

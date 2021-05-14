@@ -1,12 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { APPEARD } from 'src/animations/appeard.animation';
+import { UserService } from 'src/app/services/user.service';
 import { IHeader } from './header.interface';
-
-interface INavbar {
-  navbarMenu: any;
-  navbarLinks: any;
-  navbarToggler: HTMLElement;
-}
 
 @Component({
   selector: 'app-header',
@@ -16,56 +12,14 @@ interface INavbar {
 })
 export class HeaderComponent implements OnInit {
   public headerRoutes: IHeader[];
-  public navbar: INavbar;
   public state = 'ready';
-  @Input() img: string;
 
-  constructor() {}
+  constructor(private userService: UserService, private router: Router) {}
 
-  ngOnInit() {
-    this.getHeaderRoutes();
-    this.getHeaderSelectors();
-    this.menuToggler();
-  }
+  ngOnInit() {}
 
-  menuToggler() {
-    this.navbar.navbarToggler.addEventListener('click', () => {
-      this.navbar.navbarToggler.classList.toggle('open-navbar-toggler');
-      this.navbar.navbarMenu.classList.toggle('open');
-    });
-
-    this.navbar.navbarLinks.forEach((elem) =>
-      elem.addEventListener('click', () => {
-        if (this.navbar.navbarMenu.classList.contains('open')) {
-          this.navbar.navbarToggler.click();
-        }
-      })
-    );
-  }
-
-  closeMenuMobile() {
-    this.navbar.navbarMenu.classList.toggle('open');
-    this.navbar.navbarToggler.classList.toggle('open-navbar-toggler');
-  }
-
-  getHeaderSelectors() {
-    this.navbar = {
-      navbarMenu: document.querySelector('.navbar ul'),
-      navbarLinks: document.querySelectorAll('.navbar a'),
-      navbarToggler: document.querySelector('.navbar-toggler'),
-    };
-  }
-
-  getHeaderRoutes() {
-    this.headerRoutes = [
-      {
-        name: 'Início',
-        route: '/home',
-      },
-      {
-        name: 'Sair',
-        route: '/login',
-      },
-    ];
+  logout() {
+    this.userService.logout();
+    this.router.navigate(['/login']);
   }
 }

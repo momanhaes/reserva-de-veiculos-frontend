@@ -19,6 +19,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { VehicleCardComponent } from './components/vehicle-card/vehicle-card.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoggedInGuard } from './guards/loggedin.guard';
+import { PermitionGuard } from './guards/permition.guard';
+import { LoginGuard } from './guards/login.guard';
 import { ROUTES } from './app.routes';
 
 import { registerLocaleData } from '@angular/common';
@@ -61,6 +63,8 @@ registerLocaleData(localePt, 'pt');
     UserService,
     NotificationService,
     LoggedInGuard,
+    LoginGuard,
+    PermitionGuard,
   ],
   bootstrap: [AppComponent],
 })

@@ -4,6 +4,12 @@
   }
 }
 
+@mixin small-to-medium {
+  @media screen and (max-width: #{$breakpoint-small-to-medum}) {
+    @content;
+  }
+}
+
 @mixin only-small {
   @media (min-width: #{$breakpoint-small}) and (max-width: #{$breakpoint-medium}) {
     @content;

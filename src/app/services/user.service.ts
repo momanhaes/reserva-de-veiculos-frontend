@@ -20,9 +20,16 @@ export interface IUser {
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  public user: IUser;
-
   constructor(private httpClient: HttpClient) {}
+
+  public setUserID(userID: string | undefined): void {
+    sessionStorage.removeItem('userID');
+    sessionStorage.setItem('userID', JSON.stringify(userID));
+  }
+
+  public getUserID(): string | undefined {
+    return JSON.parse(sessionStorage.getItem('userID'));
+  }
 
   create(user: IUser): Observable<IUserInfo> {
     return this.httpClient
@@ -36,14 +43,18 @@ export class UserService {
         email: email,
         password: password,
       })
-      .pipe(tap((user) => (this.user = user)));
+      .pipe(
+        tap((user) => {
+          this.setUserID(user._id);
+        })
+      );
   }
 
   logout() {
-    this.user = undefined;
+    this.setUserID('');
   }
 
   isLoggedIn(): boolean {
-    return this.user !== undefined;
+    return this.getUserID() ? true : false;
   }
 }

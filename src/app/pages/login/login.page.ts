@@ -6,6 +6,7 @@ import { APPEARD } from 'src/animations/appeard.animation';
 import { THEME, PARAMS } from 'src/animations/particles.animation';
 import { EMAIL_PATTERN } from 'src/utils/patterns';
 import { NotificationService } from 'src/app/services/notification.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -35,6 +36,19 @@ export class LoginPage implements OnInit {
     });
   }
 
+  showError(error) {
+    Swal.fire({
+      title: `Ops!`,
+      text: error ? error : 'Ocorreu um erro na autenticação.',
+      icon: 'error',
+      background: '#f1f1f1',
+      iconColor: '#fd5d93',
+      showCancelButton: false,
+      confirmButtonColor: '#fd5d93',
+      confirmButtonText: 'Ok',
+    });
+  }
+
   login() {
     if (this.form.invalid) {
       return;
@@ -43,7 +57,7 @@ export class LoginPage implements OnInit {
 
     this.userService.login(user.email, user.password).subscribe(
       (user) => this.notificationService.notify(`Bem-vindo, ${user.name}!`),
-      (response) => this.notificationService.notify(response.error.error),
+      (response) => this.showError(response.error.error),
       () => {
         this.router.navigate(['/home']);
       }
