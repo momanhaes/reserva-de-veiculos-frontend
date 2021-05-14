@@ -20,12 +20,13 @@ import { UserService } from 'src/app/services/user.service';
   animations: [APPEARD, SLIDE],
 })
 export class HomePage implements OnInit {
+  public searchForm: FormGroup;
   public vehicles: IVehicle[];
   public showSearchBar: boolean;
   public isLoading: boolean;
   public error: boolean;
   public state: string;
-  public searchForm: FormGroup;
+  public user: string;
 
   constructor(
     private router: Router,
@@ -79,6 +80,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = this.userService.getUsername();
     this.searchForm = new FormGroup({ searchControl: new FormControl('') });
     this.searchForm.valueChanges
       .pipe(
