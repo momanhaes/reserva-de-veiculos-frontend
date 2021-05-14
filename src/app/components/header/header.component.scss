@@ -36,17 +36,25 @@
     text-decoration: none;
     color: #efefef;
     cursor: pointer;
+
+    transition: transform 0.2s;
+    transform: scale(1);
 }
 
 .nav > .nav-links > a:hover {
-    background-color: rgba(0, 0, 0, 0.3);
+    transform: scale(1.2);
+    z-index: 2;
+
+    &:first-child {
+        transform: scale(1);
+    }
 }
 
 .nav > #nav-check {
     display: none;
 }
 
-@include small-to-medium {
+@include breakpoint-large-to-xlarge {
     .nav > .nav-btn {
         display: inline-block;
         position: absolute;
@@ -103,4 +111,8 @@
 
 .text-bold {
     font-weight: bold !important;
+}
+
+.cursor-default {
+    cursor: default !important;
 }
