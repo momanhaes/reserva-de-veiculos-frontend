@@ -54,7 +54,7 @@ Abra [http://localhost:4200](http://localhost:4200) em seu navegador.
 `/vehicle-register`
 
 * Página de formulário de cadastro de veículos. 
-* Por enquanto todos os usuários podem cadastrar veículos, mas em breve será implementado um fluxo de navegação por token usando JWT onde somentes usuários administradores poderão incluir veículos.
+* Por enquanto todos os usuários podem cadastrar veículos, mas em breve será implementado um fluxo de navegação por token usando JWT onde somente usuários administradores poderão incluir veículos.
 
 ### Informações gerais
 
