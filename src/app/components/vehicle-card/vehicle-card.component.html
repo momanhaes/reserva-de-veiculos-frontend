@@ -1,41 +1,50 @@
 <div class="card internal-shadow mx-auto" [@appeard]="state">
-    <img *ngIf="vehicle.imageUrl" [src]="vehicle.imageUrl" class="card-img-top" />
-    <img *ngIf="!vehicle.imageUrl" [src]="placeholder" class="card-img-top" />
-    <div class="card-body">
-        <h5 class="card-title text-white text-center mb-4">{{ vehicle.name }}</h5>
-        <div class="card-text text-white text-left ml-3">
-            <p><i class="fa fa-diamond text-secondary mr-3"></i>
-                <strong>Descrição: </strong>
-                {{ vehicle.description }}
-            </p>
-            <p><i class="fa fa-diamond text-secondary mr-3"></i>
-                <strong>Diária: </strong>
-                {{ vehicle.dailyValue | currency: "BRL": 'symbol' }}
-            </p>
-            <p><i class="fa fa-diamond text-secondary mr-3"></i>
-                <strong>Combustível: </strong>
-                {{ vehicle.fuel }}
-            </p>
-            <p><i class="fa fa-diamond text-secondary mr-3"></i>
-                <strong>Conservação: </strong>
-                {{ vehicle.conservation }}
-            </p>
-            <p><i class="fa fa-diamond text-secondary mr-3"></i>
-                <strong>Status: </strong>
-                {{ vehicle.status }}
-            </p>
-            <p><i class="fa fa-diamond text-secondary mr-3"></i>
-                <strong>Categoria: </strong>
-                {{ vehicle.category }}
-            </p>
-            <p><i class="fa fa-diamond text-secondary mr-3"></i>
-                <strong>Ano: </strong>
-                {{ vehicle.year }}
-            </p>
-            <a (click)="rent(vehicle.name)" class="stretched-link font-weight-bold link">
-                <i class="fa fa-share-square-o mr-3"></i>
-                CLIQUE PARA RESERVAR
-            </a>
-        </div>
+  <img *ngIf="vehicle.imageUrl" [src]="vehicle.imageUrl" class="card-img-top" />
+  <img *ngIf="!vehicle.imageUrl" [src]="placeholder" class="card-img-top" />
+  <div class="card-body">
+    <h5 class="card-title text-white text-center mb-4">{{ vehicle.name }}</h5>
+    <div class="card-text text-white text-left ml-3">
+      <p>
+        <i class="fa fa-diamond text-secondary mr-3"></i>
+        <strong>Descrição: </strong>
+        {{ vehicle.description }}
+      </p>
+      <p>
+        <i class="fa fa-diamond text-secondary mr-3"></i>
+        <strong>Diária: </strong>
+        {{ vehicle.dailyValue | currency: "BRL":"symbol" }}
+      </p>
+      <p>
+        <i class="fa fa-diamond text-secondary mr-3"></i>
+        <strong>Combustível: </strong>
+        {{ vehicle.fuel }}
+      </p>
+      <p>
+        <i class="fa fa-diamond text-secondary mr-3"></i>
+        <strong>Conservação: </strong>
+        {{ vehicle.conservation }}
+      </p>
+      <p>
+        <i class="fa fa-diamond text-secondary mr-3"></i>
+        <strong>Status: </strong>
+        {{ vehicle.status }}
+      </p>
+      <p>
+        <i class="fa fa-diamond text-secondary mr-3"></i>
+        <strong>Categoria: </strong>
+        {{ vehicle.category }}
+      </p>
+      <p>
+        <i class="fa fa-diamond text-secondary mr-3"></i>
+        <strong>Ano: </strong>
+        {{ vehicle.year }}
+      </p>
+      <a
+        (click)="rent(vehicle.name)"
+        class="stretched-link font-weight-bold link">
+        <i class="fa fa-share-square-o mr-3"></i>
+        CLIQUE PARA RESERVAR
+      </a>
     </div>
+  </div>
 </div>

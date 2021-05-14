@@ -1,11 +1,14 @@
 <app-header></app-header>
 <div class="container spacement" [@appeard]="state">
-    <h2 class="title">PÁGINA NÃO ENCONTRADA</h2>
-    <div class="text-center text-white">
-        <h3>Imaginamos que você tenha acessado o caminho "<strong>{{ path }}</strong>" por engano.</h3>
-        <h3>Clique no botão abaixo e navegue até a página inicial.</h3>
-        <button type="button" class="btn btn-outline-light mt-3" routerLink="/home">
-            <i class="fa fa-home mr-2"></i>Voltar para o início
-        </button>
-    </div>
+  <h2 class="title">PÁGINA NÃO ENCONTRADA</h2>
+  <div class="text-center text-white">
+    <h3>
+      Imaginamos que você tenha acessado o caminho "<strong>{{ path }}</strong>"
+      por engano.
+    </h3>
+    <h3>Clique no botão abaixo e navegue até a página inicial.</h3>
+    <button type="button" class="btn btn-outline-light mt-3" routerLink="/home">
+      <i class="fa fa-home mr-2"></i>Voltar para o início
+    </button>
+  </div>
 </div>
