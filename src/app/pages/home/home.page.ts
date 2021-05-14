@@ -49,23 +49,7 @@ export class HomePage implements OnInit {
     return this.vehicles?.length && !this.isLoading && !this.error;
   }
 
-  ngOnInit(): void {
-    this.searchForm = new FormGroup({ searchControl: new FormControl('') });
-    this.searchForm.valueChanges
-      .pipe(
-        debounceTime(500),
-        distinctUntilChanged(),
-        switchMap((searchTerm) =>
-          this.vehicleService.vehicleByKeyword(searchTerm.searchControl)
-        )
-      )
-      .subscribe((vehicles) => (this.vehicles = vehicles));
-
-    this.getVehicles();
-    this.getStates();
-  }
-
-  getVehicles() {
+  public getVehicles(): void {
     this.isLoading = true;
 
     setTimeout(() => {
@@ -86,11 +70,27 @@ export class HomePage implements OnInit {
     }, 500);
   }
 
-  getStates() {
+  public getStates(): void {
     this.state = 'ready';
   }
 
-  toggleSearch() {
+  public toggleSearch(): void {
     this.showSearchBar = !this.showSearchBar;
+  }
+
+  ngOnInit(): void {
+    this.searchForm = new FormGroup({ searchControl: new FormControl('') });
+    this.searchForm.valueChanges
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        switchMap((searchTerm) =>
+          this.vehicleService.vehicleByKeyword(searchTerm.searchControl)
+        )
+      )
+      .subscribe((vehicles) => (this.vehicles = vehicles));
+
+    this.getVehicles();
+    this.getStates();
   }
 }

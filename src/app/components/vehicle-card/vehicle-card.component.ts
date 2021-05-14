@@ -58,11 +58,7 @@ export class VehicleCardComponent implements OnInit {
     return reserved.length ? true : false;
   }
 
-  ngOnInit(): void {
-    this.placeholder = 'assets/img/placeholder.png';
-  }
-
-  showError(error) {
+  public showError(error): void {
     Swal.fire({
       title: `Ops!`,
       text: error ? error : 'Ocorreu um erro.',
@@ -75,7 +71,7 @@ export class VehicleCardComponent implements OnInit {
     });
   }
 
-  showReserveSuccess(vehicle: IVehicle) {
+  public showReserveSuccess(vehicle: IVehicle): void {
     setTimeout(() => {
       location.reload();
     }, 1000);
@@ -91,7 +87,7 @@ export class VehicleCardComponent implements OnInit {
     });
   }
 
-  showCancelSuccess(vehicle: IVehicle) {
+  public showCancelSuccess(vehicle: IVehicle): void {
     setTimeout(() => {
       location.reload();
     }, 1000);
@@ -107,7 +103,7 @@ export class VehicleCardComponent implements OnInit {
     });
   }
 
-  youAlreadyReservedVehicle() {
+  public youAlreadyReservedVehicle(): void {
     Swal.fire({
       title: 'Ops!',
       text: 'Você já reservou um veículo.',
@@ -120,7 +116,7 @@ export class VehicleCardComponent implements OnInit {
     });
   }
 
-  showVehicleAlreadyReserved() {
+  public showVehicleAlreadyReserved(): void {
     Swal.fire({
       title: 'Que pena!',
       text: 'Esse veículo já foi reservado por outra pessoa.',
@@ -133,7 +129,7 @@ export class VehicleCardComponent implements OnInit {
     });
   }
 
-  showAlreadyReservedByYou(vehicle: IVehicle) {
+  public showAlreadyReservedByYou(vehicle: IVehicle): void {
     Swal.fire({
       title: 'Você reservou esse veículo anteriormente.',
       text: 'Deseja cancelar a reserva?',
@@ -166,11 +162,16 @@ export class VehicleCardComponent implements OnInit {
     });
   }
 
-  rent(vehicle: IVehicle): void {
-    if (vehicle.rentedBy === this.userService.getUserID())
+  public rent(vehicle: IVehicle): void {
+    if (vehicle.rentedBy === this.userService.getUserID()) {
       return this.showAlreadyReservedByYou(vehicle);
-    if (vehicle.rentedBy) return this.showVehicleAlreadyReserved();
-    if (this.alreadyReservedVehicle) return this.youAlreadyReservedVehicle();
+    }
+    if (vehicle.rentedBy) {
+      return this.showVehicleAlreadyReserved();
+    }
+    if (this.alreadyReservedVehicle) {
+      return this.youAlreadyReservedVehicle();
+    }
 
     Swal.fire({
       title: `Você tem certeza que deseja reservar o veículo ${vehicle.name}?`,
@@ -202,5 +203,9 @@ export class VehicleCardComponent implements OnInit {
           });
       }
     });
+  }
+
+  ngOnInit(): void {
+    this.placeholder = 'assets/img/placeholder.png';
   }
 }

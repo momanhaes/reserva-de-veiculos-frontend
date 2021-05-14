@@ -12,7 +12,7 @@ import { SNACKBAR } from 'src/animations/snackbar.animation';
 })
 export class SnackbarComponent implements OnInit {
   @Input() message: string;
-  public snackVisibility: string = 'hidden';
+  public snackVisibility = 'hidden';
 
   constructor(private notificationService: NotificationService) {}
 

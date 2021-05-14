@@ -44,7 +44,7 @@ export class VehicleRegisterPage implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private vehicleService: VehicleService
-  ) { }
+  ) {}
 
   get vehicleOptions(): IVehicleOption[] {
     return VEHICLES_OPTIONS;
@@ -58,20 +58,7 @@ export class VehicleRegisterPage implements OnInit {
     return VEHICLES_FUEL;
   }
 
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      description: new FormControl('', Validators.required),
-      fuel: new FormControl('', Validators.required),
-      imageUrl: new FormControl(''),
-      dailyValue: new FormControl('', Validators.required),
-      category: new FormControl('', Validators.required),
-      year: new FormControl('', Validators.required),
-      conservation: new FormControl('', Validators.required),
-    });
-  }
-
-  showError(error) {
+  public showError(error): void {
     Swal.fire({
       title: `Ops!`,
       text: error ? error : 'Ocorreu um erro.',
@@ -84,7 +71,7 @@ export class VehicleRegisterPage implements OnInit {
     });
   }
 
-  showSuccess(vehicle: IVehicle) {
+  public showSuccess(vehicle: IVehicle): void {
     Swal.fire({
       title: 'Sucesso!',
       text: `Você cadastrou o veículo ${vehicle.name}.`,
@@ -97,7 +84,7 @@ export class VehicleRegisterPage implements OnInit {
     });
   }
 
-  addVehicle(): void {
+  public addVehicle(): void {
     const vehicle: IVehicle = {
       name: this.form.value.name,
       externalCode: new Date().getTime().toString(),
@@ -126,7 +113,7 @@ export class VehicleRegisterPage implements OnInit {
       });
   }
 
-  cancel(): void {
+  public cancel(): void {
     Swal.fire({
       title: `Você tem certeza que deseja cancelar?`,
       text: 'Você perderá todos os dados, caso os tenha preenchido.',
@@ -139,7 +126,22 @@ export class VehicleRegisterPage implements OnInit {
       confirmButtonText: 'Sim',
       cancelButtonText: 'Não',
     }).then((result) => {
-      if (result.isConfirmed) this.router.navigate(['/home']);
+      if (result.isConfirmed) {
+        this.router.navigate(['/home']);
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      description: new FormControl('', Validators.required),
+      fuel: new FormControl('', Validators.required),
+      imageUrl: new FormControl(''),
+      dailyValue: new FormControl('', Validators.required),
+      category: new FormControl('', Validators.required),
+      year: new FormControl('', Validators.required),
+      conservation: new FormControl('', Validators.required),
     });
   }
 }

@@ -23,19 +23,7 @@ export class RegisterPage implements OnInit {
 
   constructor(private router: Router, private userService: UserService) {}
 
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern(EMAIL_PATTERN),
-      ]),
-      password: new FormControl('', Validators.required),
-      passwordConfirmation: new FormControl('', Validators.required),
-    });
-  }
-
-  showPassowordDontMatchError() {
+  public showPassowordDontMatchError(): void {
     Swal.fire({
       title: 'Ops!',
       text: 'Suas senhas não coincidem.',
@@ -48,7 +36,7 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  showError(error) {
+  public showError(error): void {
     Swal.fire({
       title: `Ops!`,
       text: error ? error : 'Ocorreu um erro.',
@@ -61,7 +49,7 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  showSuccess(user) {
+  public showSuccess(user): void {
     Swal.fire({
       title: `Parabéns, ${user.name}!`,
       text: `Você efetuou seu cadastro com sucesso.`,
@@ -74,7 +62,7 @@ export class RegisterPage implements OnInit {
     });
   }
 
-  register() {
+  public register(): void {
     if (this.form.invalid) {
       return;
     }
@@ -100,5 +88,17 @@ export class RegisterPage implements OnInit {
         this.showSuccess(user);
         this.router.navigate(['/login']);
       });
+  }
+
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(EMAIL_PATTERN),
+      ]),
+      password: new FormControl('', Validators.required),
+      passwordConfirmation: new FormControl('', Validators.required),
+    });
   }
 }

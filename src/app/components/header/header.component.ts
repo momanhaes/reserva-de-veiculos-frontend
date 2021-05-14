@@ -18,11 +18,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) {}
 
-  ngOnInit() {
-    this.user = this.userService.getUsername();
-  }
-
-  logout() {
+  public logout(): void {
     Swal.fire({
       title: 'Você escolheu sair.',
       text: 'Tem certeza?',
@@ -40,5 +36,9 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     });
+  }
+
+  ngOnInit() {
+    this.user = this.userService.getUsername();
   }
 }

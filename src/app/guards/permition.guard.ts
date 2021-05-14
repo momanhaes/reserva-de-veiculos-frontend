@@ -11,6 +11,7 @@ export class PermitionGuard implements CanActivate {
     private notificationService: NotificationService
   ) {}
 
+  //TODO: Implementar regra com JWT para gerenciar permissões de usuário.
   canActivate() {
     return true;
   }

@@ -26,17 +26,7 @@ export class LoginPage implements OnInit {
     private notificationService: NotificationService
   ) {}
 
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern(EMAIL_PATTERN),
-      ]),
-      password: new FormControl('', Validators.required),
-    });
-  }
-
-  showError(error) {
+  public showError(error): void {
     Swal.fire({
       title: `Ops!`,
       text: error ? error : 'Ocorreu um erro na autenticação.',
@@ -49,7 +39,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  login() {
+  public login(): void {
     if (this.form.invalid) {
       return;
     }
@@ -62,5 +52,15 @@ export class LoginPage implements OnInit {
         this.router.navigate(['/home']);
       }
     );
+  }
+
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(EMAIL_PATTERN),
+      ]),
+      password: new FormControl('', Validators.required),
+    });
   }
 }

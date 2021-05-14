@@ -40,17 +40,17 @@ export class UserService {
     return JSON.parse(sessionStorage.getItem('userID'));
   }
 
-  create(user: IUser): Observable<IUserInfo> {
+  public create(user: IUser): Observable<IUserInfo> {
     return this.httpClient
       .post<IUserInfo>(`${VEHICLES_API}/users`, user)
       .pipe(map((user) => user));
   }
 
-  login(email: string, password: string): Observable<IUser> {
+  public login(email: string, password: string): Observable<IUser> {
     return this.httpClient
       .post<IUser>(`${VEHICLES_API}/users/login`, {
-        email: email,
-        password: password,
+        email,
+        password,
       })
       .pipe(
         tap((user) => {
@@ -60,12 +60,12 @@ export class UserService {
       );
   }
 
-  logout() {
+  public logout(): void {
     this.setUserID('');
     this.setUsername('');
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return this.getUserID() ? true : false;
   }
 }
