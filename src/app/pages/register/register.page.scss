@@ -79,9 +79,18 @@
     font-size: 1.2rem;
     font-family: $font-montserrat;
 }
+
 .spacement {
     justify-content: center;
     margin-top: 3rem;
+}
+
+.center-between {
+    justify-content: space-between !important;
+
+    @media (max-width: 440) {
+        justify-content: center !important;
+    }
 }
 
 .low-opacity {

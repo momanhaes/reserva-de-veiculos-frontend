@@ -85,10 +85,10 @@
 }
 
 .center-between {
-    justify-content: center !important;
+    justify-content: space-between !important;
 
-    @include large-and-up {
-        justify-content: space-between !important;
+    @media (max-width: 440) {
+        justify-content: center !important;
     }
 }
 
