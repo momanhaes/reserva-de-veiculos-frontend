@@ -49,10 +49,6 @@ export class HomePage implements OnInit {
     return this.vehicles?.length && !this.isLoading && !this.error;
   }
 
-  get validationClassBottom(): boolean {
-    return this.error || !this.vehicles?.length || this.isLoading;
-  }
-
   ngOnInit(): void {
     this.searchForm = new FormGroup({ searchControl: new FormControl('') });
     this.searchForm.valueChanges

@@ -74,7 +74,7 @@ export class VehicleRegisterPage implements OnInit {
   showError(error) {
     Swal.fire({
       title: `Ops!`,
-      text: error,
+      text: error ? error : 'Ocorreu um erro.',
       icon: 'error',
       background: '#f1f1f1',
       iconColor: '#fd5d93',

@@ -22,6 +22,7 @@
     color: $color-white;
     padding: 1rem 2rem 2rem;
     border-radius: 8px;
+    // opacity: 1 !important;
 }
 
 .register-form-label {
@@ -78,14 +79,11 @@
     font-size: 1.2rem;
     font-family: $font-montserrat;
 }
-
-.bottom {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
 .spacement {
     justify-content: center;
     margin-top: 3rem;
+}
+
+.low-opacity {
+    opacity: 0.8 !important;
 }
