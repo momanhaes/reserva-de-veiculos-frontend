@@ -21,12 +21,15 @@ export class RegisterPage implements OnInit {
   public form: FormGroup;
   public user: IUser;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.pattern(EMAIL_PATTERN)]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(EMAIL_PATTERN),
+      ]),
       password: new FormControl('', Validators.required),
       passwordConfirmation: new FormControl('', Validators.required),
     });
@@ -72,12 +75,16 @@ export class RegisterPage implements OnInit {
   }
 
   register() {
-    if (this.form.invalid) { return; }
+    if (this.form.invalid) {
+      return;
+    }
 
     const password = this.form.get('password').value;
     const passwordConfirmation = this.form.get('passwordConfirmation').value;
 
-    if (password !== passwordConfirmation) { return this.showPassowordDontMatchError(); }
+    if (password !== passwordConfirmation) {
+      return this.showPassowordDontMatchError();
+    }
 
     this.user = this.form.value;
 
@@ -87,7 +94,8 @@ export class RegisterPage implements OnInit {
         catchError((err) => {
           this.showError(err.error.error);
           return err;
-        }))
+        })
+      )
       .subscribe((user: IUserInfo) => {
         this.showSuccess(user);
         this.router.navigate(['/login']);

@@ -22,7 +22,7 @@ export interface IUser {
 export class UserService {
   public user: IUser;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   create(user: IUser): Observable<IUserInfo> {
     return this.httpClient
@@ -32,7 +32,10 @@ export class UserService {
 
   login(email: string, password: string): Observable<IUser> {
     return this.httpClient
-      .post<IUser>(`${VEHICLES_API}/users/login`, { email: email, password: password })
+      .post<IUser>(`${VEHICLES_API}/users/login`, {
+        email: email,
+        password: password,
+      })
       .pipe(tap((user) => (this.user = user)));
   }
 

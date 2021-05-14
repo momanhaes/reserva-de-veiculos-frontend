@@ -8,11 +8,9 @@ import { APPEARD } from 'src/animations/appeard.animation';
   animations: [APPEARD],
 })
 export class FooterComponent implements OnInit {
-  public state = "ready";
+  public state = 'ready';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

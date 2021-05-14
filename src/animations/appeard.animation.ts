@@ -4,17 +4,17 @@ import {
   style,
   transition,
   animate,
-} from "@angular/animations";
+} from '@angular/animations';
 
-export const APPEARD = trigger("appeard", [
+export const APPEARD = trigger('appeard', [
   state(
-    "ready",
+    'ready',
     style({
       opacity: 1,
     })
   ),
-  transition("void => ready", [
-    style({ opacity: 0, transform: "translateX(-20px)" }),
-    animate("500ms 0s ease-in"),
+  transition('void => ready', [
+    style({ opacity: 0, transform: 'translateX(-20px)' }),
+    animate('500ms 0s ease-in'),
   ]),
 ]);

@@ -1,4 +1,3 @@
-<app-header></app-header>
 <div class="container spacement" [@appeard]="state">
   <h2 class="title">PÁGINA NÃO ENCONTRADA</h2>
   <div class="text-center text-white">
@@ -6,5 +5,9 @@
       Imaginamos que você tenha acessado o caminho "<strong>{{ path }}</strong>"
       por engano.
     </h3>
+    <h3>Clique no botão abaixo e navegue até a página inicial.</h3>
+    <button routerLink="/home" class="button font-weight-bold mt-3">
+      <i class="fa fa-home mr-2"></i>Ir para o início
+    </button>
   </div>
 </div>

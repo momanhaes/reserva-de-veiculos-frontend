@@ -4,9 +4,7 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
     }).compileComponents();
   }));
 
@@ -19,13 +17,14 @@ describe('AppComponent', () => {
   it(`should have as title 'reserva-de-veiculos'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('reserva-de-veiculos');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('reserva-de-veiculos app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain(
+      'reserva-de-veiculos app is running!'
+    );
   });
 });

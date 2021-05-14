@@ -36,13 +36,17 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    if (this.form.invalid) { return; }
+    if (this.form.invalid) {
+      return;
+    }
     const user = this.form.value;
 
     this.userService.login(user.email, user.password).subscribe(
       (user) => this.notificationService.notify(`Bem-vindo, ${user.name}!`),
       (response) => this.notificationService.notify(response.error.error),
-      () => { this.router.navigate(['/home']); }
+      () => {
+        this.router.navigate(['/home']);
+      }
     );
   }
 }

@@ -19,8 +19,7 @@ export class HomePage implements OnInit {
   public error: boolean;
   public state: string;
 
-  constructor(private router: Router, private vehicleService: VehicleService) {
-  }
+  constructor(private router: Router, private vehicleService: VehicleService) {}
 
   get validationHeader(): boolean {
     return !this.isLoading;

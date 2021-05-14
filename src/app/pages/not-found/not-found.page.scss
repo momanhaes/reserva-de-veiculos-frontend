@@ -17,10 +17,30 @@
     }
 }
 
+.button {
+    border: 0;
+    cursor: pointer;
+    font-family: $font-montserrat;
+    font-size: 1rem;
+    color: $color-white;
+    background-color: $color-primary;
+    padding: 0.5rem 2rem;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+        background-color: lighten($color-primary, 5%);
+        color: $color-white;
+    }
+
+    @include large-and-up {
+        padding: 0.7rem 2rem;
+    }
+}
+
 .spacement {
     margin-top: 4rem;
 
     @include large-and-up {
-        margin-top: 13rem;
+        margin-top: 15rem;
     }
 }
