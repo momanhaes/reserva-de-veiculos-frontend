@@ -44,8 +44,10 @@
     text-transform: uppercase;
 }
 
-.card-text:last-child {
-    margin-bottom: 0;
+.card-text {
+    &:last-child {
+        margin-bottom: 0;
+    }
 }
 
 .card-img-top {

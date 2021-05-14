@@ -1,42 +1,67 @@
 <div class="container">
-    <particles [params]="params" [style]="theme"></particles>
+  <particles [params]="params" [style]="theme"></particles>
 
-    <div class="text-center spacement">
-        <h2 class="register-title" [@appeard]="state">
-            <i class="fa fa-user-plus mr-2"></i> Cadastro de Usuário
-        </h2>
+  <div class="spacement">
+    <form [formGroup]="form" class="register-form mb-4" [@appeard]="state">
+      <div class="row">
+        <div class="col-12">
+          <label class="register-form-label text-left"
+            ><i class="fa fa-user mr-2"></i>Usuário</label
+          >
+          <input
+            type="text"
+            formControlName="name"
+            placeholder="Digite um nome de usuário"
+            class="register-form-input"
+          />
+        </div>
+        <div class="col-12">
+          <label class="register-form-label text-left"
+            ><i class="fa fa-envelope mr-2"></i>E-mail</label
+          >
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="Digite seu e-mail"
+            class="register-form-input"
+          />
+        </div>
+        <div class="col-12">
+          <label class="register-form-label text-left"
+            ><i class="fa fa-key mr-2"></i>Senha</label
+          >
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Digite uma senha"
+            class="register-form-input"
+          />
+        </div>
+        <div class="col-12">
+          <label class="register-form-label text-left"
+            ><i class="fa fa-key mr-2"></i>Confirmação da senha</label
+          >
+          <input
+            type="password"
+            formControlName="passwordConfirmation"
+            placeholder="Repita sua senha"
+            class="register-form-input"
+          />
+        </div>
+      </div>
 
-        <form class="register-form mb-4" [@appeard]="state">
-            <div class="row">
-                <div class="col-12">
-                    <label class="register-form-label text-left"><i class="fa fa-user mr-2"></i>Usuário</label>
-                    <input type="text" placeholder="Digite um nome de usuário" required class="register-form-input" />
-                </div>
-                <div class="col-12">
-                    <label class="register-form-label text-left"><i class="fa fa-envelope mr-2"></i>E-mail</label>
-                    <input type="text" placeholder="Digite seu e-mail" required class="register-form-input" />
-                </div>
-                <div class="col-12">
-                    <label class="register-form-label text-left"><i class="fa fa-key mr-2"></i>Senha</label>
-                    <input type="password" placeholder="Digite uma senha" required class="register-form-input" />
-                </div>
-                <div class="col-12">
-                    <label class="register-form-label text-left"><i class="fa fa-key mr-2"></i>Confirmação da
-                        senha</label>
-                    <input type="password" placeholder="Repita sua senha" required class="register-form-input" />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12">&nbsp;</div>
-            </div>
-
-            <div class="d-flex justify-content-center align-items-center">
-                <button (click)="register()" value="Acessar" class="register-form-submit font-weight-bold user">
-                    <i class="fa fa-user-plus mr-2"></i>Cadastrar</button>
-            </div>
-        </form>
-    </div>
+      <div class="d-flex justify-content-center align-items-center mt-4">
+        <button
+          [disabled]="form.invalid"
+          (click)="register()"
+          value="Acessar"
+          class="register-form-submit font-weight-bold user"
+        >
+          <i class="fa fa-user-plus mr-2"></i>Cadastrar
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <app-footer class="bottom"></app-footer>

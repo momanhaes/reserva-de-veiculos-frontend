@@ -5,7 +5,7 @@ export interface IVehicle {
     status: string;
     category: string;
     dailyValue: number;
-    image: string;
+    imageUrl: string;
     year: string;
     conservation: string;
     fuel: string;
