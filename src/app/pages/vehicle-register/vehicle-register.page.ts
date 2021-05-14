@@ -44,7 +44,7 @@ export class VehicleRegisterPage implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private vehicleService: VehicleService
-  ) {}
+  ) { }
 
   get vehicleOptions(): IVehicleOption[] {
     return VEHICLES_OPTIONS;
@@ -129,7 +129,7 @@ export class VehicleRegisterPage implements OnInit {
   cancel(): void {
     Swal.fire({
       title: `Você tem certeza que deseja cancelar?`,
-      text: 'Você perderá todos os dados preenchidos.',
+      text: 'Você perderá todos os dados, caso os tenha preenchido.',
       icon: 'warning',
       background: '#f1f1f1',
       showCancelButton: true,

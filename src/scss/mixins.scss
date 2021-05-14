@@ -4,8 +4,8 @@
   }
 }
 
-@mixin small-to-medium {
-  @media screen and (max-width: #{$breakpoint-small-to-medum}) {
+@mixin breakpoint-large-to-xlarge {
+  @media screen and (max-width: #{$breakpoint-large-to-xlarge}) {
     @content;
   }
 }

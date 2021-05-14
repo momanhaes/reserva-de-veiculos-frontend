@@ -15,7 +15,7 @@ export class LoggedInGuard implements CanActivate {
     if (this.userService.isLoggedIn()) {
       return true;
     } else {
-      this.notificationService.notify('Você está deslogado');
+      this.notificationService.notify('Você está deslogado.');
       this.router.navigate(['/login']);
       return false;
     }
