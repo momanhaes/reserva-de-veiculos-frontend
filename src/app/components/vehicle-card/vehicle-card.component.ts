@@ -27,6 +27,12 @@ export class VehicleCardComponent implements OnInit {
     private router: Router
   ) {}
 
+  get statusColor(): string {
+    return this.vehicle.status === StatusType.DISPONIVEL
+      ? 'text-success'
+      : 'text-danger';
+  }
+
   get reservedByYou(): boolean {
     return (
       this.vehicle.status.toUpperCase() === StatusType.RESERVADO &&
@@ -117,7 +123,7 @@ export class VehicleCardComponent implements OnInit {
   showVehicleAlreadyReserved() {
     Swal.fire({
       title: 'Que pena!',
-      text: 'Esse veículo já foi reservado.',
+      text: 'Esse veículo já foi reservado por outra pessoa.',
       icon: 'error',
       background: '#f1f1f1',
       iconColor: '#fd5d93',
@@ -129,7 +135,7 @@ export class VehicleCardComponent implements OnInit {
 
   showAlreadyReservedByYou(vehicle: IVehicle) {
     Swal.fire({
-      title: 'Ops! Você já reservou esse veículo.',
+      title: 'Você reservou esse veículo anteriormente.',
       text: 'Deseja cancelar a reserva?',
       icon: 'warning',
       background: '#f1f1f1',
@@ -142,17 +148,8 @@ export class VehicleCardComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.vehicleService
-          .updateVehicle({
-            name: vehicle.name,
-            externalCode: vehicle.externalCode,
-            description: vehicle.description,
+          .updateVehicle(vehicle.externalCode, {
             status: StatusType.DISPONIVEL,
-            category: vehicle.category,
-            dailyValue: vehicle.dailyValue,
-            imageUrl: vehicle.imageUrl,
-            year: vehicle.year,
-            conservation: vehicle.conservation,
-            fuel: vehicle.fuel,
             rentedBy: '',
           })
           .pipe(
@@ -189,17 +186,8 @@ export class VehicleCardComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.vehicleService
-          .updateVehicle({
-            name: vehicle.name,
-            externalCode: vehicle.externalCode,
-            description: vehicle.description,
+          .updateVehicle(vehicle.externalCode, {
             status: StatusType.RESERVADO,
-            category: vehicle.category,
-            dailyValue: vehicle.dailyValue,
-            imageUrl: vehicle.imageUrl,
-            year: vehicle.year,
-            conservation: vehicle.conservation,
-            fuel: vehicle.fuel,
             rentedBy: this.userService.getUserID(),
           })
           .pipe(

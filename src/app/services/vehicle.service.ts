@@ -28,12 +28,12 @@ export class VehicleService {
       .pipe(map((vehicle) => vehicle));
   }
 
-  public updateVehicle(vehicle: IVehicle): Observable<IVehicle> {
+  public updateVehicle(
+    externalCode: string,
+    vehicle: IVehicle
+  ): Observable<IVehicle> {
     return this.httpClient
-      .patch<IVehicle>(
-        `${VEHICLES_API}/vehicles/${vehicle.externalCode}`,
-        vehicle
-      )
+      .patch<IVehicle>(`${VEHICLES_API}/vehicles/${externalCode}`, vehicle)
       .pipe(map((vehicle) => vehicle));
   }
 
