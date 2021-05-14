@@ -13,10 +13,13 @@ import { IHeader } from './header.interface';
 export class HeaderComponent implements OnInit {
   public headerRoutes: IHeader[];
   public state = 'ready';
+  public user: string;
 
   constructor(private userService: UserService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user = this.userService.getUsername();
+  }
 
   logout() {
     this.userService.logout();

@@ -22,6 +22,15 @@ export interface IUser {
 export class UserService {
   constructor(private httpClient: HttpClient) {}
 
+  public setUsername(username: string | undefined): void {
+    sessionStorage.removeItem('username');
+    sessionStorage.setItem('username', JSON.stringify(username));
+  }
+
+  public getUsername(): string | undefined {
+    return JSON.parse(sessionStorage.getItem('username'));
+  }
+
   public setUserID(userID: string | undefined): void {
     sessionStorage.removeItem('userID');
     sessionStorage.setItem('userID', JSON.stringify(userID));
@@ -45,6 +54,7 @@ export class UserService {
       })
       .pipe(
         tap((user) => {
+          this.setUsername(user.name);
           this.setUserID(user._id);
         })
       );
@@ -52,6 +62,7 @@ export class UserService {
 
   logout() {
     this.setUserID('');
+    this.setUsername('');
   }
 
   isLoggedIn(): boolean {
