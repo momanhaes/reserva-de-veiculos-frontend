@@ -34,7 +34,10 @@
               "./node_modules/bootstrap/scss/bootstrap.scss",
               "./node_modules/font-awesome/scss/font-awesome.scss"
             ],
-            "scripts": ["./node_modules/jquery/dist/jquery.min.js"]
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -94,10 +97,14 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
-              "./node_modules/bootstrap/dist/scss/bootstrap.scss",
+              "src/scss/includes.scss",
+              "./node_modules/bootstrap/scss/bootstrap.scss",
               "./node_modules/font-awesome/scss/font-awesome.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           }
         },
         "lint": {
