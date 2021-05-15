@@ -20,7 +20,7 @@
         <div class="buttons mt-4">
           <a class="text-light signin" routerLink="/register"><i class="fa fa-user-plus mr-2"></i>Cadastre-se</a>
 
-          <button (click)="login()" [disabled]="form.invalid || isLoading" value="Acessar" class="login-form-submit">
+          <button [disabled]="form.invalid || isLoading" (click)="login()" value="Acessar" class="login-form-submit">
             <app-spinner *ngIf="isLoading" class="mr-2" [size]="1.3"></app-spinner>
             <i *ngIf="!isLoading" class="fa fa-sign-in mr-2"></i>
             Acessar

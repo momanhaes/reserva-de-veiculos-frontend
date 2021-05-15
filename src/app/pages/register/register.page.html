@@ -31,7 +31,8 @@
         <div class="buttons mt-4">
           <a class="text-light signin" routerLink="/login"><i class="fa fa-sign-in mr-2"></i>Login</a>
 
-          <button [disabled]="form.invalid" (click)="register()" value="Acessar" class="register-form-submit">
+          <button [disabled]="form.invalid || isLoading" (click)="register()" value="Acessar"
+            class="register-form-submit">
             <app-spinner *ngIf="isLoading" class="mr-2" [size]="1.3"></app-spinner>
             <i *ngIf="!isLoading" class="fa fa-user-plus mr-2"></i>
             Cadastrar

@@ -38,6 +38,7 @@ export class VehicleRegisterPage implements OnInit {
   public state = 'ready';
   public form: FormGroup;
   public vehiclesOption: IVehicleOption;
+  public isLoading: boolean;
 
   constructor(
     private router: Router,
@@ -85,6 +86,10 @@ export class VehicleRegisterPage implements OnInit {
   }
 
   public addVehicle(): void {
+    if (this.form.invalid) {
+      return;
+    }
+
     const vehicle: IVehicle = {
       name: this.form.value.name,
       externalCode: new Date().getTime().toString(),
@@ -99,15 +104,19 @@ export class VehicleRegisterPage implements OnInit {
       rentedBy: '',
     };
 
+    this.isLoading = true;
+
     this.vehicleService
       .createVehicle(vehicle)
       .pipe(
         catchError((err) => {
+          this.isLoading = false;
           this.showError(err.error.error);
           return err;
         })
       )
       .subscribe((vehicle: IVehicle) => {
+        this.isLoading = false;
         this.showSuccess(vehicle);
         this.router.navigate(['/home']);
       });

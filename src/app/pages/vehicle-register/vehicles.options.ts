@@ -20,8 +20,8 @@ export const VEHICLES_OPTIONS = [
     value: 'Caminhão',
   },
   {
-    name: 'Automóvel',
-    value: 'Automóvel',
+    name: 'Carro',
+    value: 'Carro',
   },
 ];
 
@@ -37,6 +37,10 @@ export const VEHICLES_STATES = [
 ];
 
 export const VEHICLES_FUEL = [
+  {
+    name: 'Desnecessário',
+    value: 'Desnecessário',
+  },
   {
     name: '10%',
     value: '10%',
