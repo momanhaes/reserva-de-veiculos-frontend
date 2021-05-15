@@ -34,9 +34,9 @@ html,
 body {
     font-size: 16px;
     font-family: $font-montserrat !important;
+    background-color: $color-background !important;
     line-height: 1.25;
     scroll-behavior: smooth;
-    background-color: $color-background !important;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -60,7 +60,7 @@ a:hover {
     text-decoration: none !important;
 }
 
-.loading-center-page {
+.spinner-center-page {
     position: absolute;
     left: 50%;
     top: 50%;

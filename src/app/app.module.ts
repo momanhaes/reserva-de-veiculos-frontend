@@ -29,6 +29,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import localePt from '@angular/common/locales/pt';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -45,6 +46,7 @@ registerLocaleData(localePt, 'pt');
     VehicleRegisterPage,
     LoadingComponent,
     SnackbarComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

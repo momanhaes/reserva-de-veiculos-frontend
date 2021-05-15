@@ -1,97 +1,102 @@
 @import "../../../scss/includes.scss";
 
-.login-title {
-    color: $color-white;
-    font-size: 1.8rem;
-    font-weight: 400;
-    text-align: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    max-width: 90%;
-    margin: auto;
+.root {
+    @include grid(32);
 
-    @include large-and-up {
-        font-size: 2.2rem;
-    }
-}
+    .container-root {
+        @include grid-column-span(32);
+        margin-top: 5rem;
 
-.login-form {
-    background: linear-gradient(to bottom left, #344675, #263148, #344675) !important;
-    max-width: 500px;
-    margin: auto;
-    color: $color-white;
-    padding: 1rem 2rem 2rem;
-    border-radius: 8px;
-    opacity: 1 !important;
-}
+        .login-title {
+            color: $color-white;
+            font-size: 1.8rem;
+            font-weight: 400;
+            text-align: center;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            max-width: 90%;
+            margin: auto;
 
-.login-form-label {
-    display: block;
-    padding: 0.4rem 0;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-}
+            @include large-and-up {
+                font-size: 2.2rem;
+            }
+        }
 
-.login-form-input {
-    display: block;
-    width: 100%;
-    border: 0;
-    font-size: 1rem;
-    padding: 0.8rem;
+        .login-form {
+            background: linear-gradient(to bottom left, #344675, #263148, #344675) !important;
+            max-width: 500px;
+            margin: auto;
+            color: $color-white;
+            padding: 1rem 2rem 2rem;
+            border-radius: 8px;
+            opacity: 1 !important;
+        }
 
-    &:disabled {
-        background-color: $color-disabled;
-    }
+        .login-form-label {
+            display: block;
+            padding: 0.4rem 0;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
 
-    &::placeholder {
-        @include large-and-up {
+        .login-form-input {
+            display: block;
+            width: 100%;
+            border: 0;
             font-size: 1rem;
+            padding: 0.8rem;
+
+            &:disabled {
+                background-color: $color-disabled;
+            }
+
+            &::placeholder {
+                @include large-and-up {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        .login-form-submit {
+            border: 0;
+            cursor: pointer;
+            font-family: $font-montserrat;
+            font-size: 1rem;
+            color: $color-white;
+            background-color: $color-primary;
+            padding: 0.5rem 2rem;
+            transition: background-color 0.2s, color 0.2s;
+
+            &:hover {
+                background-color: lighten($color-primary, 5%);
+                color: $color-white;
+            }
+
+            &:disabled {
+                cursor: no-drop;
+                opacity: 0.5;
+            }
+
+            @include large-and-up {
+                padding: 0.7rem 2rem;
+            }
+        }
+
+        .signin {
+            font-size: 1.2rem;
+            font-family: $font-montserrat;
+        }
+
+        .center-between {
+            justify-content: space-between !important;
+
+            @media (max-width: 440) {
+                justify-content: center !important;
+            }
+        }
+
+        .low-opacity {
+            opacity: 0.8 !important;
         }
     }
-}
-
-.login-form-submit {
-    border: 0;
-    cursor: pointer;
-    font-family: $font-montserrat;
-    font-size: 1rem;
-    color: $color-white;
-    background-color: $color-primary;
-    padding: 0.5rem 2rem;
-    transition: background-color 0.2s, color 0.2s;
-
-    &:hover {
-        background-color: lighten($color-primary, 5%);
-        color: $color-white;
-    }
-
-    &:disabled {
-        cursor: no-drop;
-        opacity: 0.5;
-    }
-
-    @include large-and-up {
-        padding: 0.7rem 2rem;
-    }
-}
-
-.signin {
-    font-size: 1.2rem;
-    font-family: $font-montserrat;
-}
-
-.spacement {
-    margin-top: 5rem;
-}
-
-.center-between {
-    justify-content: space-between !important;
-
-    @media (max-width: 440) {
-        justify-content: center !important;
-    }
-}
-
-.low-opacity {
-    opacity: 0.8 !important;
 }

@@ -19,6 +19,7 @@ export class LoginPage implements OnInit {
   public theme = THEME;
   public params = PARAMS;
   public form: FormGroup;
+  public isLoading: boolean;
 
   constructor(
     private router: Router,
@@ -44,11 +45,13 @@ export class LoginPage implements OnInit {
       return;
     }
     const user = this.form.value;
+    this.isLoading = true;
 
     this.userService.login(user.email, user.password).subscribe(
       (user) => this.notificationService.notify(`Bem-vindo, ${user.name}!`),
       (response) => this.showError(response.error.error),
       () => {
+        this.isLoading = false;
         this.router.navigate(['/home']);
       }
     );
