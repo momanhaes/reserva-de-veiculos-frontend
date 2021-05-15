@@ -39,17 +39,20 @@
         <strong>Ano: </strong>
         {{ vehicle.year }}
       </p>
-      <a *ngIf="enabled" (click)="rent(vehicle)" class="stretched-link font-weight-bold link">
+      <a *ngIf="enabled && !isLoading" (click)="rent(vehicle)" class="stretched-link font-weight-bold link">
         <i class="fa fa-share-square-o mr-2"></i>
         CLIQUE PARA RESERVAR
       </a>
-      <a *ngIf="reservedByYou" (click)="rent(vehicle)" class="stretched-link font-weight-bold link">
+      <a *ngIf="reservedByYou && !isLoading" (click)="rent(vehicle)" class="stretched-link font-weight-bold link">
         <i class="fa fa-ban mr-2"></i>
         CLIQUE PARA CANCELAR
       </a>
-      <a *ngIf="reserved" (click)="rent(vehicle)" class="stretched-link font-weight-bold link">
+      <a *ngIf="reserved && !isLoading" (click)="rent(vehicle)" class="stretched-link font-weight-bold link">
         <i class="fa fa-book mr-2"></i>
         VEÍCULO RESERVADO
+      </a>
+      <a *ngIf="isLoading" class="font-weight-bold text-center default">
+        <app-spinner class="mr-2" [size]="1.3"></app-spinner>{{ label }}
       </a>
     </div>
   </div>

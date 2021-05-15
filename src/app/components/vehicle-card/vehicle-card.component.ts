@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { APPEARD } from 'src/animations/appeard.animation';
 import { IVehicle } from './vehicle.interface';
 import { UserService } from 'src/app/services/user.service';
@@ -15,10 +15,13 @@ import Swal from 'sweetalert2';
   animations: [APPEARD],
 })
 export class VehicleCardComponent implements OnInit {
-  public placeholder: string;
   public state = 'ready';
+  public placeholder: string;
   public reservedVehicle: IVehicle;
+  public isLoading: boolean;
+  public label: string;
 
+  @Output() updatedVehicle = new EventEmitter<any>();
   @Input() vehicle: IVehicle;
 
   constructor(
@@ -72,10 +75,6 @@ export class VehicleCardComponent implements OnInit {
   }
 
   public showReserveSuccess(vehicle: IVehicle): void {
-    setTimeout(() => {
-      location.reload();
-    }, 1000);
-
     Swal.fire({
       title: 'Parabéns!',
       text: `Você reservou o veículo ${vehicle.name}.`,
@@ -83,15 +82,12 @@ export class VehicleCardComponent implements OnInit {
       background: '#f1f1f1',
       iconColor: '#fd5d93',
       showCancelButton: false,
-      showConfirmButton: false,
+      confirmButtonColor: '#fd5d93',
+      confirmButtonText: 'Ok',
     });
   }
 
   public showCancelSuccess(vehicle: IVehicle): void {
-    setTimeout(() => {
-      location.reload();
-    }, 1000);
-
     Swal.fire({
       title: 'Sucesso!',
       text: `Você cancelou a reserva do ${vehicle.name}.`,
@@ -99,7 +95,8 @@ export class VehicleCardComponent implements OnInit {
       background: '#f1f1f1',
       iconColor: '#fd5d93',
       showCancelButton: false,
-      showConfirmButton: false,
+      confirmButtonColor: '#fd5d93',
+      confirmButtonText: 'Ok',
     });
   }
 
@@ -143,6 +140,8 @@ export class VehicleCardComponent implements OnInit {
       cancelButtonText: 'Não',
     }).then((result) => {
       if (result.isConfirmed) {
+        this.isLoading = true;
+        this.label = 'REMOVENDO SUA RESERVA';
         this.vehicleService
           .updateVehicle(vehicle.externalCode, {
             status: StatusType.DISPONIVEL,
@@ -150,13 +149,17 @@ export class VehicleCardComponent implements OnInit {
           })
           .pipe(
             catchError((err) => {
+              this.isLoading = false;
               this.showError(err.error.error);
               return err;
             })
           )
           .subscribe((vehicle: IVehicle) => {
-            this.showCancelSuccess(vehicle);
-            this.router.navigate(['/home']);
+            setTimeout(() => {
+              this.isLoading = false;
+              this.updatedVehicle.emit();
+              this.showCancelSuccess(vehicle);
+            }, 500);
           });
       }
     });
@@ -186,6 +189,8 @@ export class VehicleCardComponent implements OnInit {
       cancelButtonText: 'Não',
     }).then((result) => {
       if (result.isConfirmed) {
+        this.isLoading = true;
+        this.label = 'EFETUANDO SUA RESERVA';
         this.vehicleService
           .updateVehicle(vehicle.externalCode, {
             status: StatusType.RESERVADO,
@@ -193,13 +198,17 @@ export class VehicleCardComponent implements OnInit {
           })
           .pipe(
             catchError((err) => {
+              this.isLoading = false;
               this.showError(err.error.error);
               return err;
             })
           )
           .subscribe((vehicle: IVehicle) => {
-            this.showReserveSuccess(vehicle);
-            this.router.navigate(['/home']);
+            setTimeout(() => {
+              this.isLoading = false;
+              this.updatedVehicle.emit();
+              this.showReserveSuccess(vehicle);
+            }, 500);
           });
       }
     });

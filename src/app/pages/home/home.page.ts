@@ -68,7 +68,7 @@ export class HomePage implements OnInit {
           this.vehicles = vehicles;
           this.isLoading = false;
         });
-    }, 500);
+    }, 1000);
   }
 
   public getStates(): void {

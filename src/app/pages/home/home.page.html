@@ -20,7 +20,9 @@
 
 <div *ngIf="isLoading" class="text-center mt-5">
   <app-loading></app-loading>
-  <p class="text-light mt-3">Buscando veículos...</p>
+  <h3 class="text-light mt-5">
+    <app-spinner [size]="2"></app-spinner> Buscando veículos...
+  </h3>
 </div>
 
 <div class="container spacement mt-5">
@@ -37,8 +39,7 @@
 
   <div *ngIf="validationVehicleCard" class="row mb-3">
     <div *ngFor="let vehicle of vehicles" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3">
-      <app-vehicle-card [vehicle]="vehicle"></app-vehicle-card>
+      <app-vehicle-card (updatedVehicle)="getVehicles()" [vehicle]="vehicle"></app-vehicle-card>
     </div>
   </div>
 </div>
-<app-footer *ngIf="!isLoading"></app-footer>
