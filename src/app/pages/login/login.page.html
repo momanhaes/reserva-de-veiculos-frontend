@@ -3,7 +3,7 @@
     <div class="container low-opacity">
       <particles [params]="params" [style]="theme"></particles>
 
-      <form [formGroup]="form" class="login-form mb-4 spacement" [@appeard]="state">
+      <form [formGroup]="form" class="login-form mb-4" [@appeard]="state">
         <h1 class="text-white text-center">Reserva de Veículos</h1>
 
         <div class="row">
@@ -17,16 +17,16 @@
           </div>
         </div>
 
-        <div class="d-flex justify-content-between align-items-center flex-wrap center-between mt-4">
+        <div class="buttons mt-4">
           <a class="text-light signin" routerLink="/register"><i class="fa fa-user-plus mr-2"></i>Cadastre-se</a>
-          <button (click)="login()" [disabled]="form.invalid || isLoading" value="Acessar"
-            class="login-form-submit font-weight-bold">
+
+          <button (click)="login()" [disabled]="form.invalid || isLoading" value="Acessar" class="login-form-submit">
             <i class="fa fa-sign-in mr-2"></i>Acessar
             <app-spinner class="ml-2" *ngIf="isLoading" [size]="1.3"></app-spinner>
           </button>
         </div>
       </form>
+
     </div>
   </div>
 </div>
-<app-footer></app-footer>

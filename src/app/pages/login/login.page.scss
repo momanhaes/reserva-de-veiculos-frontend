@@ -61,6 +61,7 @@
             border: 0;
             cursor: pointer;
             font-family: $font-montserrat;
+            font-weight: bold;
             font-size: 1rem;
             color: $color-white;
             background-color: $color-primary;
@@ -82,17 +83,18 @@
             }
         }
 
+        .buttons {
+            @include between();
+            flex-wrap: wrap;
+
+            @media (max-width: 390px) {
+                @include center();
+            }
+        }
+
         .signin {
             font-size: 1.2rem;
             font-family: $font-montserrat;
-        }
-
-        .center-between {
-            justify-content: space-between !important;
-
-            @media (max-width: 440) {
-                justify-content: center !important;
-            }
         }
 
         .low-opacity {

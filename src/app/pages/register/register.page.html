@@ -1,48 +1,43 @@
-<div class="container low-opacity">
-  <particles [params]="params" [style]="theme"></particles>
+<div class="root">
+  <div class="container-root">
+    <div class="container low-opacity">
+      <particles [params]="params" [style]="theme"></particles>
 
-  <div class="spacement">
-    <form [formGroup]="form" class="register-form mb-4" [@appeard]="state">
-      <h1 class="text-white text-center">Cadastro de Usuários</h1>
+      <form [formGroup]="form" class="register-form mb-4" [@appeard]="state">
+        <h1 class="text-white text-center">Cadastro de Usuários</h1>
 
-      <div class="row">
-        <div class="col-12">
-          <label class="register-form-label text-left"><i class="fa fa-user mr-2"></i>Usuário</label>
-          <input type="text" formControlName="name" placeholder="Digite um nome de usuário"
-            class="register-form-input" />
+        <div class="row">
+          <div class="col-12">
+            <label class="register-form-label text-left"><i class="fa fa-user mr-2"></i>Usuário</label>
+            <input type="text" formControlName="name" placeholder="Digite um nome de usuário"
+              class="register-form-input" />
+          </div>
+          <div class="col-12">
+            <label class="register-form-label text-left"><i class="fa fa-envelope mr-2"></i>E-mail</label>
+            <input type="email" formControlName="email" placeholder="Digite seu e-mail" class="register-form-input" />
+          </div>
+          <div class="col-12">
+            <label class="register-form-label text-left"><i class="fa fa-key mr-2"></i>Senha</label>
+            <input type="password" formControlName="password" placeholder="Digite uma senha"
+              class="register-form-input" />
+          </div>
+          <div class="col-12">
+            <label class="register-form-label text-left"><i class="fa fa-key mr-2"></i>Confirmação da senha</label>
+            <input type="password" formControlName="passwordConfirmation" placeholder="Repita sua senha"
+              class="register-form-input" />
+          </div>
         </div>
-        <div class="col-12">
-          <label class="register-form-label text-left"><i class="fa fa-envelope mr-2"></i>E-mail</label>
-          <input type="email" formControlName="email" placeholder="Digite seu e-mail" class="register-form-input" />
-        </div>
-        <div class="col-12">
-          <label class="register-form-label text-left"><i class="fa fa-key mr-2"></i>Senha</label>
-          <input type="password" formControlName="password" placeholder="Digite uma senha"
-            class="register-form-input" />
-        </div>
-        <div class="col-12">
-          <label class="register-form-label text-left"><i class="fa fa-key mr-2"></i>Confirmação da senha</label>
-          <input type="password" formControlName="passwordConfirmation" placeholder="Repita sua senha"
-            class="register-form-input" />
-        </div>
-      </div>
 
-      <div class="
-          d-flex
-          justify-content-between
-          align-items-center
-          flex-wrap
-          center-between
-          mt-4
-        ">
-        <a class="text-light signin" routerLink="/login"><i class="fa fa-sign-in mr-2"></i>Login</a>
-        <button [disabled]="form.invalid" (click)="register()" value="Acessar"
-          class="register-form-submit font-weight-bold">
-          <i class="fa fa-user-plus mr-2"></i>Cadastrar
-        </button>
-      </div>
-    </form>
+        <div class="buttons mt-4">
+          <a class="text-light signin" routerLink="/login"><i class="fa fa-sign-in mr-2"></i>Login</a>
+
+          <button [disabled]="form.invalid" (click)="register()" value="Acessar" class="register-form-submit">
+            <i class="fa fa-user-plus mr-2"></i>Cadastrar
+            <app-spinner class="ml-2" *ngIf="isLoading" [size]="1.3"></app-spinner>
+          </button>
+        </div>
+      </form>
+
+    </div>
   </div>
 </div>
-
-<app-footer></app-footer>

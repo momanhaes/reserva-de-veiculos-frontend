@@ -20,6 +20,7 @@ export class RegisterPage implements OnInit {
   public params = PARAMS;
   public form: FormGroup;
   public user: IUser;
+  public isLoading: boolean;
 
   constructor(private router: Router, private userService: UserService) {}
 
@@ -75,16 +76,19 @@ export class RegisterPage implements OnInit {
     }
 
     this.user = this.form.value;
+    this.isLoading = true;
 
     this.userService
       .create(this.user)
       .pipe(
         catchError((err) => {
           this.showError(err.error.error);
+          this.isLoading = false;
           return err;
         })
       )
       .subscribe((user: IUserInfo) => {
+        this.isLoading = false;
         this.showSuccess(user);
         this.router.navigate(['/login']);
       });
