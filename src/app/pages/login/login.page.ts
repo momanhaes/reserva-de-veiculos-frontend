@@ -49,7 +49,10 @@ export class LoginPage implements OnInit {
 
     this.userService.login(user.email, user.password).subscribe(
       (user) => this.notificationService.notify(`Bem-vindo, ${user.name}!`),
-      (response) => this.showError(response.error.error),
+      (response) => {
+        this.isLoading = false;
+        this.showError(response.error.error);
+      },
       () => {
         this.isLoading = false;
         this.router.navigate(['/home']);

@@ -91,7 +91,7 @@
             @include between();
             flex-wrap: wrap;
 
-            @media (max-width: 345px) {
+            @media (max-width: 351px) {
                 @include center();
             }
         }
