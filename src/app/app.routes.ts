@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoggedInGuard } from './guards/loggedin.guard';
 import { LoginGuard } from './guards/login.guard';
+import { LeaveRegisterGuard } from './guards/leave-register.guard';
 
 import { HomePage } from './pages/home/home.page';
 import { LoginPage } from './pages/login/login.page';
@@ -17,6 +18,7 @@ export const ROUTES: Routes = [
     path: 'vehicle-register',
     component: VehicleRegisterPage,
     canActivate: [LoggedInGuard],
+    canDeactivate: [LeaveRegisterGuard],
   },
   { path: '**', component: NotFoundPage },
 ];

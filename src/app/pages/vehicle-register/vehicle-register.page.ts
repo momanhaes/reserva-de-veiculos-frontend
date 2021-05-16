@@ -59,6 +59,10 @@ export class VehicleRegisterPage implements OnInit {
     return VEHICLES_FUEL;
   }
 
+  get isFormValid(): boolean {
+    return this.form.valid;
+  }
+
   public showError(error): void {
     Swal.fire({
       title: `Ops!`,
@@ -82,6 +86,25 @@ export class VehicleRegisterPage implements OnInit {
       showCancelButton: false,
       confirmButtonColor: '#fd5d93',
       confirmButtonText: 'Ok',
+    });
+  }
+
+  public cancel(): void {
+    Swal.fire({
+      title: `Você tem certeza que deseja sair?`,
+      text: 'Você perderá todos os dados, caso os tenha preenchido.',
+      icon: 'warning',
+      background: '#f1f1f1',
+      showCancelButton: true,
+      confirmButtonColor: '#fd5d93',
+      iconColor: '#fd5d93',
+      cancelButtonColor: '#313a46',
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/home']);
+      }
     });
   }
 
@@ -120,25 +143,6 @@ export class VehicleRegisterPage implements OnInit {
         this.showSuccess(vehicle);
         this.router.navigate(['/home']);
       });
-  }
-
-  public cancel(): void {
-    Swal.fire({
-      title: `Você tem certeza que deseja cancelar?`,
-      text: 'Você perderá todos os dados, caso os tenha preenchido.',
-      icon: 'warning',
-      background: '#f1f1f1',
-      showCancelButton: true,
-      confirmButtonColor: '#fd5d93',
-      iconColor: '#fd5d93',
-      cancelButtonColor: '#313a46',
-      confirmButtonText: 'Sim',
-      cancelButtonText: 'Não',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.router.navigate(['/home']);
-      }
-    });
   }
 
   ngOnInit(): void {

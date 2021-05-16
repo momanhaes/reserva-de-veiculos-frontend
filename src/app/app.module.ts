@@ -21,15 +21,16 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { LoggedInGuard } from './guards/loggedin.guard';
 import { PermitionGuard } from './guards/permition.guard';
 import { LoginGuard } from './guards/login.guard';
+import { LeaveRegisterGuard } from './guards/leave-register.guard';
 import { ROUTES } from './app.routes';
 
 import { registerLocaleData } from '@angular/common';
 import { ParticlesModule } from 'angular-particle';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import localePt from '@angular/common/locales/pt';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import localePt from '@angular/common/locales/pt';
 
 registerLocaleData(localePt, 'pt');
 
@@ -67,6 +68,7 @@ registerLocaleData(localePt, 'pt');
     LoggedInGuard,
     LoginGuard,
     PermitionGuard,
+    LeaveRegisterGuard,
   ],
   bootstrap: [AppComponent],
 })
