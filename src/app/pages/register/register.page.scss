@@ -7,21 +7,6 @@
         @include grid-column-span(32);
         margin-top: 5rem;
 
-        .register-title {
-            color: $color-white;
-            font-size: 1.8rem;
-            font-weight: 400;
-            text-align: center;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            max-width: 90%;
-            margin: auto;
-
-            @include large-and-up {
-                font-size: 2.2rem;
-            }
-        }
-
         .register-form {
             background: linear-gradient(to bottom left, #344675, #263148, #344675) !important;
             max-width: 500px;
