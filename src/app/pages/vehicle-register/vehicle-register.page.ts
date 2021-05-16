@@ -54,6 +54,14 @@ export class VehicleRegisterPage implements OnInit {
     return this.form.valid;
   }
 
+  public goHome(): void {
+    this.router.navigate(['/home']);
+  }
+
+  public isLoggedIn(): boolean {
+    return this.userService.isLoggedIn();
+  }
+
   public showError(error): void {
     Swal.fire({
       title: `Ops!`,
@@ -80,7 +88,11 @@ export class VehicleRegisterPage implements OnInit {
     });
   }
 
-  public cancel(): void {
+  public exitVehicleRegister(): void {
+    if (!this.userService.isLoggedIn()) {
+      return;
+    }
+
     Swal.fire({
       title: `Você tem certeza que deseja sair?`,
       text: 'Você perderá todos os dados, caso os tenha preenchido.',
@@ -95,7 +107,7 @@ export class VehicleRegisterPage implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.isCancelConfirmed = true;
-        this.router.navigate(['/home']);
+        this.goHome();
       }
     });
   }

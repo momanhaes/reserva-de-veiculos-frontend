@@ -3,11 +3,14 @@ import { VehicleRegisterPage } from '../pages/vehicle-register/vehicle-register.
 
 export class LeaveRegisterGuard implements CanDeactivate<VehicleRegisterPage> {
   canDeactivate(vehicleRegisterPage: VehicleRegisterPage): boolean {
+    if (!vehicleRegisterPage.isLoggedIn()) {
+      return true;
+    }
     if (
       !vehicleRegisterPage.isFormValid &&
       !vehicleRegisterPage.isCancelConfirmed
     ) {
-      vehicleRegisterPage.cancel();
+      vehicleRegisterPage.exitVehicleRegister();
       return false;
     } else {
       return true;
