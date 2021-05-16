@@ -34,6 +34,10 @@
     @media (min-width: 1200px) and (max-width: 1400px) {
         width: 95%;
     }
+
+    @media (min-width: 1401px) {
+        width: 100%;
+    }
 }
 
 .card-body {
