@@ -119,7 +119,6 @@
   align-items: center;
 }
 
-// Z-INDEX SYSTEM
 @mixin z-index($type) {
   @if ($type == "hell") {
     z-index: -1 !important;

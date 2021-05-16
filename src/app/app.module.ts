@@ -11,9 +11,11 @@ import { HomePage } from './pages/home/home.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
 import { RegisterPage } from './pages/register/register.page';
 import { VehicleRegisterPage } from './pages/vehicle-register/vehicle-register.page';
+import { VehicleListPage } from './pages/vehicle-list/vehicle-list.page';
 import { VehicleService } from './services/vehicle.service';
 import { UserService } from './services/user.service';
 import { NotificationService } from './services/notification.service';
+import { WindowService } from './services/window.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { VehicleCardComponent } from './components/vehicle-card/vehicle-card.component';
@@ -30,6 +32,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ItemComponent } from './components/item/item.component';
+import { ResizeDirective } from './directives/resize.directive';
 import localePt from '@angular/common/locales/pt';
 
 registerLocaleData(localePt, 'pt');
@@ -48,16 +52,19 @@ registerLocaleData(localePt, 'pt');
     LoadingComponent,
     SnackbarComponent,
     SpinnerComponent,
+    VehicleListPage,
+    ItemComponent,
+    ResizeDirective,
   ],
   imports: [
-    BrowserModule,
     RouterModule.forRoot(ROUTES),
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    ParticlesModule,
     SweetAlert2Module.forRoot(),
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ParticlesModule,
+    BrowserModule,
+    FormsModule,
     NgbModule,
   ],
   providers: [
@@ -65,6 +72,7 @@ registerLocaleData(localePt, 'pt');
     VehicleService,
     UserService,
     NotificationService,
+    WindowService,
     LoggedInGuard,
     LoginGuard,
     PermitionGuard,

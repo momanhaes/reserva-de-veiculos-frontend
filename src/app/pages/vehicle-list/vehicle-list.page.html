@@ -1,0 +1,126 @@
+<app-header></app-header>
+<div class="root">
+  <div class="container-root">
+    <div class="container-fluid">
+
+      <div *ngIf="vehicles?.length && !isMobile">
+        <h3 class="text-white text-center mt-5">Listagem de Veículos</h3>
+        <button routerLink="/vehicle-register" class="button pull-right font-weight-bold mb-3" [@appeard]="state">
+          <i class="fa fa-plus mr-2"></i> Adicionar Veículo
+        </button>
+      </div>
+
+      <table *ngIf="vehicles?.length && !isMobile" class="table table-hover" [@appeard]="state">
+        <thead class="primary-back">
+          <tr>
+            <th scope="col" class="text-center text-light">ID</th>
+            <th scope="col" class="text-center text-light">Nome</th>
+            <th scope="col" class="text-center text-light">Descrição</th>
+            <th scope="col" class="text-center text-light">Status</th>
+            <th scope="col" class="text-center text-light">Categoria</th>
+            <th scope="col" class="text-center text-light">Diária</th>
+            <th scope="col" class="text-center text-light">Fabricação</th>
+            <th scope="col" class="text-center text-light">Conservação</th>
+            <th scope="col" class="text-center text-light">Combustível</th>
+            <th scope="col" class="text-center text-light">Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let vehicle of vehicles">
+            <td class="text-light text-center">
+              {{ vehicle.externalCode }}
+            </td>
+            <td class="text-light text-center">
+              {{ vehicle.name }}
+            </td>
+            <td class="text-light text-center">
+              {{ vehicle.description }}
+            </td>
+            <td class="text-light text-center">
+              {{ getStatus(vehicle.status) }}
+            </td>
+            <td class="text-light text-center">
+              {{ vehicle.category }}
+            </td>
+            <td class="text-light text-center">
+              {{ vehicle.dailyValue | currency: "BRL":"symbol" }}
+            </td>
+            <td class="text-light text-center">
+              {{ vehicle.year }}
+            </td>
+            <td class="text-light text-center">
+              {{ vehicle.conservation }}
+            </td>
+            <td class="text-light text-center">
+              {{ vehicle.fuel }}
+            </td>
+            <td class="text-center">
+              <button class="button" title="Editar">
+                <i class="fa fa-pencil-square-o"></i>
+              </button>
+              <button class="button cancel" title="Remover">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="vehicles?.length && isMobile" class="container mt-5" [@appeard]="state">
+        <div *ngIf="vehicles?.length && isMobile">
+          <h3 class="text-white text-center mt-3 mb-3">Listagem de Veículos</h3>
+          <!-- <button routerLink="/vehicle-register" class="button text-center font-weight-bold mb-3">
+            <i class="fa fa-plus mr-2"></i> Adicionar Veículo
+          </button> -->
+        </div>
+
+        <div *ngFor="let vehicle of vehicles">
+          <div class="row-mobile">
+            <div class="description">
+              <app-item label="Descrição" [value]="vehicle.description"></app-item>
+            </div>
+            <div class="external-code">
+              <app-item label="ID" [value]="vehicle.externalCode"></app-item>
+            </div>
+            <div class="name">
+              <app-item label="Nome" [value]="vehicle.name"></app-item>
+            </div>
+            <div class="status">
+              <app-item label="Status" [value]="getStatus(vehicle.status)"></app-item>
+            </div>
+            <div class="category">
+              <app-item label="Categoria" [value]="vehicle.category"></app-item>
+            </div>
+            <div class="daily-value">
+              <app-item label="Diária" [value]="vehicle.dailyValue"></app-item>
+            </div>
+            <div class="year">
+              <app-item label="Fabricação" [value]="vehicle.year"></app-item>
+            </div>
+            <div class="conservation">
+              <app-item label="Conservação" [value]="vehicle.conservation"></app-item>
+            </div>
+            <div class="fuel">
+              <app-item label="Combustível" [value]="vehicle.fuel"></app-item>
+            </div>
+            <div class="options">
+              <app-item label="Opções"></app-item>
+              <button class="button" title="Editar">
+                <i class="fa fa-pencil-square-o"></i>
+              </button>
+              <button class="button cancel" title="Remover">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p *ngIf="!vehicles.length" class="mt-5 text-center text-light" [@appeard]="state">
+        Não existem veículos cadastrados <i class="fa fa-frown-o"></i>
+      </p>
+
+    </div>
+  </div>
+</div>

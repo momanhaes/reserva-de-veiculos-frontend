@@ -1,0 +1,211 @@
+@import "../../../scss/includes.scss";
+
+.root {
+    @include grid(32);
+
+    .container-root {
+        @include grid-column-span(32);
+
+        .title {
+            color: $color-white;
+            font-size: 2rem;
+            font-family: $font-montserrat;
+            font-weight: 400;
+            text-align: center;
+            padding-bottom: 1rem;
+            max-width: 90%;
+            margin: auto;
+
+            @include large-and-up {
+                font-size: 2.2rem;
+            }
+        }
+
+        .button {
+            border: 0;
+            cursor: pointer;
+            font-family: $font-montserrat;
+            font-size: 1rem;
+            color: $color-white;
+            background-color: $color-primary;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.2s, color 0.2s;
+
+            &.cancel {
+                background-color: #313a46;
+                border: 2px solid #313a46;
+
+                &:hover {
+                    background-color: lighten(#313a46, 5%);
+                    color: $color-white;
+                }
+            }
+
+            &:hover {
+                background-color: lighten($color-primary, 5%);
+                color: $color-white;
+            }
+
+            &:disabled {
+                cursor: no-drop;
+                opacity: 0.5;
+            }
+        }
+
+        .row-mobile {
+            @include grid(32);
+            border-bottom: 1px solid $color-white;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+
+            .description {
+                @include grid-column-span(32);
+
+                @media (min-width: 500px) {
+                    @include grid-column-span(32);
+                }
+
+                @media (min-width: 992px) {
+                    @include grid-column-span(32);
+                }
+            }
+
+            .external-code {
+                @include grid-column-span(16);
+
+                @media (min-width: 500px) {
+                    @include grid-column-span(12);
+                }
+
+                @media (min-width: 992px) {
+                    @include grid-column-span(8);
+                }
+            }
+
+            .name {
+                @include grid-column-span(16);
+
+                @media (min-width: 500px) {
+                    @include grid-column-span(10);
+                }
+
+                @media (min-width: 992px) {
+                    @include grid-column-span(8);
+                }
+            }
+
+            .status {
+                @include grid-column-span(16);
+
+                @media (min-width: 500px) {
+                    @include grid-column-span(10);
+                }
+
+                @media (min-width: 992px) {
+                    @include grid-column-span(8);
+                }
+            }
+
+            .category {
+                @include grid-column-span(16);
+
+                @media (min-width: 500px) {
+                    @include grid-column-span(12);
+                }
+
+                @media (min-width: 992px) {
+                    @include grid-column-span(8);
+                }
+            }
+
+            .daily-value {
+                @include grid-column-span(16);
+
+                @media (min-width: 500px) {
+                    @include grid-column-span(10);
+                }
+
+                @media (min-width: 992px) {
+                    @include grid-column-span(8);
+                }
+            }
+
+            .year {
+                @include grid-column-span(16);
+
+                @media (min-width: 500px) {
+                    @include grid-column-span(10);
+                }
+
+                @media (min-width: 992px) {
+                    @include grid-column-span(8);
+                }
+            }
+
+            .conservation {
+                @include grid-column-span(16);
+
+                @media (min-width: 500px) {
+                    @include grid-column-span(12);
+                }
+
+                @media (min-width: 992px) {
+                    @include grid-column-span(8);
+                }
+            }
+
+            .fuel {
+                @include grid-column-span(16);
+
+                @media (min-width: 500px) {
+                    @include grid-column-span(10);
+                }
+
+                @media (min-width: 992px) {
+                    @include grid-column-span(8);
+                }
+            }
+
+            .options {
+                @include grid-column-span(32);
+
+                @media (min-width: 500px) {
+                    @include grid-column-span(32);
+                }
+
+                @media (min-width: 992px) {
+                    @include grid-column-span(32);
+                }
+            }
+        }
+
+        .primary-back {
+            background-color: $color-primary !important;
+        }
+
+        .primary-font {
+            color: $color-primary !important;
+        }
+
+        .items {
+            border-bottom: 1px solid $color-white;
+            padding: 1rem 0 1rem 0;
+        }
+
+        table,
+        thead,
+        th,
+        td {
+            border-bottom: 0px !important;
+            border-top: 0px !important;
+        }
+
+        tr {
+            border-top: 1px solid $color-white;
+
+            &:first-child {
+                border-top: 0px;
+            }
+        }
+    }
+}

@@ -1,0 +1,46 @@
+@import "../../../scss/includes.scss";
+
+.item {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    .label {
+        @include start;
+        color: $color-primary;
+        margin-bottom: 5px;
+
+        &--spacement {
+            margin-bottom: 24px;
+        }
+    }
+
+    .value {
+        color: $color-white;
+        display: flex;
+        align-items: center;
+
+        &--upper {
+            text-transform: uppercase;
+        }
+    }
+
+    .tiny {
+        font-size: 12px !important;
+    }
+
+    .small {
+        font-size: 14px !important;
+    }
+
+    .medium {
+        font-size: 16px !important;
+    }
+
+    .large {
+        font-size: 18px !important;
+    }
+
+    .x-large {
+        font-size: 24px !important;
+    }
+}

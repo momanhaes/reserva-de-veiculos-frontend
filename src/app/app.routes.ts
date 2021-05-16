@@ -8,12 +8,18 @@ import { LoginPage } from './pages/login/login.page';
 import { NotFoundPage } from './pages/not-found/not-found.page';
 import { RegisterPage } from './pages/register/register.page';
 import { VehicleRegisterPage } from './pages/vehicle-register/vehicle-register.page';
+import { VehicleListPage } from './pages/vehicle-list/vehicle-list.page';
 
 export const ROUTES: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginPage, canActivate: [LoginGuard] },
   { path: 'register', component: RegisterPage, canActivate: [LoginGuard] },
   { path: 'home', component: HomePage, canActivate: [LoggedInGuard] },
+  {
+    path: 'vehicle-list',
+    component: VehicleListPage,
+    canActivate: [LoggedInGuard],
+  },
   {
     path: 'vehicle-register',
     component: VehicleRegisterPage,
