@@ -141,7 +141,7 @@ export class VehicleCardComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.isLoading = true;
-        this.label = 'REMOVENDO SUA RESERVA';
+        this.label = 'CANCELANDO SUA RESERVA';
         this.vehicleService
           .updateVehicle(vehicle.externalCode, {
             status: StatusType.DISPONIVEL,
