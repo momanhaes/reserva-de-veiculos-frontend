@@ -1,44 +1,42 @@
 <app-header></app-header>
-<div *ngIf="validationHeader" [@appeard]="state">
-  <div class="d-flex justify-content-between align-items-center flex-wrap">
-    <h3 class="title mt-5">
-      <a (click)="toggleSearch()" title="Clique para pesquisar" class="search-link text-white pointer">
-        <i class="fa fa-search mr-3"></i>
-      </a>
-      Escolha um veículo para reservar, {{ user }}.
-    </h3>
-  </div>
-</div>
+<div class="root">
+  <div class="container-root">
 
-<p *ngIf="validationEmpty" class="mt-5 text-white text-center" [@appeard]="state">
-  Não foram encontrados veículos cadastrados <i class="fa fa-frown-o"></i>
-</p>
+    <div *ngIf="validationHeader" class="container" [@appeard]="state">
+      <h3 class="title mt-5">
+        Escolha um veículo para reservar, <span class="user">{{ user }}</span>.
+      </h3>
+    </div>
 
-<p *ngIf="validationError" class="mt-5 text-white text-center" [@appeard]="state">
-  Ocorreu um erro ao trazer os veículos <i class="fa fa-frown-o"></i>
-</p>
+    <div class="mb-3">
+      <p *ngIf="validationEmpty && searchTerm" class="mt-5 text-white text-center" [@appeard]="state">
+        <i class="fa fa-frown-o"></i>
+        Ops! Não encontramos veículos cadastrados com o termo "<span class="user">{{ searchTerm }}</span>".
+      </p>
 
-<div *ngIf="isLoading" class="text-center mt-5">
-  <h3 class="text-light mt-5">
-    <app-spinner [size]="2"></app-spinner> Buscando veículos...
-  </h3>
-</div>
+      <p *ngIf="validationError" class="mt-5 text-white text-center" [@appeard]="state">
+        Ocorreu um erro ao trazer os veículos <i class="fa fa-frown-o"></i>
+      </p>
+    </div>
 
-<div class="container spacement mt-5">
-  <div class="row">
-    <div *ngIf="showSearchBar" class="text-center col-12" [@slide]="state">
+    <div *ngIf="isLoading" class="text-center mt-5 mb-5" [@appeard]="state">
+      <h3 class="text-light mt-5">
+        <app-spinner [size]="2"></app-spinner> Buscando veículos...
+      </h3>
+    </div>
+
+    <div *ngIf="validationVehicleCard" class="search">
       <form [formGroup]="searchForm">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control ml-3" formControlName="searchControl"
-            placeholder="Pesquise por um veículo." />
-        </div>
+        <input type="text" class="form-control mb-3" formControlName="searchControl"
+          placeholder="Pesquise por nome, descrição, status, categoria, ano ou conservação." />
       </form>
     </div>
-  </div>
 
-  <div *ngIf="validationVehicleCard" class="row mb-3">
-    <div *ngFor="let vehicle of vehicles" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3">
-      <app-vehicle-card (updatedVehicle)="getVehicles()" [vehicle]="vehicle"></app-vehicle-card>
+    <div *ngIf="validationVehicleCard" class="row mb-3">
+      <div *ngFor="let vehicle of vehicles" class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-3">
+        <app-vehicle-card (updatedVehicle)="getVehicles()" [vehicle]="vehicle"></app-vehicle-card>
+      </div>
     </div>
+
   </div>
 </div>

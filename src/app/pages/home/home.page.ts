@@ -5,13 +5,13 @@ import { SLIDE } from 'src/animations/slide.animation';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { IVehicle } from './../../components/vehicle-card/vehicle.interface';
 import { FormControl, FormGroup } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 import {
   catchError,
   debounceTime,
   distinctUntilChanged,
   switchMap,
 } from 'rxjs/operators';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +22,7 @@ import { UserService } from 'src/app/services/user.service';
 export class HomePage implements OnInit {
   public searchForm: FormGroup;
   public vehicles: IVehicle[];
+  public searchTerm: string;
   public showSearchBar: boolean;
   public isLoading: boolean;
   public error: boolean;
@@ -86,9 +87,10 @@ export class HomePage implements OnInit {
       .pipe(
         debounceTime(500),
         distinctUntilChanged(),
-        switchMap((searchTerm) =>
-          this.vehicleService.vehicleByKeyword(searchTerm.searchControl)
-        )
+        switchMap((searchTerm) => {
+          this.searchTerm = searchTerm.searchControl;
+          return this.vehicleService.vehicleByKeyword(searchTerm.searchControl);
+        })
       )
       .subscribe((vehicles) => (this.vehicles = vehicles));
 
