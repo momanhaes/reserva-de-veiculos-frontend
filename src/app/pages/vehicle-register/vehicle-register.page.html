@@ -1,90 +1,100 @@
 <app-header></app-header>
-<div class="container mt-5" [@appeard]="state">
-  <div class="card mb-5">
-    <div class="card-header">
-      <h5 class="mt-2">
-        <i class="fa fa-car mr-2"></i> Novo Veículo
-      </h5>
-    </div>
+<div class="root">
+  <div class="container-root">
+    <div class="container" [@appeard]="state">
 
-    <div class="card-body">
-      <form [formGroup]="form">
-        <div class="form-row">
-          <div class="form-group col-12">
-            <label class="font-weight-bold">Nome</label>
-            <input formControlName="name" type="text" placeholder="Digite o nome do veículo" class="form-control" />
-          </div>
+      <div class="card mb-5">
+        <div class="card-header">
+          <h5 class="mt-2">
+            <i class="fa fa-car mr-2"></i> Novo Veículo
+          </h5>
         </div>
 
-        <div class="form-row">
-          <div class="form-group col-12 col-md-8">
-            <label class="font-weight-bold">Descrição</label>
-            <input formControlName="description" type="text" placeholder="Digite a descrição do veículo"
-              class="form-control" />
-          </div>
+        <div class="card-body">
+          <form [formGroup]="form">
+            <div class="form-row">
+              <div class="form-group col-12">
+                <label class="font-weight-bold">Nome</label>
+                <input formControlName="name" type="text" placeholder="Digite o nome do veículo" class="form-control" />
+              </div>
+            </div>
 
-          <div class="form-group col-12 col-md-4">
-            <label class="font-weight-bold">Nível de combustível</label>
-            <select class="custom-select" formControlName="fuel">
-              <option disabled selected value="">Escolha uma opção</option>
-              <option *ngFor="let option of vehicleFuel" [value]="option.value">
-                {{ option.name }}
-              </option>
-            </select>
-          </div>
+            <div class="form-row">
+              <div class="form-group col-12 col-md-8">
+                <label class="font-weight-bold">Descrição</label>
+                <input formControlName="description" type="text" placeholder="Digite a descrição do veículo"
+                  class="form-control" />
+              </div>
+
+              <div class="form-group col-12 col-md-4">
+                <label class="font-weight-bold">Nível de combustível</label>
+                <select class="custom-select" formControlName="fuel">
+                  <option disabled selected value="">Escolha uma opção</option>
+                  <option *ngFor="let option of vehicleFuel" [value]="option.value">
+                    {{ option.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-12 col-md-8">
+                <label class="font-weight-bold">Imagem</label>
+                <input formControlName="imageUrl" type="text" class="form-control"
+                  placeholder="Digite a URL da imagem" />
+              </div>
+
+              <div class="form-group col-12 col-md-4">
+                <label class="font-weight-bold">Valor da diária</label>
+                <input formControlName="dailyValue" type="number" class="form-control" placeholder="R$ 00,00" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-12 col-md-4">
+                <label class="font-weight-bold">Categoria</label>
+                <select class="custom-select" formControlName="category">
+                  <option disabled selected value="">Escolha uma categoria</option>
+                  <option *ngFor="let option of vehicleOptions" [value]="option.value">
+                    {{ option.name }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group col-12 col-md-4">
+                <label class="font-weight-bold">Ano de fabricação</label>
+                <input formControlName="year" type="number" class="form-control"
+                  placeholder="Digite o ano de fabricação do veículo" />
+              </div>
+
+              <div class="form-group col-12 col-md-4">
+                <label class="font-weight-bold">Estado de conservação</label>
+                <select class="custom-select" formControlName="conservation">
+                  <option disabled selected value="">Escolha uma opção</option>
+                  <option *ngFor="let option of vehicleStates" [value]="option.value">
+                    {{ option.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="buttons mt-3">
+              <button [disabled]="form.invalid || isLoading" (click)="addVehicle()" class="button font-weight-bold mr-3">
+                <i *ngIf="!isLoading" class="fa fa-floppy-o mr-2"></i>
+                <app-spinner *ngIf="isLoading" class="mr-2" [size]="1.3"></app-spinner>
+                Salvar
+              </button>
+
+              <button (click)="cancel()" class="button cancel font-weight-bold">
+                <i class="fa fa-ban mr-2"></i>
+                Cancelar
+              </button>
+            </div>
+
+          </form>
         </div>
+      </div>
 
-        <div class="form-row">
-          <div class="form-group col-12 col-md-8">
-            <label class="font-weight-bold">Imagem</label>
-            <input formControlName="imageUrl" type="text" class="form-control" placeholder="Digite a URL da imagem" />
-          </div>
-
-          <div class="form-group col-12 col-md-4">
-            <label class="font-weight-bold">Valor da diária</label>
-            <input formControlName="dailyValue" type="number" class="form-control" placeholder="R$ 00,00" />
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group col-12 col-md-4">
-            <label class="font-weight-bold">Categoria</label>
-            <select class="custom-select" formControlName="category">
-              <option disabled selected value="">Escolha uma categoria</option>
-              <option *ngFor="let option of vehicleOptions" [value]="option.value">
-                {{ option.name }}
-              </option>
-            </select>
-          </div>
-
-          <div class="form-group col-12 col-md-4">
-            <label class="font-weight-bold">Ano de fabricação</label>
-            <input formControlName="year" type="number" class="form-control"
-              placeholder="Digite o ano de fabricação do veículo" />
-          </div>
-
-          <div class="form-group col-12 col-md-4">
-            <label class="font-weight-bold">Estado de conservação</label>
-            <select class="custom-select" formControlName="conservation">
-              <option disabled selected value="">Escolha uma opção</option>
-              <option *ngFor="let option of vehicleStates" [value]="option.value">
-                {{ option.name }}
-              </option>
-            </select>
-          </div>
-        </div>
-
-        <button [disabled]="form.invalid || isLoading" (click)="addVehicle()" class="button font-weight-bold mt-3 mr-3">
-          <i *ngIf="!isLoading" class="fa fa-floppy-o mr-2"></i>
-          <app-spinner *ngIf="isLoading" class="mr-2" [size]="1.3"></app-spinner>
-          Salvar
-        </button>
-
-        <button (click)="cancel()" class="button cancel font-weight-bold">
-          <i class="fa fa-ban mr-2"></i>
-          Cancelar
-        </button>
-      </form>
     </div>
   </div>
 </div>

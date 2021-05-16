@@ -1,40 +1,58 @@
 @import "../../../scss/includes.scss";
 
-.button {
-    border: 0;
-    cursor: pointer;
-    font-family: $font-montserrat;
-    font-size: 1rem;
-    color: $color-white;
-    background-color: $color-primary;
-    padding: 0.5rem 2rem;
-    transition: background-color 0.2s, color 0.2s;
+.root {
+    @include grid(32);
 
-    &.cancel {
-        background-color: #313a46;
+    .container-root {
+        @include grid-column-span(32);
+        margin-top: 3rem;
 
-        &:hover {
-            background-color: lighten(#313a46, 5%);
-            color: $color-white;
+        .buttons {
+            @include start();
+            flex-wrap: wrap;
+
+            @media (max-width: 393px) {
+                @include center();
+            }
+
+            .button {
+                border: 0;
+                cursor: pointer;
+                font-family: $font-montserrat;
+                font-size: 1rem;
+                color: $color-white;
+                background-color: $color-primary;
+                padding: 0.5rem 2rem;
+                transition: background-color 0.2s, color 0.2s;
+
+                &.cancel {
+                    background-color: #313a46;
+
+                    &:hover {
+                        background-color: lighten(#313a46, 5%);
+                        color: $color-white;
+                    }
+                }
+
+                &:hover {
+                    background-color: lighten($color-primary, 5%);
+                    color: $color-white;
+                }
+
+                &:disabled {
+                    cursor: no-drop;
+                    opacity: 0.5;
+                }
+
+                @include large-and-up {
+                    padding: 0.7rem 2rem;
+                }
+            }
+        }
+
+        .custom-control-input:checked ~ .custom-control-label::before {
+            border-color: $color-primary !important;
+            background-color: $color-primary !important;
         }
     }
-
-    &:hover {
-        background-color: lighten($color-primary, 5%);
-        color: $color-white;
-    }
-
-    &:disabled {
-        cursor: no-drop;
-        opacity: 0.5;
-    }
-
-    @include large-and-up {
-        padding: 0.7rem 2rem;
-    }
-}
-
-.custom-control-input:checked ~ .custom-control-label::before {
-    border-color: $color-primary !important;
-    background-color: $color-primary !important;
 }
