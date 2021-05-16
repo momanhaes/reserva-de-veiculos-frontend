@@ -39,6 +39,7 @@ export class VehicleRegisterPage implements OnInit {
   public form: FormGroup;
   public vehiclesOption: IVehicleOption;
   public isLoading: boolean;
+  public isCancelConfirmed = false;
 
   constructor(
     private router: Router,
@@ -103,6 +104,7 @@ export class VehicleRegisterPage implements OnInit {
       cancelButtonText: 'Não',
     }).then((result) => {
       if (result.isConfirmed) {
+        this.isCancelConfirmed = true;
         this.router.navigate(['/home']);
       }
     });
