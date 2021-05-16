@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { APPEARD } from 'src/animations/appeard.animation';
-import { IVehicle } from './vehicle.interface';
+import { IContent, IVehicle } from './vehicle.interface';
 import { UserService } from 'src/app/services/user.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { StatusType } from 'src/app/pages/vehicle-register/vehicle.interface';
@@ -16,10 +16,14 @@ import Swal from 'sweetalert2';
 })
 export class VehicleCardComponent implements OnInit {
   public state = 'ready';
-  public placeholder: string;
   public reservedVehicle: IVehicle;
   public isLoading: boolean;
+  public placeholder: string;
   public label: string;
+  public content: IContent;
+  public backgroundColor: string;
+  public primaryColor: string;
+  public showCancelButton: boolean;
 
   @Output() updatedVehicle = new EventEmitter<any>();
   @Input() vehicle: IVehicle;
@@ -61,69 +65,67 @@ export class VehicleCardComponent implements OnInit {
     return reserved.length ? true : false;
   }
 
-  public showError(error): void {
+  public showAlert(content: IContent): void {
     Swal.fire({
-      title: `Ops!`,
-      text: error ? error : 'Ocorreu um erro.',
-      icon: 'error',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
-      showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
-      confirmButtonText: 'Ok',
+      title: content.title,
+      text: content.text,
+      icon: content.icon,
+      background: this.backgroundColor,
+      iconColor: this.primaryColor,
+      showCancelButton: this.showCancelButton,
+      confirmButtonColor: this.primaryColor,
+      confirmButtonText: content.confirmButtonText,
     });
   }
 
-  public showReserveSuccess(vehicle: IVehicle): void {
-    Swal.fire({
-      title: 'Parabéns!',
-      text: `Você reservou o veículo ${vehicle.name}.`,
-      icon: 'success',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
-      showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
-      confirmButtonText: 'Ok',
-    });
-  }
+  public buildAlert(origin: string, error?: string, vehicle?: IVehicle): any {
+    switch (origin) {
+      case 'showReserveSuccess':
+        this.content = {
+          title: 'Parabéns!',
+          text: `Você reservou o veículo ${vehicle.name}.`,
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        };
+        break;
 
-  public showCancelSuccess(vehicle: IVehicle): void {
-    Swal.fire({
-      title: 'Sucesso!',
-      text: `Você cancelou a reserva do ${vehicle.name}.`,
-      icon: 'success',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
-      showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
-      confirmButtonText: 'Ok',
-    });
-  }
+      case 'showCancelSuccess':
+        this.content = {
+          title: 'Sucesso!',
+          text: `Você cancelou a reserva do ${vehicle.name}.`,
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        };
+        break;
 
-  public youAlreadyReservedVehicle(): void {
-    Swal.fire({
-      title: 'Ops!',
-      text: 'Você já reservou um veículo.',
-      icon: 'error',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
-      showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
-      confirmButtonText: 'Ok',
-    });
-  }
+      case 'youAlreadyReservedVehicle':
+        this.content = {
+          title: 'Ops!',
+          text: 'Você já reservou um veículo.',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        };
+        break;
 
-  public showVehicleAlreadyReserved(): void {
-    Swal.fire({
-      title: 'Que pena!',
-      text: 'Esse veículo já foi reservado por outra pessoa.',
-      icon: 'error',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
-      showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
-      confirmButtonText: 'Ver outro veículo',
-    });
+      case 'showVehicleAlreadyReserved':
+        this.content = {
+          title: 'Que pena!',
+          text: 'Esse veículo já foi reservado por outra pessoa.',
+          icon: 'error',
+          confirmButtonText: 'Ver outro veículo',
+        };
+        break;
+
+      case 'default':
+        this.content = {
+          title: 'Ops!',
+          text: error ? error : 'Ocorreu um erro.',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        };
+    }
+
+    return this.showAlert(this.content);
   }
 
   public showAlreadyReservedByYou(vehicle: IVehicle): void {
@@ -150,7 +152,7 @@ export class VehicleCardComponent implements OnInit {
           .pipe(
             catchError((err) => {
               this.isLoading = false;
-              this.showError(err.error.error);
+              this.buildAlert('default', err.error.error);
               return err;
             })
           )
@@ -158,7 +160,7 @@ export class VehicleCardComponent implements OnInit {
             setTimeout(() => {
               this.isLoading = false;
               this.updatedVehicle.emit();
-              this.showCancelSuccess(vehicle);
+              this.buildAlert('showCancelSuccess', '', vehicle);
             }, 500);
           });
       }
@@ -170,10 +172,10 @@ export class VehicleCardComponent implements OnInit {
       return this.showAlreadyReservedByYou(vehicle);
     }
     if (vehicle.rentedBy) {
-      return this.showVehicleAlreadyReserved();
+      return this.buildAlert('showVehicleAlreadyReserved');
     }
     if (this.alreadyReservedVehicle) {
-      return this.youAlreadyReservedVehicle();
+      return this.buildAlert('youAlreadyReservedVehicle');
     }
 
     Swal.fire({
@@ -199,7 +201,7 @@ export class VehicleCardComponent implements OnInit {
           .pipe(
             catchError((err) => {
               this.isLoading = false;
-              this.showError(err.error.error);
+              this.buildAlert('default', err.error.error);
               return err;
             })
           )
@@ -207,7 +209,7 @@ export class VehicleCardComponent implements OnInit {
             setTimeout(() => {
               this.isLoading = false;
               this.updatedVehicle.emit();
-              this.showReserveSuccess(vehicle);
+              this.buildAlert('showReserveSuccess', '', vehicle);
             }, 500);
           });
       }
@@ -216,5 +218,8 @@ export class VehicleCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.placeholder = 'assets/img/placeholder.png';
+    this.backgroundColor = '#f1f1f1';
+    this.primaryColor = '#fd5d93';
+    this.showCancelButton = false;
   }
 }
