@@ -24,10 +24,10 @@
 }
 
 .nav > .nav-links {
+    @include z-index("sky");
+    font-size: 18px;
     display: inline;
     float: right;
-    font-size: 18px;
-    z-index: 9;
 }
 
 .nav > .nav-links > a {
@@ -42,8 +42,8 @@
 }
 
 .nav > .nav-links > a:hover {
+    @include z-index("sky");
     transform: scale(1.2);
-    z-index: 2;
 
     &:first-child {
         transform: scale(1);
