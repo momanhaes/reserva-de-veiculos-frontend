@@ -18,6 +18,16 @@
 
             @include large-and-up {
                 font-size: 2.2rem;
+                margin-bottom: 0rem;
+            }
+        }
+
+        .header {
+            @include between();
+            flex-wrap: wrap;
+
+            @media (max-width: 561px) {
+                @include center();
             }
         }
 
@@ -33,7 +43,11 @@
 
             &.cancel {
                 background-color: #313a46;
-                border: 2px solid #313a46;
+                border: 1px solid #313a46;
+
+                @include xlarge-and-up {
+                    border: 2px solid #313a46;
+                }
 
                 &:hover {
                     background-color: lighten(#313a46, 5%);
