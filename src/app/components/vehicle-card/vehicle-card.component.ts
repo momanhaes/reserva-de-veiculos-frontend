@@ -3,7 +3,7 @@ import { APPEARD } from 'src/animations/appeard.animation';
 import { IVehicle } from './vehicle.interface';
 import { UserService } from 'src/app/services/user.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
-import { StatusType } from 'src/app/pages/vehicle-register/vehicle-register.page';
+import { StatusType } from 'src/app/pages/vehicle-register/vehicle.interface';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';

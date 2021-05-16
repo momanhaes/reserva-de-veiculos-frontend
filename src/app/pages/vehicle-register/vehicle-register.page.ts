@@ -1,32 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APPEARD } from 'src/animations/appeard.animation';
-import {
-  VEHICLES_FUEL,
-  VEHICLES_OPTIONS,
-  VEHICLES_STATES,
-} from './vehicles.options';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { IVehicle } from 'src/app/components/vehicle-card/vehicle.interface';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { catchError } from 'rxjs/operators';
+import {
+  IVehicleFuel,
+  IVehicleOption,
+  StatusType,
+} from 'src/app/pages/vehicle-register/vehicle.interface';
+import {
+  VEHICLES_FUEL,
+  VEHICLES_OPTIONS,
+  VEHICLES_STATES,
+} from './vehicles.options';
 import Swal from 'sweetalert2';
-
-interface IVehicleOption {
-  name: string;
-  value: string;
-}
-
-interface IVehicleFuel {
-  name: string;
-  value: string;
-}
-
-export enum StatusType {
-  RESERVADO = 'RESERVADO',
-  DISPONIVEL = 'DISPONÍVEL',
-}
 
 @Component({
   selector: 'app-vehicle-register',
