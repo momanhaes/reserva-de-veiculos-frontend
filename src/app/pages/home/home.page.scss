@@ -79,12 +79,10 @@
         }
 
         input {
-            &::placeholder {
-                font-size: 10px;
+            text-overflow: ellipsis;
 
-                @include small-and-up {
-                    font-size: 16px;
-                }
+            &::placeholder {
+                font-size: 16px;
             }
         }
 
