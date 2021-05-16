@@ -63,6 +63,25 @@ export class RegisterPage implements OnInit {
     });
   }
 
+  goLogin() {
+    Swal.fire({
+      title: `Você tem certeza que deseja voltar pra página de login?`,
+      text: 'Você perderá todos os dados, caso os tenha preenchido.',
+      icon: 'warning',
+      background: '#f1f1f1',
+      showCancelButton: true,
+      confirmButtonColor: '#fd5d93',
+      iconColor: '#fd5d93',
+      cancelButtonColor: '#313a46',
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/login']);
+      }
+    });
+  }
+
   public register(): void {
     if (this.form.invalid) {
       return;
