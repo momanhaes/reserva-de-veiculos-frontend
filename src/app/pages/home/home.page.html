@@ -25,7 +25,7 @@
       </h3>
     </div>
 
-    <div *ngIf="validationVehicleCard" class="search">
+    <div *ngIf="validationVehicleSearch" class="search">
       <form [formGroup]="searchForm">
         <input type="text" class="form-control mb-3" formControlName="searchControl"
           placeholder="Pesquise por nome, descrição, status, categoria, ano ou conservação." />

@@ -51,6 +51,10 @@ export class HomePage implements OnInit {
     return this.vehicles?.length && !this.isLoading && !this.error;
   }
 
+  get validationVehicleSearch(): boolean {
+    return this.vehicles && !this.isLoading && !this.error;
+  }
+
   public getVehicles(): void {
     this.isLoading = true;
 
