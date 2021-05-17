@@ -3,6 +3,7 @@ import { timer } from 'rxjs';
 import { tap, switchMap } from 'rxjs/operators';
 import { NotificationService } from 'src/app/services/notification.service';
 import { SNACKBAR } from 'src/animations/snackbar.animation';
+import { StatusType } from 'src/app/pages/vehicle-register/vehicle.interface';
 
 @Component({
   selector: 'app-snackbar',
@@ -15,6 +16,10 @@ export class SnackbarComponent implements OnInit {
   public snackVisibility = 'hidden';
 
   constructor(private notificationService: NotificationService) {}
+
+  get mustShowMessage(): boolean {
+    return this.message !== StatusType.ATUALIZADO;
+  }
 
   ngOnInit(): void {
     this.notificationService.notifier

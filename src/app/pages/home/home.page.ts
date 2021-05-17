@@ -21,7 +21,7 @@ import {
 })
 export class HomePage implements OnInit {
   public searchForm: FormGroup;
-  public vehicles: IVehicle[];
+  public vehicles: IVehicle[] = [];
   public searchTerm: string;
   public showSearchBar: boolean;
   public isLoading: boolean;
@@ -73,7 +73,7 @@ export class HomePage implements OnInit {
           this.vehicles = vehicles;
           this.isLoading = false;
         });
-    }, 1000);
+    }, 500);
   }
 
   public getStates(): void {

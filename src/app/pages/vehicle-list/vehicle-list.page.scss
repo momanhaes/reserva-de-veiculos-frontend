@@ -201,17 +201,13 @@
             color: $color-primary !important;
         }
 
-        .items {
-            border-bottom: 1px solid $color-white;
-            padding: 1rem 0 1rem 0;
-        }
-
         table,
         thead,
         th,
         td {
             border-bottom: 0px !important;
             border-top: 0px !important;
+            vertical-align: inherit;
         }
 
         tr {
@@ -219,6 +215,10 @@
 
             &:first-child {
                 border-top: 0px;
+            }
+
+            &:last-child {
+                border-bottom: 1px solid $color-white;
             }
         }
     }

@@ -10,19 +10,16 @@
         </button>
       </div>
 
-      <table *ngIf="vehicles?.length && !isMobile" class="table table-hover" [@appeard]="state">
+      <div *ngIf="isLoading" class="text-center mt-5 mb-5" [@appeard]="state">
+        <h3 class="text-light mt-5">
+          <app-spinner [size]="2"></app-spinner> Buscando veículos...
+        </h3>
+      </div>
+
+      <table *ngIf="desktopValidantionVehicles" class="table table-hover" [@appeard]="state">
         <thead class="primary-back">
           <tr>
-            <th scope="col" class="text-center text-light">ID</th>
-            <th scope="col" class="text-center text-light">Nome</th>
-            <th scope="col" class="text-center text-light">Descrição</th>
-            <th scope="col" class="text-center text-light">Status</th>
-            <th scope="col" class="text-center text-light">Categoria</th>
-            <th scope="col" class="text-center text-light">Diária</th>
-            <th scope="col" class="text-center text-light">Fabricação</th>
-            <th scope="col" class="text-center text-light">Conservação</th>
-            <th scope="col" class="text-center text-light">Combustível</th>
-            <th scope="col" class="text-center text-light">Ações</th>
+            <th *ngFor="let header of tableHeaders" scope="col" class="text-center text-light">{{ header }}</th>
           </tr>
         </thead>
 
@@ -67,8 +64,8 @@
         </tbody>
       </table>
 
-      <div *ngIf="vehicles?.length && isMobile" class="container line mt-5" [@appeard]="state">
-        <div class="header">
+      <div *ngIf="mobileValidantionVehicles" class="container line mt-5" [@appeard]="state">
+        <div class="header mb-5">
           <h3 class="text-white text-center mt-3 mb-3">Listagem de Veículos</h3>
           <button routerLink="/vehicle-register" class="button text-center font-weight-bold">
             <i class="fa fa-plus mr-2"></i> Adicionar Veículo
@@ -117,8 +114,12 @@
         </div>
       </div>
 
-      <p *ngIf="!vehicles.length" class="mt-5 text-center text-light" [@appeard]="state">
+      <p *ngIf="validationEmpty" class="mt-5 text-center text-light" [@appeard]="state">
         Não existem veículos cadastrados <i class="fa fa-frown-o"></i>
+      </p>
+
+      <p *ngIf="validationError" class="mt-5 text-white text-center" [@appeard]="state">
+        Ocorreu um erro ao trazer os veículos <i class="fa fa-frown-o"></i>
       </p>
 
     </div>

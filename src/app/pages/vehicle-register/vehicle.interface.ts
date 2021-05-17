@@ -11,4 +11,5 @@ export interface IVehicleFuel {
 export enum StatusType {
   RESERVADO = 'RESERVADO',
   DISPONIVEL = 'DISPONÍVEL',
+  ATUALIZADO = 'ATUALIZADO',
 }

@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { IVehicle } from 'src/app/components/vehicle-card/vehicle.interface';
 import { VehicleService } from 'src/app/services/vehicle.service';
+import { NotificationService } from 'src/app/services/notification.service';
 import { catchError } from 'rxjs/operators';
 import {
   IVehicleFuel,
@@ -33,12 +34,14 @@ export class VehicleRegisterPage implements OnInit {
   public isEdit = false;
   public vehicle: IVehicle;
   public error: any;
+  public vehicleID: string;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
-    private vehicleService: VehicleService
+    private vehicleService: VehicleService,
+    private notificationsService: NotificationService
   ) {}
 
   get vehicleOptions(): IVehicleOption[] {
@@ -113,7 +116,7 @@ export class VehicleRegisterPage implements OnInit {
     });
   }
 
-  public addVehicle(): void {
+  public action(): void {
     if (this.form.invalid) {
       return;
     }
@@ -133,7 +136,30 @@ export class VehicleRegisterPage implements OnInit {
     };
 
     this.isLoading = true;
+    this.isEdit ? this.updateVehicle() : this.addVehicle();
+  }
 
+  public updateVehicle() {
+    this.vehicleService
+      .updateVehicle(this.vehicleID, this.vehicle)
+      .pipe(
+        catchError((err) => {
+          this.isLoading = false;
+          this.showError(err.error.error);
+          return err;
+        })
+      )
+      .subscribe((vehicle: IVehicle) => {
+        setTimeout(() => {
+          this.isLoading = false;
+          this.showSuccess(vehicle);
+          this.notificationsService.notify(StatusType.ATUALIZADO);
+          this.router.navigate(['/vehicle-list']);
+        }, 500);
+      });
+  }
+
+  public addVehicle() {
     this.vehicleService
       .createVehicle(this.vehicle)
       .pipe(
@@ -146,6 +172,7 @@ export class VehicleRegisterPage implements OnInit {
       .subscribe((vehicle: IVehicle) => {
         this.isLoading = false;
         this.showSuccess(vehicle);
+        this.notificationsService.notify(StatusType.ATUALIZADO);
         this.router.navigate(['/vehicle-list']);
       });
   }
@@ -162,11 +189,11 @@ export class VehicleRegisterPage implements OnInit {
       conservation: new FormControl('', Validators.required),
     });
 
-    const id = this.route.snapshot.params['id'];
-    if (id) {
+    this.vehicleID = this.route.snapshot.params['id'];
+    if (this.vehicleID) {
       this.isEdit = true;
       this.vehicleService
-        .vehicleById(id)
+        .vehicleById(this.vehicleID)
         .pipe(
           catchError((err) => {
             this.isLoading = false;
