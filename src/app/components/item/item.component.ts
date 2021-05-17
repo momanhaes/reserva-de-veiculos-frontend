@@ -9,6 +9,7 @@ export type IValidSizes = 'tiny' | 'small' | 'medium' | 'large' | 'x-large';
 export class ItemComponent {
   @Input() label: string;
   @Input() value: any;
+  @Input() type: string;
   @Input() labelFontSize: IValidSizes = 'small';
   @Input() valueFontSize: IValidSizes = 'medium';
   @Input() spacement: boolean;
