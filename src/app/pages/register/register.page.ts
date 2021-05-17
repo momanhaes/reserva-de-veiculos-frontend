@@ -5,6 +5,7 @@ import { APPEARD } from 'src/animations/appeard.animation';
 import { PARAMS, THEME } from 'src/animations/particles.animation';
 import { IUser, IUserInfo, UserService } from 'src/app/services/user.service';
 import { EMAIL_PATTERN } from 'src/utils/patterns';
+import { ALERT_THEME } from 'src/utils/theme';
 import { catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
@@ -21,6 +22,7 @@ export class RegisterPage implements OnInit {
   public form: FormGroup;
   public user: IUser;
   public isLoading: boolean;
+  public alertTheme = ALERT_THEME;
 
   constructor(private router: Router, private userService: UserService) {}
 
@@ -29,10 +31,10 @@ export class RegisterPage implements OnInit {
       title: 'Ops!',
       text: 'Suas senhas não coincidem.',
       icon: 'error',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
+      background: this.alertTheme.background,
+      iconColor: this.alertTheme.iconColor,
       showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
       confirmButtonText: 'Tentar novamente',
     });
   }
@@ -42,10 +44,10 @@ export class RegisterPage implements OnInit {
       title: `Ops!`,
       text: error ? error : 'Ocorreu um erro.',
       icon: 'error',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
+      background: this.alertTheme.background,
+      iconColor: this.alertTheme.iconColor,
       showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
       confirmButtonText: 'Ok',
     });
   }
@@ -55,10 +57,10 @@ export class RegisterPage implements OnInit {
       title: `Parabéns, ${user.name}!`,
       text: `Você efetuou seu cadastro com sucesso.`,
       icon: 'success',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
+      background: this.alertTheme.background,
+      iconColor: this.alertTheme.iconColor,
       showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
       confirmButtonText: 'Ok',
     });
   }
@@ -68,11 +70,11 @@ export class RegisterPage implements OnInit {
       title: `Você tem certeza que deseja voltar pra página de login?`,
       text: 'Você perderá todos os dados, caso os tenha preenchido.',
       icon: 'warning',
-      background: '#f1f1f1',
+      background: this.alertTheme.background,
       showCancelButton: true,
-      confirmButtonColor: '#fd5d93',
-      iconColor: '#fd5d93',
-      cancelButtonColor: '#313a46',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
+      iconColor: this.alertTheme.iconColor,
+      cancelButtonColor: this.alertTheme.cancelButtonColor,
       confirmButtonText: 'Sim',
       cancelButtonText: 'Não',
     }).then((result) => {

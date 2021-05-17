@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { APPEARD } from 'src/animations/appeard.animation';
 import { THEME, PARAMS } from 'src/animations/particles.animation';
+import { ALERT_THEME } from 'src/utils/theme';
 import { EMAIL_PATTERN } from 'src/utils/patterns';
 import { NotificationService } from 'src/app/services/notification.service';
 import Swal from 'sweetalert2';
@@ -20,6 +21,7 @@ export class LoginPage implements OnInit {
   public params = PARAMS;
   public form: FormGroup;
   public isLoading: boolean;
+  public alertTheme = ALERT_THEME;
 
   constructor(
     private router: Router,
@@ -32,10 +34,10 @@ export class LoginPage implements OnInit {
       title: `Ops!`,
       text: error ? error : 'Ocorreu um erro na autenticação.',
       icon: 'error',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
+      background: this.alertTheme.background,
+      iconColor: this.alertTheme.iconColor,
       showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
       confirmButtonText: 'Ok',
     });
   }

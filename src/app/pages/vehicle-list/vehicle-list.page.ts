@@ -8,6 +8,7 @@ import { StatusType } from '../vehicle-register/vehicle.interface';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { catchError } from 'rxjs/operators';
+import { ALERT_THEME } from 'src/utils/theme';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -30,6 +31,7 @@ export class VehicleListPage implements OnInit {
   public vehicles: IVehicle[] = [];
   public isMobile: boolean;
   public isLoading: boolean;
+  public alertTheme = ALERT_THEME;
   public error: any;
 
   get mobileValidantionVehicles(): boolean {
@@ -74,10 +76,10 @@ export class VehicleListPage implements OnInit {
       title: `Ops!`,
       text: error ? error : 'Ocorreu um erro.',
       icon: 'error',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
+      background: this.alertTheme.background,
+      iconColor: this.alertTheme.iconColor,
       showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
       confirmButtonText: 'Ok',
     });
   }
@@ -87,10 +89,10 @@ export class VehicleListPage implements OnInit {
       title: 'Sucesso!',
       text: 'Exclusão concluída.',
       icon: 'success',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
+      background: this.alertTheme.background,
+      iconColor: this.alertTheme.iconColor,
       showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
       confirmButtonText: 'Ok',
     });
   }
@@ -101,8 +103,8 @@ export class VehicleListPage implements OnInit {
         title: `Ops!`,
         text: 'Você não pode excluir esse veículo, pois ele já está reservado.',
         icon: 'error',
-        background: '#f1f1f1',
-        iconColor: '#fd5d93',
+        background: this.alertTheme.background,
+        iconColor: this.alertTheme.iconColor,
         showCancelButton: false,
         confirmButtonColor: '#fd5d93',
         confirmButtonText: 'Ok',
@@ -112,11 +114,11 @@ export class VehicleListPage implements OnInit {
         title: `Você escolheu excluir o veículo ${vehicle.name}`,
         text: `Você tem certeza?`,
         icon: 'warning',
-        background: '#f1f1f1',
+        background: this.alertTheme.background,
         showCancelButton: true,
-        confirmButtonColor: '#fd5d93',
-        iconColor: '#fd5d93',
-        cancelButtonColor: '#313a46',
+        confirmButtonColor: this.alertTheme.confirmButtonColor,
+        iconColor: this.alertTheme.iconColor,
+        cancelButtonColor: this.alertTheme.cancelButtonColor,
         confirmButtonText: 'Sim',
         cancelButtonText: 'Não',
       }).then((result) => {
@@ -148,10 +150,10 @@ export class VehicleListPage implements OnInit {
         title: `Ops!`,
         text: 'Você não pode editar esse veículo, pois ele já está reservado.',
         icon: 'error',
-        background: '#f1f1f1',
-        iconColor: '#fd5d93',
+        background: this.alertTheme.background,
+        iconColor: this.alertTheme.iconColor,
         showCancelButton: false,
-        confirmButtonColor: '#fd5d93',
+        confirmButtonColor: this.alertTheme.confirmButtonColor,
         confirmButtonText: 'Ok',
       });
     } else {

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { APPEARD } from 'src/animations/appeard.animation';
 import { UserService } from 'src/app/services/user.service';
 import { IHeader } from './header.interface';
+import { ALERT_THEME } from 'src/utils/theme';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit {
   public state = 'ready';
   public user: string;
   public logo: string;
+  public alertTheme = ALERT_THEME;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -24,11 +26,11 @@ export class HeaderComponent implements OnInit {
       title: 'Você escolheu sair.',
       text: 'Tem certeza?',
       icon: 'warning',
-      background: '#f1f1f1',
+      background: this.alertTheme.background,
+      iconColor: this.alertTheme.iconColor,
       showCancelButton: true,
-      confirmButtonColor: '#fd5d93',
-      iconColor: '#fd5d93',
-      cancelButtonColor: '#313a46',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
+      cancelButtonColor: this.alertTheme.cancelButtonColor,
       confirmButtonText: 'Sim',
       cancelButtonText: 'Não',
     }).then((result) => {

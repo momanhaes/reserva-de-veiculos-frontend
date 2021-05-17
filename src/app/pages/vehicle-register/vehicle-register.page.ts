@@ -17,6 +17,7 @@ import {
   VEHICLES_OPTIONS,
   VEHICLES_STATES,
 } from './vehicles.options';
+import { ALERT_THEME } from 'src/utils/theme';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -35,6 +36,7 @@ export class VehicleRegisterPage implements OnInit {
   public vehicle: IVehicle;
   public error: any;
   public vehicleID: string;
+  public alertTheme = ALERT_THEME;
 
   constructor(
     private router: Router,
@@ -69,10 +71,10 @@ export class VehicleRegisterPage implements OnInit {
       title: `Ops!`,
       text: error ? error : 'Ocorreu um erro.',
       icon: 'error',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
+      background: this.alertTheme.background,
+      iconColor: this.alertTheme.iconColor,
       showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
       confirmButtonText: 'Ok',
     });
   }
@@ -84,10 +86,10 @@ export class VehicleRegisterPage implements OnInit {
         ? `Você editou o veículo ${vehicle.name}.`
         : `Você cadastrou o veículo ${vehicle.name}.`,
       icon: 'success',
-      background: '#f1f1f1',
-      iconColor: '#fd5d93',
+      background: this.alertTheme.background,
+      iconColor: this.alertTheme.iconColor,
       showCancelButton: false,
-      confirmButtonColor: '#fd5d93',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
       confirmButtonText: 'Ok',
     });
   }
@@ -101,11 +103,11 @@ export class VehicleRegisterPage implements OnInit {
       title: `Você tem certeza que deseja sair?`,
       text: 'Você perderá todos os dados, caso os tenha preenchido.',
       icon: 'warning',
-      background: '#f1f1f1',
+      background: this.alertTheme.background,
       showCancelButton: true,
-      confirmButtonColor: '#fd5d93',
-      iconColor: '#fd5d93',
-      cancelButtonColor: '#313a46',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
+      iconColor: this.alertTheme.iconColor,
+      cancelButtonColor: this.alertTheme.cancelButtonColor,
       confirmButtonText: 'Sim',
       cancelButtonText: 'Não',
     }).then((result) => {

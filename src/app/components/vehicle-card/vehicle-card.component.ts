@@ -6,6 +6,7 @@ import { VehicleService } from 'src/app/services/vehicle.service';
 import { StatusType } from 'src/app/pages/vehicle-register/vehicle.interface';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ALERT_THEME } from 'src/utils/theme';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,9 +22,7 @@ export class VehicleCardComponent implements OnInit {
   public placeholder: string;
   public label: string;
   public content: IContent;
-  public backgroundColor: string;
-  public primaryColor: string;
-  public showCancelButton: boolean;
+  public alertTheme = ALERT_THEME;
 
   @Output() updatedVehicle = new EventEmitter<any>();
   @Input() vehicle: IVehicle;
@@ -70,10 +69,10 @@ export class VehicleCardComponent implements OnInit {
       title: content.title,
       text: content.text,
       icon: content.icon,
-      background: this.backgroundColor,
-      iconColor: this.primaryColor,
-      showCancelButton: this.showCancelButton,
-      confirmButtonColor: this.primaryColor,
+      background: this.alertTheme.background,
+      iconColor: this.alertTheme.iconColor,
+      showCancelButton: false,
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
       confirmButtonText: content.confirmButtonText,
     });
   }
@@ -133,11 +132,11 @@ export class VehicleCardComponent implements OnInit {
       title: 'Você reservou esse veículo anteriormente.',
       text: 'Deseja cancelar a reserva?',
       icon: 'warning',
-      background: '#f1f1f1',
+      background: this.alertTheme.background,
       showCancelButton: true,
-      confirmButtonColor: '#fd5d93',
-      iconColor: '#fd5d93',
-      cancelButtonColor: '#313a46',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
+      iconColor: this.alertTheme.iconColor,
+      cancelButtonColor: this.alertTheme.cancelButtonColor,
       confirmButtonText: 'Sim',
       cancelButtonText: 'Não',
     }).then((result) => {
@@ -182,11 +181,11 @@ export class VehicleCardComponent implements OnInit {
       title: `Você tem certeza que deseja reservar o veículo ${vehicle.name}?`,
       text: 'Você não poderá resevar outro veículo, desde que cancele a reserva deste.',
       icon: 'warning',
-      background: '#f1f1f1',
+      background: this.alertTheme.background,
       showCancelButton: true,
-      confirmButtonColor: '#fd5d93',
-      iconColor: '#fd5d93',
-      cancelButtonColor: '#313a46',
+      confirmButtonColor: this.alertTheme.confirmButtonColor,
+      iconColor: this.alertTheme.iconColor,
+      cancelButtonColor: this.alertTheme.cancelButtonColor,
       confirmButtonText: 'Sim',
       cancelButtonText: 'Não',
     }).then((result) => {
@@ -218,8 +217,5 @@ export class VehicleCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.placeholder = 'assets/img/placeholder.png';
-    this.backgroundColor = '#f1f1f1';
-    this.primaryColor = '#fd5d93';
-    this.showCancelButton = false;
   }
 }
