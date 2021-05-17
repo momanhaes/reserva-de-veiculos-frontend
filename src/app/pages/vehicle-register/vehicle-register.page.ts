@@ -176,12 +176,6 @@ export class VehicleRegisterPage implements OnInit {
         )
         .subscribe((vehicle: IVehicle) => {
           this.vehicle = vehicle;
-          if (this.vehicle.rentedBy) {
-            return this.showError(
-              'Você não pode editar esse veículo, pois ele já está reservado'
-            );
-          }
-
           this.form.patchValue({
             name: this.vehicle.name,
             description: this.vehicle.description,

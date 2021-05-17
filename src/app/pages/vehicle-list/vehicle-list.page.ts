@@ -3,6 +3,9 @@ import { APPEARD } from 'src/animations/appeard.animation';
 import { IVehicle } from 'src/app/components/vehicle-card/vehicle.interface';
 import { WindowService } from 'src/app/services/window.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { StatusType } from '../vehicle-register/vehicle.interface';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -11,7 +14,7 @@ import { Subscription } from 'rxjs';
   animations: [APPEARD],
 })
 export class VehicleListPage implements OnInit {
-  constructor(private windowService: WindowService) {
+  constructor(private windowService: WindowService, private router: Router) {
     this.isMobile = window.innerWidth <= windowService.widthMobile;
   }
   public subscribeMobile: Subscription;
@@ -23,6 +26,23 @@ export class VehicleListPage implements OnInit {
     return status
       .toLowerCase()
       .replace(/(?:^|\s)(?!da|de|do)\S/g, (l) => l.toUpperCase());
+  }
+
+  edit(vehicle: IVehicle) {
+    if (vehicle.status === StatusType.RESERVADO) {
+      Swal.fire({
+        title: `Ops!`,
+        text: 'Você não pode editar esse veículo, pois ele já está reservado.',
+        icon: 'error',
+        background: '#f1f1f1',
+        iconColor: '#fd5d93',
+        showCancelButton: false,
+        confirmButtonColor: '#fd5d93',
+        confirmButtonText: 'Ok',
+      });
+    } else {
+      this.router.navigate(['vehicle-register', vehicle.externalCode]);
+    }
   }
 
   ngOnInit(): void {

@@ -65,7 +65,7 @@
 }
 
 @mixin breakpoint-large-to-xlarge {
-  @media screen and (max-width: #{$breakpoint-large-to-xlarge}) {
+  @media screen and (max-width: #{$breakpoint-header}) {
     @content;
   }
 }

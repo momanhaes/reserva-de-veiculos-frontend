@@ -56,7 +56,7 @@
               {{ vehicle.fuel }}
             </td>
             <td class="text-center">
-              <button class="button" [routerLink]="['/vehicle-register', vehicle.externalCode]" title="Editar">
+              <button class="button" (click)="edit(vehicle)" title="Editar">
                 <i class="fa fa-pencil-square-o"></i>
               </button>
               <button class="button cancel" title="Remover">
@@ -70,7 +70,7 @@
       <div *ngIf="vehicles?.length && isMobile" class="container line mt-5" [@appeard]="state">
         <div class="header">
           <h3 class="text-white text-center mt-3 mb-3">Listagem de Veículos</h3>
-          <button routerLink="/vehicle-register" class="button text-center font-weight-bold mb-3">
+          <button routerLink="/vehicle-register" class="button text-center font-weight-bold">
             <i class="fa fa-plus mr-2"></i> Adicionar Veículo
           </button>
         </div>
@@ -106,7 +106,7 @@
             </div>
             <div class="options">
               <app-item label="Opções"></app-item>
-              <button class="button" [routerLink]="['vehicle-register', vehicle.externalCode]" title="Editar">
+              <button class="button" (click)="edit(vehicle)" title="Editar">
                 <i class="fa fa-pencil-square-o"></i>
               </button>
               <button class="button cancel" title="Remover">
