@@ -53,10 +53,6 @@
                 background-color: #313a46;
                 border: 1px solid #313a46;
 
-                @include xlarge-and-up {
-                    border: 2px solid #313a46;
-                }
-
                 &:hover {
                     background-color: lighten(#313a46, 5%);
                     color: $color-white;
