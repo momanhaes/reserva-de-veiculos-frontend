@@ -1,7 +1,6 @@
 <div class="nav" [@appeard]="state">
   <input type="checkbox" id="nav-check" />
   <div class="nav-header">
-    <div class="nav-title pull-right mr-4">RESERVA DE VEÍCULOS</div>
   </div>
   <div class="nav-btn">
     <label for="nav-check">
@@ -12,8 +11,10 @@
   </div>
   <div class="nav-links">
     <a routerLinkActive="text-bold" routerLink="/home">Início</a>
-    <a routerLinkActive="text-bold" routerLink="/vehicle-register">Cadastro de Veículos <i class="fa fa-unlock ml-2"></i></a>
-    <a routerLinkActive="text-bold" routerLink="/vehicle-list">Listagem de Veículos <i class="fa fa-unlock ml-2"></i></a>
+    <a routerLinkActive="text-bold" routerLink="/vehicle-register">Cadastro de Veículos <i
+        class="fa fa-unlock ml-2"></i></a>
+    <a routerLinkActive="text-bold" routerLink="/vehicle-list">Listagem de Veículos <i
+        class="fa fa-unlock ml-2"></i></a>
     <a (click)="logout()">Sair</a>
   </div>
 </div>

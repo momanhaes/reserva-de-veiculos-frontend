@@ -11,23 +11,19 @@
     display: inline;
 }
 
-.nav > .nav-header > .nav-title {
-    display: inline-block;
-    font-size: 22px;
-    color: $color-white;
-    padding: 10px 10px 10px 10px;
-    cursor: default;
-}
-
 .nav > .nav-btn {
     display: none;
 }
 
 .nav > .nav-links {
     @include z-index("sky");
-    font-size: 18px;
+    font-size: 1.2rem;
     display: inline;
     float: right;
+
+    @include breakpoint-header {
+        font-size: 1.6rem;
+    }
 }
 
 .nav > .nav-links > a {
@@ -54,7 +50,7 @@
     display: none;
 }
 
-@include breakpoint-large-to-xlarge {
+@include breakpoint-header {
     .nav > .nav-btn {
         display: inline-block;
         position: absolute;

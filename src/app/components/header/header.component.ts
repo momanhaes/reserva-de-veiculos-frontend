@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   public headerRoutes: IHeader[];
   public state = 'ready';
   public user: string;
+  public logo: string;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -40,5 +41,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.getUsername();
+    this.logo = 'assets/img/logo.png';
   }
 }
