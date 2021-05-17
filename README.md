@@ -51,6 +51,11 @@ Abra [http://localhost:4200](http://localhost:4200) em seu navegador.
 
 ### Veículos
 
+`/vehicle-list`
+
+* Página de listagem de veículos com opção para edição e exclusão. 
+* Por enquanto todos os usuários podem editar e excluir veículos, mas em breve será implementado um fluxo de navegação por token usando JWT onde somente usuários administradores poderão editar e excluir veículos.
+
 `/vehicle-register`
 
 * Página de formulário de cadastro de veículos. 
