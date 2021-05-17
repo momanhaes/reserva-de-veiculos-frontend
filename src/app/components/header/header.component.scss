@@ -40,10 +40,6 @@
 .nav > .nav-links > a:hover {
     @include z-index("sky");
     transform: scale(1.2);
-
-    &:first-child {
-        transform: scale(1);
-    }
 }
 
 .nav > #nav-check {

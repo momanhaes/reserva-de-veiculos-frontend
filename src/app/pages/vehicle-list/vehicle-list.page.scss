@@ -10,6 +10,10 @@
             margin-top: 5rem;
         }
 
+        .color-primary {
+            color: $color-primary;
+        }
+
         .title {
             color: $color-white;
             font-size: 2rem;
@@ -68,6 +72,11 @@
                 cursor: no-drop;
                 opacity: 0.5;
             }
+        }
+
+        .search {
+            max-width: 100%;
+            margin: auto;
         }
 
         .row-mobile {

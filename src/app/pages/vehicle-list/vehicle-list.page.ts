@@ -7,8 +7,14 @@ import { Router } from '@angular/router';
 import { StatusType } from '../vehicle-register/vehicle.interface';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { NotificationService } from 'src/app/services/notification.service';
-import { catchError } from 'rxjs/operators';
 import { ALERT_THEME } from 'src/utils/theme';
+import { FormControl, FormGroup } from '@angular/forms';
+import {
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -32,6 +38,8 @@ export class VehicleListPage implements OnInit {
   public isMobile: boolean;
   public isLoading: boolean;
   public alertTheme = ALERT_THEME;
+  public searchTerm: string;
+  public searchForm: FormGroup;
   public error: any;
 
   get mobileValidantionVehicles(): boolean {
@@ -48,6 +56,10 @@ export class VehicleListPage implements OnInit {
 
   get validationError(): boolean {
     return !this.vehicles?.length && !this.isLoading && this.error;
+  }
+
+  get validationVehicleSearch(): boolean {
+    return this.vehicles && !this.isLoading && !this.error;
   }
 
   get tableHeaders(): string[] {
@@ -195,6 +207,18 @@ export class VehicleListPage implements OnInit {
     this.subscribeMobile = this.windowService.hasMobile.subscribe(
       (hasMobile: boolean) => (this.isMobile = hasMobile)
     );
+
+    this.searchForm = new FormGroup({ searchControl: new FormControl('') });
+    this.searchForm.valueChanges
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        switchMap((searchTerm) => {
+          this.searchTerm = searchTerm.searchControl;
+          return this.vehicleService.vehicleByKeyword(searchTerm.searchControl);
+        })
+      )
+      .subscribe((vehicles) => (this.vehicles = vehicles));
 
     this.getVehicles();
   }

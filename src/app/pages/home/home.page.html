@@ -4,14 +4,14 @@
 
     <div *ngIf="validationHeader" [@appeard]="state">
       <h3 class="title mt-5">
-        <i class="fa fa-search mr-2"></i> Escolha um veículo para reservar, <span class="user">{{ user }}</span>.
+        <i class="fa fa-search mr-2"></i> Escolha um veículo para reservar, <span class="color-primary">{{ user }}</span>.
       </h3>
     </div>
 
     <div class="mb-3">
       <p *ngIf="validationEmpty && searchTerm" class="mt-5 text-white text-center" [@appeard]="state">
         <i class="fa fa-frown-o"></i>
-        Ops! Não encontramos veículos cadastrados com o termo "<span class="user">{{ searchTerm }}</span>".
+        Ops! Não encontramos veículos cadastrados com o termo "<span class="color-primary">{{ searchTerm }}</span>".
       </p>
 
       <p *ngIf="validationError" class="mt-5 text-white text-center" [@appeard]="state">
@@ -25,7 +25,7 @@
       </h3>
     </div>
 
-    <div *ngIf="validationVehicleSearch" class="search">
+    <div *ngIf="validationVehicleSearch" class="search" [@appeard]="state">
       <form [formGroup]="searchForm">
         <input type="text" class="form-control mb-3" formControlName="searchControl"
           placeholder="Pesquise por nome, descrição, status, categoria, ano ou conservação." />
