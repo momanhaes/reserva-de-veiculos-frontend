@@ -26,5 +26,11 @@ export const ROUTES: Routes = [
     canActivate: [LoggedInGuard],
     canDeactivate: [LeaveRegisterGuard],
   },
+  {
+    path: 'vehicle-register/:id',
+    component: VehicleRegisterPage,
+    canActivate: [LoggedInGuard],
+    canDeactivate: [LeaveRegisterGuard],
+  },
   { path: '**', component: NotFoundPage },
 ];

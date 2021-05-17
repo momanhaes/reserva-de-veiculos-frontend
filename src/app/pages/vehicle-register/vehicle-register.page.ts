@@ -30,6 +30,9 @@ export class VehicleRegisterPage implements OnInit {
   public vehiclesOption: IVehicleOption;
   public isLoading: boolean;
   public isCancelConfirmed = false;
+  public isEdit = false;
+  public vehicle: IVehicle;
+  public error: any;
 
   constructor(
     private router: Router,
@@ -54,10 +57,6 @@ export class VehicleRegisterPage implements OnInit {
     return this.form.valid;
   }
 
-  public goHome(): void {
-    this.router.navigate(['/home']);
-  }
-
   public isLoggedIn(): boolean {
     return this.userService.isLoggedIn();
   }
@@ -78,7 +77,9 @@ export class VehicleRegisterPage implements OnInit {
   public showSuccess(vehicle: IVehicle): void {
     Swal.fire({
       title: 'Sucesso!',
-      text: `Você cadastrou o veículo ${vehicle.name}.`,
+      text: this.isEdit
+        ? `Você editou o veículo ${vehicle.name}.`
+        : `Você cadastrou o veículo ${vehicle.name}.`,
       icon: 'success',
       background: '#f1f1f1',
       iconColor: '#fd5d93',
@@ -107,7 +108,7 @@ export class VehicleRegisterPage implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.isCancelConfirmed = true;
-        this.goHome();
+        this.router.navigate(['/vehicle-list']);
       }
     });
   }
@@ -117,7 +118,7 @@ export class VehicleRegisterPage implements OnInit {
       return;
     }
 
-    const vehicle: IVehicle = {
+    this.vehicle = {
       name: this.form.value.name,
       externalCode: new Date().getTime().toString(),
       description: this.form.value.description,
@@ -134,7 +135,7 @@ export class VehicleRegisterPage implements OnInit {
     this.isLoading = true;
 
     this.vehicleService
-      .createVehicle(vehicle)
+      .createVehicle(this.vehicle)
       .pipe(
         catchError((err) => {
           this.isLoading = false;
@@ -145,7 +146,7 @@ export class VehicleRegisterPage implements OnInit {
       .subscribe((vehicle: IVehicle) => {
         this.isLoading = false;
         this.showSuccess(vehicle);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/vehicle-list']);
       });
   }
 
@@ -160,5 +161,40 @@ export class VehicleRegisterPage implements OnInit {
       year: new FormControl('', Validators.required),
       conservation: new FormControl('', Validators.required),
     });
+
+    const id = this.route.snapshot.params['id'];
+    if (id) {
+      this.isEdit = true;
+      this.vehicleService
+        .vehicleById(id)
+        .pipe(
+          catchError((err) => {
+            this.isLoading = false;
+            this.showError(err.error.error);
+            return err;
+          })
+        )
+        .subscribe((vehicle: IVehicle) => {
+          this.vehicle = vehicle;
+          if (this.vehicle.rentedBy) {
+            return this.showError(
+              'Você não pode editar esse veículo, pois ele já está reservado'
+            );
+          }
+
+          this.form.patchValue({
+            name: this.vehicle.name,
+            description: this.vehicle.description,
+            fuel: this.vehicle.fuel,
+            imageUrl: this.vehicle.imageUrl,
+            dailyValue: this.vehicle.dailyValue,
+            category: this.vehicle.category,
+            year: this.vehicle.year,
+            conservation: this.vehicle.conservation,
+          });
+
+          this.isLoading = false;
+        });
+    }
   }
 }

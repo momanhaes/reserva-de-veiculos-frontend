@@ -6,14 +6,7 @@ export class LeaveRegisterGuard implements CanDeactivate<VehicleRegisterPage> {
     if (!vehicleRegisterPage.isLoggedIn()) {
       return true;
     }
-    if (
-      !vehicleRegisterPage.isFormValid &&
-      !vehicleRegisterPage.isCancelConfirmed
-    ) {
-      vehicleRegisterPage.exitVehicleRegister();
-      return false;
-    } else {
-      return true;
-    }
+
+    return true;
   }
 }
