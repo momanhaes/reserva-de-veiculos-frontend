@@ -47,13 +47,14 @@ Abra [http://localhost:4200](http://localhost:4200) em seu navegador.
 * Página de reserva de veículos. 
 * É permitida somente uma reserva por usuário.
 * Nessa página você pode ver outras reservas, fazer ou cancelar uma reserva.
-* É possível clicar no svg da lupa na parte superior da página e fazer uma buscar de veículos por nome, descrição, status, categoria, ano e conservação.
+* É possível, na parte superior da página, fazer uma busca de veículos por nome, descrição, status, categoria, ano e conservação.
 
 ### Veículos
 
 `/vehicle-list`
 
-* Página de listagem de veículos com opção para edição e exclusão. 
+* Página de listagem de veículos com opção para edição e exclusão.
+* É possível, na parte superior da página, fazer uma busca de veículos por nome, descrição, status, categoria, ano e conservação.
 * Por enquanto todos os usuários podem editar e excluir veículos, mas em breve será implementado um fluxo de navegação por token usando JWT onde somente usuários administradores poderão editar e excluir veículos.
 
 `/vehicle-register`
@@ -66,6 +67,4 @@ Abra [http://localhost:4200](http://localhost:4200) em seu navegador.
 * Foram implementadas guardas de rotas para que, por exemplo, usuários não autorizados não acessem o conteúdo interno da aplicação.
 * Foi implementada uma página default para erros 404 (not found) a fim lidar com rotas não programadas do sistema.
 * Todas as páginas foram desenvolvidas visando responsividade e usabilidade.
-* Todas as páginas possuem animações feitas a partir do módulo nativo do Angular para tornar a navegação do usuário mais fluida.
-
-
+* Todas as páginas possuem tratamento de erro e loading e animações feitas a partir do módulo nativo do Angular para tornar a navegação do usuário mais fluida.
