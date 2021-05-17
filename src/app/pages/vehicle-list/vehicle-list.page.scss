@@ -79,6 +79,15 @@
             margin: auto;
         }
 
+        .buttons {
+            @include center();
+            flex-wrap: wrap;
+
+            @include large-and-up {
+                @include grid();
+            }
+        }
+
         .row-mobile {
             @include grid(32);
             border-bottom: 1px solid $color-white;
@@ -212,6 +221,10 @@
 
         .primary-font {
             color: $color-primary !important;
+        }
+
+        .pointer {
+            cursor: pointer;
         }
 
         table,

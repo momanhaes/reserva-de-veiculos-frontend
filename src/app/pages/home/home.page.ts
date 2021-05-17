@@ -36,7 +36,7 @@ export class HomePage implements OnInit {
   ) {}
 
   get validationHeader(): boolean {
-    return !this.isLoading;
+    return !this.isLoading && !this.error;
   }
 
   get validationEmpty(): boolean {
@@ -53,6 +53,10 @@ export class HomePage implements OnInit {
 
   get validationVehicleSearch(): boolean {
     return this.vehicles && !this.isLoading && !this.error;
+  }
+
+  public reload() {
+    location.reload();
   }
 
   public getVehicles(): void {

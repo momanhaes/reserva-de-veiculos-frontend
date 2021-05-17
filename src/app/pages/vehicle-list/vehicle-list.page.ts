@@ -42,8 +42,12 @@ export class VehicleListPage implements OnInit {
   public searchForm: FormGroup;
   public error: any;
 
-  get mobileValidantionVehicles(): boolean {
-    return this.vehicles?.length && this.isMobile && !this.isLoading;
+  get mobileValidationVehicleSearch(): boolean {
+    return this.vehicles && this.isMobile && !this.isLoading && !this.error;
+  }
+
+  get desktopValidationVehicleSearch(): boolean {
+    return this.vehicles && !this.isMobile && !this.isLoading && !this.error;
   }
 
   get desktopValidantionVehicles(): boolean {
@@ -51,15 +55,11 @@ export class VehicleListPage implements OnInit {
   }
 
   get validationEmpty(): boolean {
-    return !this.vehicles.length && !this.isLoading;
+    return !this.vehicles.length && !this.isLoading && !this.error;
   }
 
   get validationError(): boolean {
     return !this.vehicles?.length && !this.isLoading && this.error;
-  }
-
-  get validationVehicleSearch(): boolean {
-    return this.vehicles && !this.isLoading && !this.error;
   }
 
   get tableHeaders(): string[] {
@@ -75,6 +75,10 @@ export class VehicleListPage implements OnInit {
       'Combustível',
       'Ações',
     ];
+  }
+
+  public reload() {
+    location.reload();
   }
 
   public getStatus(status: string): string {

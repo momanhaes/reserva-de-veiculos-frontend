@@ -3,14 +3,14 @@
   <div class="container-root">
     <div class="container-fluid">
 
-      <div *ngIf="desktopValidantionVehicles">
+      <div *ngIf="desktopValidationVehicleSearch">
         <h3 class="text-white text-center"><i class="fa fa-list-alt mr-2"></i> Listagem de Veículos</h3>
         <button routerLink="/vehicle-register" class="button pull-right font-weight-bold mb-3" [@appeard]="state">
           <i class="fa fa-plus mr-2"></i> Adicionar Veículo
         </button>
       </div>
 
-      <div *ngIf="validationVehicleSearch && !isMobile" class="search" [@appeard]="state">
+      <div *ngIf="desktopValidationVehicleSearch" class="search" [@appeard]="state">
         <form [formGroup]="searchForm">
           <input type="text" class="form-control mb-3" formControlName="searchControl"
             placeholder="Pesquise por nome, descrição, status, categoria, ano ou conservação." />
@@ -71,7 +71,7 @@
         </tbody>
       </table>
 
-      <div *ngIf="mobileValidantionVehicles" class="container line mt-4" [@appeard]="state">
+      <div *ngIf="mobileValidationVehicleSearch" class="container line mt-4" [@appeard]="state">
         <div class="header mb-5">
           <h3 class="text-white text-center mt-3 mb-3">Listagem de Veículos</h3>
           <button routerLink="/vehicle-register" class="button text-center font-weight-bold">
@@ -79,7 +79,7 @@
           </button>
         </div>
 
-        <div *ngIf="validationVehicleSearch && isMobile" class="search" [@appeard]="state">
+        <div class="search" [@appeard]="state">
           <form [formGroup]="searchForm">
             <input type="text" class="form-control mb-3" formControlName="searchControl"
               placeholder="Pesquise por nome, descrição, status, categoria, ano ou conservação." />
@@ -133,12 +133,16 @@
         Ops! Não encontramos veículos cadastrados com o termo "<span class="color-primary">{{ searchTerm }}</span>".
       </p>
 
-      <p *ngIf="validationEmpty" class="mt-5 text-center text-light" [@appeard]="state">
+      <p *ngIf="validationEmpty && !searchTerm" class="mt-5 text-center text-light" [@appeard]="state">
         Não existem veículos cadastrados <i class="fa fa-frown-o"></i>
       </p>
 
       <p *ngIf="validationError" class="mt-5 text-white text-center" [@appeard]="state">
         Ocorreu um erro ao trazer os veículos <i class="fa fa-frown-o"></i>
+      </p>
+
+      <p *ngIf="validationError" class="mt-3 primary-font text-center pointer" (click)="reload()" title="Atualizar">
+        <i class="fa fa-spinner"></i> Atualizar página
       </p>
 
     </div>
