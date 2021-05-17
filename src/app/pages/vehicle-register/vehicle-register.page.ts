@@ -153,7 +153,6 @@ export class VehicleRegisterPage implements OnInit {
         setTimeout(() => {
           this.isLoading = false;
           this.showSuccess(vehicle);
-          this.notificationsService.notify(StatusType.ATUALIZADO);
           this.router.navigate(['/vehicle-list']);
         }, 500);
       });
@@ -172,7 +171,6 @@ export class VehicleRegisterPage implements OnInit {
       .subscribe((vehicle: IVehicle) => {
         this.isLoading = false;
         this.showSuccess(vehicle);
-        this.notificationsService.notify(StatusType.ATUALIZADO);
         this.router.navigate(['/vehicle-list']);
       });
   }
@@ -190,6 +188,7 @@ export class VehicleRegisterPage implements OnInit {
     });
 
     this.vehicleID = this.route.snapshot.params['id'];
+
     if (this.vehicleID) {
       this.isEdit = true;
       this.vehicleService

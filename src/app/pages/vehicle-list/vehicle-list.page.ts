@@ -69,6 +69,79 @@ export class VehicleListPage implements OnInit {
       .replace(/(?:^|\s)(?!da|de|do)\S/g, (l) => l.toUpperCase());
   }
 
+  public showError(error): void {
+    Swal.fire({
+      title: `Ops!`,
+      text: error ? error : 'Ocorreu um erro.',
+      icon: 'error',
+      background: '#f1f1f1',
+      iconColor: '#fd5d93',
+      showCancelButton: false,
+      confirmButtonColor: '#fd5d93',
+      confirmButtonText: 'Ok',
+    });
+  }
+
+  public showSuccess(): void {
+    Swal.fire({
+      title: 'Sucesso!',
+      text: 'Exclusão concluída.',
+      icon: 'success',
+      background: '#f1f1f1',
+      iconColor: '#fd5d93',
+      showCancelButton: false,
+      confirmButtonColor: '#fd5d93',
+      confirmButtonText: 'Ok',
+    });
+  }
+
+  public delete(vehicle: IVehicle): void {
+    if (vehicle.status === StatusType.RESERVADO) {
+      Swal.fire({
+        title: `Ops!`,
+        text: 'Você não pode excluir esse veículo, pois ele já está reservado.',
+        icon: 'error',
+        background: '#f1f1f1',
+        iconColor: '#fd5d93',
+        showCancelButton: false,
+        confirmButtonColor: '#fd5d93',
+        confirmButtonText: 'Ok',
+      });
+    } else {
+      Swal.fire({
+        title: `Você escolheu excluir o veículo ${vehicle.name}`,
+        text: `Você tem certeza?`,
+        icon: 'warning',
+        background: '#f1f1f1',
+        showCancelButton: true,
+        confirmButtonColor: '#fd5d93',
+        iconColor: '#fd5d93',
+        cancelButtonColor: '#313a46',
+        confirmButtonText: 'Sim',
+        cancelButtonText: 'Não',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.isLoading = true;
+          this.vehicleService
+            .deleteVehicle(vehicle.externalCode)
+            .pipe(
+              catchError((err) => {
+                this.isLoading = false;
+                this.showError(err.error.error);
+                return err;
+              })
+            )
+            .subscribe(() => {
+              setTimeout(() => {
+                this.getVehicles();
+                this.showSuccess();
+              }, 500);
+            });
+        }
+      });
+    }
+  }
+
   public edit(vehicle: IVehicle): void {
     if (vehicle.status === StatusType.RESERVADO) {
       Swal.fire({
@@ -84,6 +157,15 @@ export class VehicleListPage implements OnInit {
     } else {
       this.router.navigate(['vehicle-register', vehicle.externalCode]);
     }
+  }
+
+  public getVehiclesFromSession() {
+    this.isLoading = true;
+
+    setTimeout(() => {
+      this.vehicles = this.vehicleService.getVehicles();
+      this.isLoading = false;
+    }, 500);
   }
 
   public getVehicles(): void {
@@ -108,16 +190,10 @@ export class VehicleListPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getVehicles();
-
-    this.notificationService.notifier.subscribe((message) => {
-      if (message === StatusType.ATUALIZADO) {
-        this.getVehicles();
-      }
-    });
-
     this.subscribeMobile = this.windowService.hasMobile.subscribe(
       (hasMobile: boolean) => (this.isMobile = hasMobile)
     );
+
+    this.getVehicles();
   }
 }

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { IVehicle } from '../components/vehicle-card/vehicle.interface';
 import { VEHICLES_API } from '../app.api';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class VehicleService {
@@ -35,6 +35,10 @@ export class VehicleService {
     return this.httpClient
       .patch<IVehicle>(`${VEHICLES_API}/vehicles/${externalCode}`, vehicle)
       .pipe(map((vehicle: IVehicle) => vehicle));
+  }
+
+  public deleteVehicle(externalCode: string): Observable<{}> {
+    return this.httpClient.delete(`${VEHICLES_API}/vehicles/${externalCode}`);
   }
 
   public vehicleById(id: string): Observable<IVehicle> {
