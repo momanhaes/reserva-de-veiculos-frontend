@@ -8,6 +8,7 @@
 
         @media (min-width: $breakpoint-table) {
             margin-top: 5rem;
+            margin-bottom: 2rem;
         }
 
         .color-primary {
@@ -50,13 +51,18 @@
             transition: background-color 0.2s, color 0.2s;
 
             &.delete {
-                background-color: #313a46;
-                border: 1px solid #313a46;
+                background-color: $color-light-black;
+                border: 1px solid $color-light-black;
 
                 &:hover {
-                    background-color: lighten(#313a46, 5%);
+                    background-color: lighten($color-light-black, 5%);
                     color: $color-white;
                 }
+            }
+
+            &.delete-mobile {
+                background-color: $color-medium-black;
+                border: 1px solid $color-medium-black;
             }
 
             &:hover {
@@ -88,7 +94,7 @@
             @include grid(32);
             border-bottom: 1px solid $color-white;
             padding-bottom: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
 
             .description {
                 @include grid-column-span(32);
@@ -230,6 +236,10 @@
             border-bottom: 0px !important;
             border-top: 0px !important;
             vertical-align: inherit;
+        }
+
+        tbody {
+            background-color: $color-card;
         }
 
         tr {

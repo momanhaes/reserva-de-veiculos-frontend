@@ -19,13 +19,13 @@ export const PARAMS = {
       },
     },
     color: {
-      value: '#fd5d93',
+      value: '#7E87FF',
     },
     shape: {
       type: 'circle',
       stroke: {
         width: 0,
-        color: '#fd5d93',
+        color: '#7E87FF',
       },
       polygon: {
         nb_sides: 5,

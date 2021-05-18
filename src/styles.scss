@@ -16,18 +16,29 @@ h6,
 ul,
 ol,
 li,
+label,
 pre,
 blockquote,
 figure,
 hr {
     margin: 0;
     padding: 0;
+    color: $color-white;
+}
+
+thead,
+tr,
+th,
+tr,
+td {
+    color: $color-white;
 }
 
 p {
     font-size: 1rem;
     margin: 0;
     padding: 0;
+    color: $color-white;
 }
 
 html,
@@ -49,15 +60,22 @@ img {
 }
 
 ::selection {
-    background: #d0dec4;
+    background: $color-selection;
 }
 
 .font-weight-bold {
     font-weight: 700 !important;
 }
 
-a:hover {
-    text-decoration: none !important;
+a {
+    color: $color-white !important;
+    transform: scale(1);
+    transition: transform 0.2s;
+
+    &:hover {
+        text-decoration: none !important;
+        transform: scale(1.1);
+    }
 }
 
 .spinner-center-page {

@@ -2,8 +2,8 @@
   <img *ngIf="vehicle.imageUrl" [src]="vehicle.imageUrl" class="card-img-top" />
   <img *ngIf="!vehicle.imageUrl" [src]="placeholder" class="card-img-top" />
   <div class="card-body">
-    <h5 class="card-title text-white text-center mb-4">{{ vehicle.name }}</h5>
-    <div class="card-text text-white text-left ml-3">
+    <h5 class="card-title text-center mb-4">{{ vehicle.name }}</h5>
+    <div class="card-text text-left ml-3">
       <p *ngIf="vehicle.description">
         <i class="fa fa-diamond text-secondary mr-2"></i>
         <strong>Descrição: </strong>

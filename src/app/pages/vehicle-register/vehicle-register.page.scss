@@ -12,6 +12,10 @@
             margin-top: 5rem;
         }
 
+        .card-primary {
+            background-color: $color-card !important;
+        }
+
         .buttons {
             @include start();
             flex-wrap: wrap;
@@ -31,10 +35,10 @@
                 transition: background-color 0.2s, color 0.2s;
 
                 &.cancel {
-                    background-color: #313a46;
+                    background-color: $color-light-black;
 
                     &:hover {
-                        background-color: lighten(#313a46, 5%);
+                        background-color: lighten($color-light-black, 5%);
                         color: $color-white;
                     }
                 }

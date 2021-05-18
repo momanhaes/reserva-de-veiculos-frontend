@@ -19,7 +19,6 @@ import { WindowService } from './services/window.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { VehicleCardComponent } from './components/vehicle-card/vehicle-card.component';
-import { LoadingComponent } from './components/loading/loading.component';
 import { LoggedInGuard } from './guards/loggedin.guard';
 import { PermitionGuard } from './guards/permition.guard';
 import { LoginGuard } from './guards/login.guard';
@@ -49,7 +48,6 @@ registerLocaleData(localePt, 'pt');
     VehicleCardComponent,
     RegisterPage,
     VehicleRegisterPage,
-    LoadingComponent,
     SnackbarComponent,
     SpinnerComponent,
     VehicleListPage,
