@@ -20,7 +20,11 @@
             @include start();
             flex-wrap: wrap;
 
-            @media (max-width: 393px) {
+            @media (max-width: 767px) {
+                @include between();
+            }
+
+            @media (max-width: 377px) {
                 @include center();
             }
 
@@ -36,6 +40,14 @@
 
                 &.cancel {
                     background-color: $color-light-black;
+
+                    @media (max-width: 377px) {
+                        margin-top: 0.5rem;
+                    }
+
+                    @media (min-width: $breakpoint-medium) {
+                        margin-left: 1rem;
+                    }
 
                     &:hover {
                         background-color: lighten($color-light-black, 5%);
