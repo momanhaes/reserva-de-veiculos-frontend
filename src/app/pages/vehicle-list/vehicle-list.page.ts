@@ -122,7 +122,7 @@ export class VehicleListPage implements OnInit {
         background: this.alertTheme.background,
         iconColor: this.alertTheme.iconColor,
         showCancelButton: false,
-        confirmButtonColor: '#fd5d93',
+        confirmButtonColor: this.alertTheme.confirmButtonColor,
         confirmButtonText: 'Ok',
       });
     } else {
