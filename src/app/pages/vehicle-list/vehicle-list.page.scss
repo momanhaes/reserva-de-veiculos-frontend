@@ -42,6 +42,7 @@
 
         .button {
             border: 0;
+            border-radius: 5px;
             cursor: pointer;
             font-family: $font-montserrat;
             font-size: 1rem;
@@ -237,13 +238,26 @@
             cursor: pointer;
         }
 
-        table,
         thead,
-        th,
+        table,
         td {
             border-bottom: 0px !important;
             border-top: 0px !important;
             vertical-align: inherit;
+        }
+
+        th {
+            border-bottom: 0px !important;
+            border-top: 0px !important;
+            vertical-align: inherit;
+
+            &:first-child {
+                border-radius: 5px 0 0 0;
+            }
+
+            &:last-child {
+                border-radius: 0 5px 0 0;
+            }
         }
 
         tbody {

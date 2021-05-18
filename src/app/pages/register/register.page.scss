@@ -43,6 +43,7 @@
 
         .register-form-submit {
             border: 0;
+            border-radius: 5px;
             cursor: pointer;
             font-family: $font-montserrat;
             font-size: 1rem;
@@ -83,7 +84,7 @@
         }
 
         .low-opacity {
-            opacity: 0.8 !important;
+            opacity: 0.99 !important;
         }
     }
 }
