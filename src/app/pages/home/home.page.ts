@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { APPEARD } from 'src/animations/appeard.animation';
 import { SLIDE } from 'src/animations/slide.animation';
 import { VehicleService } from 'src/app/services/vehicle.service';
+import { KeyType, SessionStorageService } from 'src/app/services/session-storage.service';
 import { IVehicle } from './../../components/vehicle-card/vehicle.interface';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
 import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
@@ -24,8 +24,8 @@ export class HomePage implements OnInit {
   public user: string;
 
   constructor(
-    private vehicleService: VehicleService,
-    private userService: UserService
+    private sessionStorageService: SessionStorageService,
+    private vehicleService: VehicleService
   ) { }
 
   get validationHeader(): boolean {
@@ -66,7 +66,7 @@ export class HomePage implements OnInit {
           })
         )
         .subscribe((vehicles: IVehicle[]) => {
-          this.vehicleService.setVehicles(vehicles);
+          this.sessionStorageService.set(KeyType.VEHICLES, vehicles);
           this.vehicles = vehicles;
           this.isLoading = false;
         });
@@ -82,7 +82,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.userService.getUsername();
+    this.user = this.sessionStorageService.get(KeyType.USERNAME);
     this.searchForm = new FormGroup({ searchControl: new FormControl('') });
     this.searchForm.valueChanges
       .pipe(

@@ -4,6 +4,7 @@ import { IVehicle } from 'src/app/components/vehicle-card/vehicle.interface';
 import { WindowService } from 'src/app/services/window.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { KeyType, SessionStorageService } from 'src/app/services/session-storage.service';
 import { StatusType } from '../vehicle-register/vehicle.interface';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { ALERT_THEME } from 'src/utils/theme';
@@ -19,6 +20,7 @@ import Swal from 'sweetalert2';
 })
 export class VehicleListPage implements OnInit {
   constructor(
+    private sessionStorageService: SessionStorageService,
     private windowService: WindowService,
     private vehicleService: VehicleService,
     private router: Router
@@ -173,7 +175,7 @@ export class VehicleListPage implements OnInit {
     this.isLoading = true;
 
     setTimeout(() => {
-      this.vehicles = this.vehicleService.getVehicles();
+      this.vehicles = this.sessionStorageService.get(KeyType.VEHICLES);
       this.isLoading = false;
     }, 500);
   }
@@ -192,7 +194,7 @@ export class VehicleListPage implements OnInit {
           })
         )
         .subscribe((vehicles: IVehicle[]) => {
-          this.vehicleService.setVehicles(vehicles);
+          this.sessionStorageService.set(KeyType.VEHICLES, vehicles);
           this.vehicles = vehicles;
           this.isLoading = false;
         });

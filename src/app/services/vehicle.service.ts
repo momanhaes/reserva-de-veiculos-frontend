@@ -9,15 +9,6 @@ import { map } from 'rxjs/operators';
 export class VehicleService {
   constructor(private httpClient: HttpClient) {}
 
-  public setVehicles(vehicles: IVehicle[]): void {
-    sessionStorage.removeItem('vehicles');
-    sessionStorage.setItem('vehicles', JSON.stringify(vehicles));
-  }
-
-  public getVehicles(): IVehicle[] {
-    return JSON.parse(sessionStorage.getItem('vehicles'));
-  }
-
   public vehicles(): Observable<IVehicle[]> {
     return this.httpClient.get<IVehicle[]>(`${VEHICLES_API}/vehicles`);
   }

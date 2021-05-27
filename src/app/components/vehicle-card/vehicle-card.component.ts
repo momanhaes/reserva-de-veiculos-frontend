@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { APPEARD } from 'src/animations/appeard.animation';
 import { IContent, IVehicle } from './vehicle.interface';
-import { UserService } from 'src/app/services/user.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
+import { KeyType, SessionStorageService } from 'src/app/services/session-storage.service';
 import { StatusType } from 'src/app/pages/vehicle-register/vehicle.interface';
 import { catchError } from 'rxjs/operators';
 import { ALERT_THEME } from 'src/utils/theme';
@@ -27,9 +27,9 @@ export class VehicleCardComponent implements OnInit {
   @Input() vehicle: IVehicle;
 
   constructor(
-    private userService: UserService,
+    private sessionStorageService: SessionStorageService,
     private vehicleService: VehicleService
-  ) {}
+  ) { }
 
   get statusColor(): string {
     return this.vehicle.status === StatusType.DISPONIVEL
@@ -40,14 +40,14 @@ export class VehicleCardComponent implements OnInit {
   get reservedByYou(): boolean {
     return (
       this.vehicle.status.toUpperCase() === StatusType.RESERVADO &&
-      this.vehicle.rentedBy === this.userService.getUserID()
+      this.vehicle.rentedBy === this.sessionStorageService.get(KeyType.USER_ID)
     );
   }
 
   get reserved(): boolean {
     return (
       this.vehicle.status.toUpperCase() === StatusType.RESERVADO &&
-      this.vehicle.rentedBy !== this.userService.getUserID()
+      this.vehicle.rentedBy !== this.sessionStorageService.get(KeyType.USER_ID)
     );
   }
 
@@ -56,9 +56,9 @@ export class VehicleCardComponent implements OnInit {
   }
 
   get alreadyReservedVehicle(): boolean {
-    const reserved = this.vehicleService
-      .getVehicles()
-      .filter((item) => item.rentedBy === this.userService.getUserID());
+    const reserved = this.sessionStorageService
+      .get(KeyType.VEHICLES)
+      .filter((item) => item.rentedBy === this.sessionStorageService.get(KeyType.USER_ID));
     return reserved.length ? true : false;
   }
 
@@ -165,7 +165,7 @@ export class VehicleCardComponent implements OnInit {
   }
 
   public rent(vehicle: IVehicle): void {
-    if (vehicle.rentedBy === this.userService.getUserID()) {
+    if (vehicle.rentedBy === this.sessionStorageService.get(KeyType.USER_ID)) {
       return this.showAlreadyReservedByYou(vehicle);
     }
     if (vehicle.rentedBy) {
@@ -193,7 +193,7 @@ export class VehicleCardComponent implements OnInit {
         this.vehicleService
           .updateVehicle(vehicle.externalCode, {
             status: StatusType.RESERVADO,
-            rentedBy: this.userService.getUserID(),
+            rentedBy: this.sessionStorageService.get(KeyType.USER_ID),
           })
           .pipe(
             catchError((err) => {

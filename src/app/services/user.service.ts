@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SessionStorageService, KeyType } from './session-storage.service';
 import { VEHICLES_API } from '../app.api';
 import { map, tap } from 'rxjs/operators';
 
@@ -20,25 +21,7 @@ export interface IUser {
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  constructor(private httpClient: HttpClient) {}
-
-  public setUsername(username: string | undefined): void {
-    sessionStorage.removeItem('username');
-    sessionStorage.setItem('username', JSON.stringify(username));
-  }
-
-  public getUsername(): string | undefined {
-    return JSON.parse(sessionStorage.getItem('username'));
-  }
-
-  public setUserID(userID: string | undefined): void {
-    sessionStorage.removeItem('userID');
-    sessionStorage.setItem('userID', JSON.stringify(userID));
-  }
-
-  public getUserID(): string | undefined {
-    return JSON.parse(sessionStorage.getItem('userID'));
-  }
+  constructor(private httpClient: HttpClient, private sessionStorageService: SessionStorageService) { }
 
   public create(user: IUser): Observable<IUserInfo> {
     return this.httpClient
@@ -54,18 +37,18 @@ export class UserService {
       })
       .pipe(
         tap((user) => {
-          this.setUsername(user.name);
-          this.setUserID(user._id);
+          this.sessionStorageService.set(KeyType.USERNAME, user.name);
+          this.sessionStorageService.set(KeyType.USER_ID, user._id);
         })
       );
   }
 
   public logout(): void {
-    this.setUserID('');
-    this.setUsername('');
+    this.sessionStorageService.set(KeyType.USER_ID, '');
+    this.sessionStorageService.set(KeyType.USERNAME, '');
   }
 
   public isLoggedIn(): boolean {
-    return this.getUserID() ? true : false;
+    return this.sessionStorageService.get(KeyType.USER_ID) ? true : false;
   }
 }

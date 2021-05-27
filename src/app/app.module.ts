@@ -13,6 +13,7 @@ import { RegisterPage } from './pages/register/register.page';
 import { VehicleRegisterPage } from './pages/vehicle-register/vehicle-register.page';
 import { VehicleListPage } from './pages/vehicle-list/vehicle-list.page';
 import { VehicleService } from './services/vehicle.service';
+import { SessionStorageService } from './services/session-storage.service';
 import { UserService } from './services/user.service';
 import { NotificationService } from './services/notification.service';
 import { WindowService } from './services/window.service';
@@ -67,6 +68,7 @@ registerLocaleData(localePt, 'pt');
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
+    SessionStorageService,
     VehicleService,
     UserService,
     NotificationService,
@@ -78,4 +80,4 @@ registerLocaleData(localePt, 'pt');
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
