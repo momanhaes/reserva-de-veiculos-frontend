@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
 export class VehicleCardComponent implements OnInit {
   public state = 'ready';
   public reservedVehicle: IVehicle;
+  public user: { userID: string };
   public isLoading: boolean;
   public placeholder: string;
   public label: string;
@@ -40,14 +41,14 @@ export class VehicleCardComponent implements OnInit {
   get reservedByYou(): boolean {
     return (
       this.vehicle.status.toUpperCase() === StatusType.RESERVADO &&
-      this.vehicle.rentedBy === this.sessionStorageService.get(KeyType.USER_ID)
+      this.vehicle.rentedBy === this.user.userID
     );
   }
 
   get reserved(): boolean {
     return (
       this.vehicle.status.toUpperCase() === StatusType.RESERVADO &&
-      this.vehicle.rentedBy !== this.sessionStorageService.get(KeyType.USER_ID)
+      this.vehicle.rentedBy !== this.user.userID
     );
   }
 
@@ -58,7 +59,7 @@ export class VehicleCardComponent implements OnInit {
   get alreadyReservedVehicle(): boolean {
     const reserved = this.sessionStorageService
       .get(KeyType.VEHICLES)
-      .filter((item) => item.rentedBy === this.sessionStorageService.get(KeyType.USER_ID));
+      .filter((item) => item.rentedBy === this.user.userID);
     return reserved.length ? true : false;
   }
 
@@ -165,7 +166,7 @@ export class VehicleCardComponent implements OnInit {
   }
 
   public rent(vehicle: IVehicle): void {
-    if (vehicle.rentedBy === this.sessionStorageService.get(KeyType.USER_ID)) {
+    if (vehicle.rentedBy === this.user.userID) {
       return this.showAlreadyReservedByYou(vehicle);
     }
     if (vehicle.rentedBy) {
@@ -193,7 +194,7 @@ export class VehicleCardComponent implements OnInit {
         this.vehicleService
           .updateVehicle(vehicle.externalCode, {
             status: StatusType.RESERVADO,
-            rentedBy: this.sessionStorageService.get(KeyType.USER_ID),
+            rentedBy: this.user.userID,
           })
           .pipe(
             catchError((err) => {
@@ -214,6 +215,7 @@ export class VehicleCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = this.sessionStorageService.get(KeyType.USER_ID);
     this.placeholder = 'assets/img/placeholder.png';
   }
 }

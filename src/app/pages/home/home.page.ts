@@ -16,12 +16,12 @@ import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/
 export class HomePage implements OnInit {
   public searchForm: FormGroup;
   public vehicles: IVehicle[] = [];
+  public user: { username: string };
   public searchTerm: string;
   public showSearchBar: boolean;
   public isLoading: boolean;
   public error: boolean;
   public state: string;
-  public user: string;
 
   constructor(
     private sessionStorageService: SessionStorageService,

@@ -37,15 +37,14 @@ export class UserService {
       })
       .pipe(
         tap((user) => {
-          this.sessionStorageService.set(KeyType.USERNAME, user.name);
-          this.sessionStorageService.set(KeyType.USER_ID, user._id);
+          this.sessionStorageService.set(KeyType.USERNAME, { username: user.name });
+          this.sessionStorageService.set(KeyType.USER_ID, { userID: user._id });
         })
       );
   }
 
   public logout(): void {
-    this.sessionStorageService.set(KeyType.USER_ID, '');
-    this.sessionStorageService.set(KeyType.USERNAME, '');
+    this.sessionStorageService.clear();
   }
 
   public isLoggedIn(): boolean {

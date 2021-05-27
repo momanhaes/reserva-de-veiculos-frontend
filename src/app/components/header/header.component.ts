@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { KeyType, SessionStorageService } from 'src/app/services/session-storage.service';
 import { APPEARD } from 'src/animations/appeard.animation';
 import { UserService } from 'src/app/services/user.service';
 import { IHeader } from './header.interface';
@@ -21,7 +20,6 @@ export class HeaderComponent implements OnInit {
   public alertTheme = ALERT_THEME;
 
   constructor(
-    private sessionStorageService: SessionStorageService,
     private userService: UserService,
     private router: Router
   ) { }
@@ -47,7 +45,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.sessionStorageService.get(KeyType.USERNAME);
     this.logo = 'assets/img/logo.png';
   }
 }
