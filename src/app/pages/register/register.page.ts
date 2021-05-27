@@ -24,7 +24,7 @@ export class RegisterPage implements OnInit {
   public isLoading: boolean;
   public alertTheme = ALERT_THEME;
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router, private userService: UserService) { }
 
   public showPassowordDontMatchError(): void {
     Swal.fire({
@@ -85,9 +85,7 @@ export class RegisterPage implements OnInit {
   }
 
   public register(): void {
-    if (this.form.invalid) {
-      return;
-    }
+    if (this.form.invalid) { return; }
 
     const password = this.form.get('password').value;
     const passwordConfirmation = this.form.get('passwordConfirmation').value;

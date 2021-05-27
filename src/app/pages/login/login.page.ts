@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
     private router: Router,
     private userService: UserService,
     private notificationService: NotificationService
-  ) {}
+  ) { }
 
   public showError(error: any): void {
     Swal.fire({
@@ -43,9 +43,8 @@ export class LoginPage implements OnInit {
   }
 
   public login(): void {
-    if (this.form.invalid) {
-      return;
-    }
+    if (this.form.invalid) { return; }
+
     const user = this.form.value;
     this.isLoading = true;
 

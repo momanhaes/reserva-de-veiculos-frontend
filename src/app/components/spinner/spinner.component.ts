@@ -7,7 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class SpinnerComponent {
   private static nextId = 0;
+  
   @Input() size = 3.2;
+
   public id = `spinner_${++SpinnerComponent.nextId}`;
 
   constructor() {}

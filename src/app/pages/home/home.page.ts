@@ -1,17 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { APPEARD } from 'src/animations/appeard.animation';
 import { SLIDE } from 'src/animations/slide.animation';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { IVehicle } from './../../components/vehicle-card/vehicle.interface';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import {
-  catchError,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-} from 'rxjs/operators';
+import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -30,10 +24,9 @@ export class HomePage implements OnInit {
   public user: string;
 
   constructor(
-    private router: Router,
     private vehicleService: VehicleService,
     private userService: UserService
-  ) {}
+  ) { }
 
   get validationHeader(): boolean {
     return !this.isLoading && !this.error;

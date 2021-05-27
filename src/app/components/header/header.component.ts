@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { APPEARD } from 'src/animations/appeard.animation';
 import { UserService } from 'src/app/services/user.service';
@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   public logo: string;
   public alertTheme = ALERT_THEME;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) { }
 
   public logout(): void {
     Swal.fire({

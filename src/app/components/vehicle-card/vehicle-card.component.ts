@@ -5,7 +5,6 @@ import { UserService } from 'src/app/services/user.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { StatusType } from 'src/app/pages/vehicle-register/vehicle.interface';
 import { catchError } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { ALERT_THEME } from 'src/utils/theme';
 import Swal from 'sweetalert2';
 
@@ -29,8 +28,7 @@ export class VehicleCardComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private vehicleService: VehicleService,
-    private router: Router
+    private vehicleService: VehicleService
   ) {}
 
   get statusColor(): string {

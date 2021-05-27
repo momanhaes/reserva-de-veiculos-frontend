@@ -5,7 +5,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { IVehicle } from 'src/app/components/vehicle-card/vehicle.interface';
 import { VehicleService } from 'src/app/services/vehicle.service';
-import { NotificationService } from 'src/app/services/notification.service';
 import { catchError } from 'rxjs/operators';
 import {
   IVehicleFuel,
@@ -29,12 +28,9 @@ import Swal from 'sweetalert2';
 export class VehicleRegisterPage implements OnInit {
   public state = 'ready';
   public form: FormGroup;
-  public vehiclesOption: IVehicleOption;
   public isLoading: boolean;
-  public isCancelConfirmed = false;
   public isEdit = false;
   public vehicle: IVehicle;
-  public error: any;
   public vehicleID: string;
   public alertTheme = ALERT_THEME;
 
@@ -42,9 +38,8 @@ export class VehicleRegisterPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
-    private vehicleService: VehicleService,
-    private notificationsService: NotificationService
-  ) {}
+    private vehicleService: VehicleService
+  ) { }
 
   get vehicleOptions(): IVehicleOption[] {
     return VEHICLES_OPTIONS;
@@ -64,6 +59,14 @@ export class VehicleRegisterPage implements OnInit {
 
   public isLoggedIn(): boolean {
     return this.userService.isLoggedIn();
+  }
+
+  public controlError(control: string): boolean {
+    return this.form.get(control).errors && (this.form.get(control).dirty || this.form.get(control).touched);
+  }
+
+  public controlRequired(control: string): boolean {
+    return this.form.get(control).errors.required;
   }
 
   public showError(error): void {
@@ -112,16 +115,13 @@ export class VehicleRegisterPage implements OnInit {
       cancelButtonText: 'Não',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.isCancelConfirmed = true;
         this.router.navigate(['/vehicle-list']);
       }
     });
   }
 
   public action(): void {
-    if (this.form.invalid) {
-      return;
-    }
+    if (this.form.invalid) { return; }
 
     this.vehicle = {
       name: this.form.value.name,

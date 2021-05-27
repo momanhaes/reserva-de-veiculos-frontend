@@ -13,6 +13,7 @@ import { StatusType } from 'src/app/pages/vehicle-register/vehicle.interface';
 })
 export class SnackbarComponent implements OnInit {
   @Input() message: string;
+  
   public snackVisibility = 'hidden';
 
   constructor(private notificationService: NotificationService) {}

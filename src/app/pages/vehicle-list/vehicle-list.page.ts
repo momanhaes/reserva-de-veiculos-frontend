@@ -6,15 +6,9 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { StatusType } from '../vehicle-register/vehicle.interface';
 import { VehicleService } from 'src/app/services/vehicle.service';
-import { NotificationService } from 'src/app/services/notification.service';
 import { ALERT_THEME } from 'src/utils/theme';
 import { FormControl, FormGroup } from '@angular/forms';
-import {
-  catchError,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-} from 'rxjs/operators';
+import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -25,13 +19,11 @@ import Swal from 'sweetalert2';
 })
 export class VehicleListPage implements OnInit {
   constructor(
-    private notificationService: NotificationService,
     private windowService: WindowService,
     private vehicleService: VehicleService,
     private router: Router
-  ) {
-    this.isMobile = window.innerWidth <= windowService.widthMobile;
-  }
+  ) { this.isMobile = window.innerWidth <= windowService.widthMobile; }
+
   public state = 'ready';
   public subscribeMobile: Subscription;
   public vehicles: IVehicle[] = [];
@@ -40,7 +32,7 @@ export class VehicleListPage implements OnInit {
   public alertTheme = ALERT_THEME;
   public searchTerm: string;
   public searchForm: FormGroup;
-  public error: any;
+  public error: boolean;
 
   get mobileValidationVehicleSearch(): boolean {
     return this.vehicles && this.isMobile && !this.isLoading && !this.error;
