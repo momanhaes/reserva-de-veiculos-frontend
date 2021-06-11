@@ -23,6 +23,10 @@ export const VEHICLES_OPTIONS = [
     name: 'Carro',
     value: 'Carro',
   },
+  {
+    name: 'Outros',
+    value: 'Outros',
+  },
 ];
 
 export const VEHICLES_STATES = [

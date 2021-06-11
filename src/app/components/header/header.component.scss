@@ -1,10 +1,11 @@
 @import "../../../scss/includes.scss";
 
 .nav {
-    height: 50px;
-    width: 100%;
+    @include z-index("space");
     background-color: $color-primary;
     position: relative;
+    height: 50px;
+    width: 100%;
 }
 
 .nav > .nav-header {
