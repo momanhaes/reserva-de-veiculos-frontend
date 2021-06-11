@@ -22,7 +22,8 @@
             <div class="form-row">
               <div class="form-group col-12">
                 <label class="font-weight-bold">Nome *</label>
-                <input formControlName="name" type="text" placeholder="Digite o nome do veículo" class="form-control" />
+                <input formControlName="name" data-cy="vehicleName" type="text" placeholder="Digite o nome do veículo"
+                  class="form-control" />
 
                 <div *ngIf="controlError('name')" class="text-danger mt-2">
                   <div *ngIf="controlRequired('name')" class="text text-danger">
@@ -35,8 +36,8 @@
             <div class="form-row">
               <div class="form-group col-12 col-md-8">
                 <label class="font-weight-bold">Descrição *</label>
-                <input formControlName="description" type="text" placeholder="Digite a descrição do veículo"
-                  class="form-control" />
+                <input formControlName="description" data-cy="vehicleDescription" type="text"
+                  placeholder="Digite a descrição do veículo" class="form-control" />
 
                 <div *ngIf="controlError('description')" class="text-danger mt-2">
                   <div *ngIf="controlRequired('description')" class="text text-danger">
@@ -47,7 +48,7 @@
 
               <div class="form-group col-12 col-md-4">
                 <label class="font-weight-bold">Nível de combustível *</label>
-                <select class="custom-select" formControlName="fuel">
+                <select class="custom-select" data-cy="vehicleFuel" formControlName="fuel">
                   <option disabled selected value="">Escolha uma opção</option>
                   <option *ngFor="let option of vehicleFuel" [value]="option.value">
                     {{ option.name }}
@@ -65,13 +66,14 @@
             <div class="form-row">
               <div class="form-group col-12 col-md-8">
                 <label class="font-weight-bold">Imagem</label>
-                <input formControlName="imageUrl" type="text" class="form-control"
+                <input formControlName="imageUrl" data-cy="vehicleImage" type="text" class="form-control"
                   placeholder="Digite a URL da imagem" />
               </div>
 
               <div class="form-group col-12 col-md-4">
                 <label class="font-weight-bold">Valor da diária *</label>
-                <input formControlName="dailyValue" type="number" class="form-control" placeholder="R$ 00,00" />
+                <input formControlName="dailyValue" data-cy="vehicleDailyValue" type="number" class="form-control"
+                  placeholder="R$ 00,00" />
 
                 <div *ngIf="controlError('dailyValue')" class="text-danger mt-2">
                   <div *ngIf="controlRequired('dailyValue')" class="text text-danger">
@@ -84,7 +86,7 @@
             <div class="form-row">
               <div class="form-group col-12 col-md-4">
                 <label class="font-weight-bold">Categoria *</label>
-                <select class="custom-select" formControlName="category">
+                <select class="custom-select" data-cy="vehicleCategory" formControlName="category">
                   <option disabled selected value="">
                     Escolha uma categoria
                   </option>
@@ -102,7 +104,7 @@
 
               <div class="form-group col-12 col-md-4">
                 <label class="font-weight-bold">Ano de fabricação *</label>
-                <input formControlName="year" type="number" class="form-control"
+                <input formControlName="year" data-cy="vehicleYear" type="number" class="form-control"
                   placeholder="Digite o ano de fabricação do veículo" />
 
                 <div *ngIf="controlError('year')" class="text-danger mt-2">
@@ -114,7 +116,7 @@
 
               <div class="form-group col-12 col-md-4">
                 <label class="font-weight-bold">Estado de conservação *</label>
-                <select class="custom-select" formControlName="conservation">
+                <select class="custom-select" formControlName="conservation" data-cy="vehicleConservation">
                   <option disabled selected value="">Escolha uma opção</option>
                   <option *ngFor="let option of vehicleStates" [value]="option.value">
                     {{ option.name }}
@@ -130,13 +132,15 @@
             </div>
 
             <div class="buttons mt-3">
-              <button [disabled]="form.invalid || isLoading" (click)="action()" class="button font-weight-bold">
+              <button [disabled]="form.invalid || isLoading" (click)="action()" data-cy="vehicleRegisterSubmit"
+                class="button font-weight-bold">
                 <i *ngIf="!isLoading" class="fa fa-floppy-o mr-2"></i>
                 <app-spinner *ngIf="isLoading" class="mr-2" [size]="1.3"></app-spinner>
                 Salvar
               </button>
 
-              <button (click)="exitVehicleRegister()" class="button cancel font-weight-bold">
+              <button (click)="exitVehicleRegister()" data-cy="vehicleRegisterCancel"
+                class="button cancel font-weight-bold">
                 <i class="fa fa-ban mr-2"></i>Cancelar </button>
             </div>
           </form>

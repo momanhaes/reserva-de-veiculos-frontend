@@ -10,9 +10,9 @@
     </label>
   </div>
   <div class="nav-links" [@appeard]="state">
-    <a routerLinkActive="text-bold" routerLink="/home">Início</a>
-    <a routerLinkActive="text-bold" routerLink="/vehicle-register">Cadastro de Veículos</a>
-    <a routerLinkActive="text-bold" routerLink="/vehicle-list">Listagem de Veículos</a>
-    <a (click)="logout()">Sair</a>
+    <a routerLinkActive="text-bold" data-cy="home" routerLink="/home">Início</a>
+    <a routerLinkActive="text-bold" data-cy="vehicleRegister" routerLink="/vehicle-register">Cadastro de Veículos</a>
+    <a routerLinkActive="text-bold" data-cy="vehicleList" routerLink="/vehicle-list">Listagem de Veículos</a>
+    <a (click)="logout()" data-cy="logout">Sair</a>
   </div>
 </div>
